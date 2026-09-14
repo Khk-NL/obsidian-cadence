@@ -205,6 +205,81 @@ function createI18n(preference, obsidianLocale) {
     'Impossible de réordonner : les propriétés verrouillées (🔒) doivent conserver leur position initiale.': '无法重排：锁定的属性（🔒）必须保持原位。',
     'Technical key cannot be empty and must be alphanumeric.': '技术键名不能为空，且只能包含字母和数字。',
     'This technical key is already in use.': '该技术键名已被使用。',
+    'CADENCE': 'CADENCE', 'Request permission': '请求权限',
+    'The TaskNotes plugin is not enabled or installed in your Obsidian vault.': '当前 Obsidian 仓库中未安装或启用 TaskNotes。',
+    'Click the button below to open the TaskNotes plugin GitHub page to install it on your Obsidian.': '点击下方按钮打开 TaskNotes 的 GitHub 页面进行安装。',
+    'Rechercher un dossier du vault…': '搜索仓库文件夹…',
+    'Table view': '表格视图', 'Kanban board': '看板', 'Card grid': '卡片网格',
+    'Table View': '表格视图', 'Kanban Board': '看板', 'Tile Grid': '磁贴网格',
+    'The outcome we want, why now.': '预期成果及当前推进的原因。',
+    'In scope / out of scope.': '范围内与范围外的事项。',
+    'What could go wrong.': '可能存在的风险。',
+    'Who cares about this project.': '项目相关方。', 'Anything else.': '其他补充。',
+    'Ajouter une tâche (TaskNotes)': '添加任务（TaskNotes）',
+    'Que faut-il faire ?': '需要做什么？',
+    'Enter text section title:': '输入文本分区标题：',
+    'Enter task list section title:': '输入任务列表分区标题：',
+    'Enter milestones section title:': '输入里程碑分区标题：',
+    'Enter section title:': '输入分区标题：', 'Enter chart section title:': '输入图表分区标题：',
+    'Quick add — today': '快速添加 · 今天', 'What needs doing?': '需要做什么？',
+    'Quick add a task — Enter to save': '快速添加任务 · 按 Enter 保存',
+    'e.g. VIP Contacts': '例如重要联系人', 'Option A, Option B...': '选项一、选项二…',
+    'Projects by Status': '按状态查看项目', 'Projects by Priority': '按优先级查看项目',
+    'Deals by Stage': '按阶段查看商机', 'Deals by Owner': '按负责人查看商机',
+    'Partners by Tier': '按级别查看合作伙伴', 'Partners by Status': '按状态查看合作伙伴',
+    'Move to unscheduled': '移至未安排', 'Show nav': '显示导航',
+    'This property is read-only unless configured as a Select (Enum) in settings.': '此属性为只读；如需编辑，请在设置中将其配置为枚举选择。',
+    'Click to edit notes': '点击编辑备注', 'Associate task to a milestone': '将任务关联到里程碑',
+    'Click to edit': '点击编辑', 'Preview rendered markdown': '预览渲染后的 Markdown',
+    'Supprimer cette section croisée': '删除此关联分区', 'Drag card to reorder': '拖动卡片以调整顺序',
+    'Click to unlock this property': '点击解锁此属性', 'Click to lock this property': '点击锁定此属性',
+    'Deal': '商机', 'Deals': '商机', 'Stage': '阶段', 'Close by': '预计成交日期',
+    'USD — US Dollar': 'USD — 美元', 'CNY — Chinese Yuan (人民币)': 'CNY — 人民币',
+    'EUR — Euro': 'EUR — 欧元', 'GBP — British Pound': 'GBP — 英镑',
+    'ZAR — South African Rand': 'ZAR — 南非兰特', 'AUD — Australian Dollar': 'AUD — 澳大利亚元',
+    'CAD — Canadian Dollar': 'CAD — 加拿大元', 'CHF — Swiss Franc': 'CHF — 瑞士法郎',
+    'JPY — Japanese Yen': 'JPY — 日元', 'INR — Indian Rupee': 'INR — 印度卢比',
+    'BRL — Brazilian Real': 'BRL — 巴西雷亚尔', 'AED — UAE Dirham': 'AED — 阿联酋迪拉姆',
+    'BRIEF': '简介', 'SCOPE': '范围', 'RISKS': '风险', 'STAKEHOLDERS': '相关方',
+    '3 Months': '3 个月', '6 Months': '6 个月', '1 Year': '1 年',
+    '7 Days': '7 天', '14 Days': '14 天', '30 Days': '30 天', '90 Days': '90 天',
+    'Daily Notes': '每日笔记', '🍩 Donut': '🍩 环形图', '📊 Bar': '📊 条形图',
+    '🗃️ KPI Cards': '🗃️ 指标卡片', '📋 List': '📋 列表',
+    '0–7 DAYS': '0–7 天', '8–30 DAYS': '8–30 天', '31–90 DAYS': '31–90 天', '90+ DAYS': '90 天以上',
+    'Inbox, Today, Calendar.': '收件箱、今天、日历。',
+    'Projects with milestones, tasks, and status tracking.': '管理项目、里程碑、任务和状态。',
+    'Dashboard, Pipeline, Contacts, Companies, Activities + CRM-driven Reports.': '仪表盘、销售管道、联系人、公司、活动及客户关系报告。',
+    'Partners, Registrations, Commissions, Leads, Certifications, Analytics + Partner reports.': '合作伙伴、登记、佣金、潜在客户、认证、分析及合作伙伴报告。',
+    '📄 Document (Default)': '📄 文档（默认）', '📁 Folder / Projects': '📁 文件夹 / 项目',
+    '👥 Users / Contacts': '👥 用户 / 联系人', '🏢 Building / Companies': '🏢 建筑 / 公司',
+    '📈 Trending / Sales': '📈 趋势 / 销售', '🤝 Handshake / Partners': '🤝 握手 / 合作伙伴',
+    '🎯 Target / Leads': '🎯 目标 / 潜在客户', '⚡ Lightning / Sequences': '⚡ 闪电 / 流程',
+    '💼 Wallet / Commissions': '💼 钱包 / 佣金', '📋 Clipboard / Registrations': '📋 剪贴板 / 登记',
+    '🏆 Award / Certifications': '🏆 奖章 / 认证', '📅 Calendar / Activities': '📅 日历 / 活动',
+    '⭐ Star / VIP': '⭐ 星标 / 重要客户', '🏷️ Tag / Categories': '🏷️ 标签 / 分类',
+    '🧭 Compass / Areas': '🧭 指南针 / 区域', '🗄️ Database / Items': '🗄️ 数据库 / 项目',
+    '☑️ Checkbox / Tasks': '☑️ 复选框 / 任务',
+    'Text': '文本', 'Select (Enum)': '选择（枚举）', 'List / Multiple Links': '列表 / 多重链接',
+    'Date': '日期', 'Number': '数字', 'History / Shared': '历史 / 共享',
+    'Obsidian Tags': 'Obsidian 标签', 'None': '无', 'Folder…': '文件夹…',
+    'COLUMN MAPPING': '列映射', 'Importing…': '正在导入…',
+    'This surface is scaffolded but not yet built. Tell the team to flesh it out next.': '此页面尚未实现。',
+    'TODAY’S ENTRY': '今日日志', 'Aucun dossier': '没有文件夹',
+    'Projects Dashboard': '项目仪表盘', 'Status · priority · custom analytics': '状态 · 优先级 · 自定义分析',
+    'Show nav': '显示导航', 'Cadence: switch to light': 'Cadence：切换到浅色模式',
+    'Cadence: switch to dark': 'Cadence：切换到深色模式',
+    'Open project (closes this modal)': '打开项目（并关闭此弹窗）',
+    'Context, follow-ups, what happened, related links…': '背景、后续事项、进展、相关链接…',
+    'Paste CSV here, including a header row…': '在此粘贴 CSV 内容，包含标题行…',
+    'Milestone title': '里程碑标题', 'Delete milestone': '删除里程碑',
+    'Notes — context, follow-ups, what happened…': '备注 · 背景、后续事项和进展…',
+    'Task description': '任务描述', 'Delete task': '删除任务',
+    'Open this note natively in a split tab': '在分屏中打开原始笔记',
+    'Edit notes': '编辑备注', 'Open linked project': '打开关联项目',
+    'Write what’s on your mind…': '写下此刻的想法…',
+    'Set date & reminder for this task': '为此任务设置日期和提醒',
+    'Change linked project': '更改关联项目', 'Link to a project': '关联项目',
+    'Set a reminder': '设置提醒',
   } : {};
   const fallback = {
     'settings.language.name': 'Language', 'settings.language.desc': 'Use Obsidian language automatically, or choose a Cadence language.',
@@ -214,6 +289,37 @@ function createI18n(preference, obsidianLocale) {
     if (!zh || typeof value !== 'string') return value;
     if (dict[value]) return dict[value];
     return value
+      .replace(/^Scheduled: (.+)$/, '计划时间：$1')
+      .replace(/^Milestone: (.+)$/, '里程碑：$1')
+      .replace(/^Add (.+)\.\.\.$/, (_, name) => `添加${translateText(name)}…`)
+      .replace(/^(.+) name$/, (_, name) => `${translateText(name)}名称`)
+      .replace(/^Enter your (.+) here\.\.\.$/, (_, name) => `在此填写${translateText(name)}…`)
+      .replace(/^\+?(\d+) more · scroll down for the full picture$/, '还有 $1 项，向下滚动查看全部')
+      .replace(/^PROJECT TASKS · (\d+) open across (\d+) projects?$/, '项目任务 · $1 项未完成，涉及 $2 个项目')
+      .replace(/^Target Folder: (.+)$/, '目标文件夹：$1')
+      .replace(/^Defines properties and sections layout for each new daily note created in the planner\.$/, '定义计划页面中新建每日笔记的属性和分区布局。')
+      .replace(/^Defines properties and sections layout for each new (.+) item created\.$/, '定义新建$1时使用的属性和分区布局。')
+      .replace(/^No (.+) in the last (\d+) days$/, '过去 $2 天没有$1')
+      .replace(/^(.+) PROJECTS$/, (_, name) => `${translateText(name.toLowerCase())}项目`)
+      .replace(/^(.+) PRIORITY$/, (_, name) => `${translateText(name.toLowerCase())}优先级`)
+      .replace(/^(\d+) deals? · (.+)$/, '$1 个商机 · $2')
+      .replace(/^CUSTOMER BASE · (\d+) records$/, '客户总数 · $1 条记录')
+      .replace(/^CONVERSION · sourced → won$/, '转化 · 来源商机 → 赢单')
+      .replace(/^(\d+)\/(\d+) sourced deals won$/, '来源商机赢单 $1/$2')
+      .replace(/^Week of (.+) — (\d+) activities$/, '$1 所在周 · $2 次活动')
+      .replace(/^Week of (.+) — (\d+) done, (\d+) open$/, '$1 所在周 · $2 项已完成，$3 项未完成')
+      .replace(/^(.+) — (\d+) done, (\d+) open$/, '$1 · $2 项已完成，$3 项未完成')
+      .replace(/^(.+) — (.+) · (\d+) deals$/, '$1 · $2 · $3 个商机')
+      .replace(/^(\d+) reminders? due later today$/, '今天晚些时候有 $1 条提醒到期')
+      .replace(/^(\d+) deal closes? this week · (.+)$/, '本周有 $1 个商机预计成交 · $2')
+      .replace(/^(\d+) deals won this week · (.+)$/, '本周赢单 $1 个 · $2')
+      .replace(/^(.+) · "(.+)" — due today$/, '$1 · “$2”今天到期')
+      .replace(/^(.+) · "(.+)" — due tomorrow$/, '$1 · “$2”明天到期')
+      .replace(/^(.+) · "(.+)" — due in (\d+) days$/, '$1 · “$2”将在 $3 天后到期')
+      .replace(/^(\d+) open tasks? on today's note$/, '今天的笔记有 $1 项未完成任务')
+      .replace(/^(\d+) open tasks? scheduled for today$/, '今天安排了 $1 项未完成任务')
+      .replace(/^Overdue reminder — "(.+)"$/, '逾期提醒：“$1”')
+      .replace(/^(\d+) overdue reminders — "(.+)" \+ (\d+) more$/, '$1 条逾期提醒：“$2”等另外 $3 条')
       .replace(/^Migrated (\d+) files for field "(.+)" to type "(.+)"\.$/, '已将 $1 个文件中的“$2”字段转换为“$3”类型。')
       .replace(/^Renamed frontmatter key "(.+)" to "(.+)" in (\d+) files\.$/, '已在 $3 个文件中将 Frontmatter 键名“$1”改为“$2”。')
       .replace(/^Failed to read (.+): (.+)$/, '读取 $1 失败：$2')
@@ -264,6 +370,10 @@ function createI18n(preference, obsidianLocale) {
 }
 function currentObsidianLocale(app) {
   return (obsidian.moment && obsidian.moment.locale()) || (app && app.locale) || 'en';
+}
+function uiText(value) {
+  const i18n = window.__cadencePlugin && window.__cadencePlugin.i18n;
+  return i18n ? i18n.translateText(value) : value;
 }
 class CadenceNotice extends obsidian.Notice {
   constructor(message, ...rest) {
@@ -676,6 +786,7 @@ const DEFAULT_SETTINGS = {
 /* Module-level — kept in sync by the plugin so the standalone fmtValue helper
    can format currency without each caller threading settings through. */
 let CURRENT_CURRENCY = 'USD';
+let CURRENT_LOCALE = 'en';
 let CURRENT_TIMEZONE = CadenceTimezone.systemTimezone();
 
 const CURRENCY_OPTIONS = [
@@ -711,9 +822,9 @@ function greeting() {
 }
 function dateInfo(d = new Date()) {
   return {
-    weekday: d.toLocaleDateString(undefined, { weekday: 'long' }),
+    weekday: d.toLocaleDateString(CURRENT_LOCALE, { weekday: 'long' }),
     day: d.getDate(),
-    month: d.toLocaleDateString(undefined, { month: 'long' }),
+    month: d.toLocaleDateString(CURRENT_LOCALE, { month: 'long' }),
     year: d.getFullYear(),
   };
 }
@@ -1418,16 +1529,16 @@ function fmtValue(val, type) {
   if (type === 'tags' && Array.isArray(val)) return val.map((t) => `#${t}`).join(' ');
   if (type === 'date') {
     const d = new Date(val);
-    if (!isNaN(d.getTime())) return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+    if (!isNaN(d.getTime())) return d.toLocaleDateString(CURRENT_LOCALE, { year: 'numeric', month: 'short', day: 'numeric' });
     return String(val);
   }
   if (type === 'currency') {
     const n = Number(val);
     if (!isNaN(n)) {
       try {
-        return n.toLocaleString(undefined, { style: 'currency', currency: CURRENT_CURRENCY, maximumFractionDigits: 0 });
+        return n.toLocaleString(CURRENT_LOCALE, { style: 'currency', currency: CURRENT_CURRENCY, maximumFractionDigits: 0 });
       } catch (_) {
-        return n.toLocaleString(undefined, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+        return n.toLocaleString(CURRENT_LOCALE, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
       }
     }
     return String(val);
@@ -2010,7 +2121,7 @@ async function createEntity(app, entityKeyOrFolder, rawName) {
 
   if (customTemplateContent !== null) {
     const now = new Date();
-    const timeStr = now.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
+    const timeStr = now.toLocaleTimeString(CURRENT_LOCALE, { hour: '2-digit', minute: '2-digit' });
     template = customTemplateContent
       .replace(/\{\{name\}\}/gi, safeName)
       .replace(/\{\{title\}\}/gi, safeName)
@@ -2041,7 +2152,7 @@ async function ensureDailyNote(app, settings, date = new Date()) {
   if (dailyTemplateFile && dailyTemplateFile instanceof obsidian.TFile) {
     const rawTemplate = await app.vault.read(dailyTemplateFile);
     const now = new Date();
-    const timeStr = now.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
+    const timeStr = now.toLocaleTimeString(CURRENT_LOCALE, { hour: '2-digit', minute: '2-digit' });
     template = rawTemplate
       .replace(/\{\{name\}\}/gi, ymd(date))
       .replace(/\{\{title\}\}/gi, ymd(date))
@@ -2149,13 +2260,13 @@ function reminderTimeStr(when) {
   if (isNaN(d.getTime())) return '';
   const today = startOfDay(new Date()).getTime();
   const dDay = startOfDay(d).getTime();
-  const time = d.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
+  const time = d.toLocaleTimeString(CURRENT_LOCALE, { hour: '2-digit', minute: '2-digit' });
   if (dDay === today) return time;
   if (dDay === today + 86400000) return `Tomorrow ${time}`;
   if (dDay - today < 7 * 86400000 && dDay > today) {
-    return d.toLocaleDateString(undefined, { weekday: 'short' }) + ' ' + time;
+    return d.toLocaleDateString(CURRENT_LOCALE, { weekday: 'short' }) + ' ' + time;
   }
-  return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) + ' ' + time;
+  return d.toLocaleDateString(CURRENT_LOCALE, { month: 'short', day: 'numeric' }) + ' ' + time;
 }
 
 /* ─────────── Quick-capture modal ─────────── */
@@ -2181,7 +2292,7 @@ class CadenceCaptureModal extends CadenceModal {
     const textRow = contentEl.createDiv({ cls: 'cad-form-row' });
     textRow.createDiv({ cls: 'cad-form-label', text: 'WHAT' });
     const textInput = textRow.createEl('input', { type: 'text', cls: 'cad-form-input' });
-    textInput.placeholder = 'What needs doing?';
+    textInput.placeholder = uiText('What needs doing?');
     textInput.value = this.defaultText;
 
     // Schedule toggle
@@ -2333,7 +2444,7 @@ class CadenceReminderEditModal extends CadenceModal {
     textRow.createDiv({ cls: 'cad-create-label', text: 'WHAT *' });
     const textInput = textRow.createEl('input', { type: 'text', cls: 'cad-create-input' });
     textInput.value = this.reminder.text || '';
-    textInput.placeholder = 'What needs doing?';
+    textInput.placeholder = uiText('What needs doing?');
 
     /* When */
     const whenRow = form.createDiv({ cls: 'cad-create-row' });
@@ -2350,7 +2461,7 @@ class CadenceReminderEditModal extends CadenceModal {
     }
     const clearBtn = whenWrap.createEl('button', { cls: 'cad-btn cad-btn-sm', text: 'Clear' });
     clearBtn.type = 'button';
-    clearBtn.title = 'Move to unscheduled';
+    clearBtn.title = uiText('Move to unscheduled');
     clearBtn.addEventListener('click', () => { dateInput.value = ''; });
 
     /* Repeat */
@@ -2370,7 +2481,7 @@ class CadenceReminderEditModal extends CadenceModal {
       projectField.empty();
       if (this.reminder.project) {
         const chip = projectField.createEl('a', { cls: 'cad-rem-project-chip', text: '📁 ' + (projectNameFromPath(this.app, this.reminder.project) || 'Project') });
-        chip.title = 'Open project (closes this modal)';
+        chip.title = uiText('Open project (closes this modal)');
         chip.addEventListener('click', (e) => {
           e.preventDefault();
           const file = this.app.vault.getAbstractFileByPath(this.reminder.project);
@@ -2406,7 +2517,7 @@ class CadenceReminderEditModal extends CadenceModal {
     notesRow.createDiv({ cls: 'cad-create-label', text: 'NOTES' });
     const notesArea = notesRow.createEl('textarea', { cls: 'cad-create-input' });
     notesArea.rows = 6;
-    notesArea.placeholder = 'Context, follow-ups, what happened, related links…';
+    notesArea.placeholder = uiText('Context, follow-ups, what happened, related links…');
     notesArea.value = this.reminder.notes || '';
     notesArea.style.resize = 'vertical';
     notesArea.style.fontFamily = 'inherit';
@@ -2595,7 +2706,7 @@ class CadenceImportModal extends CadenceModal {
 
     const ta = csvWrap.createEl('textarea', { cls: 'cad-create-input' });
     ta.rows = 8;
-    ta.placeholder = 'Paste CSV here, including a header row…';
+    ta.placeholder = uiText('Paste CSV here, including a header row…');
     ta.style.fontFamily = 'var(--font-monospace-theme, var(--font-monospace))';
     ta.style.fontSize = '12px';
     ta.style.resize = 'vertical';
@@ -2866,10 +2977,10 @@ class CadenceEntityCreateModal extends CadenceModal {
         input = row.createEl('input', { type: 'date', cls: 'cad-create-input' });
       } else if (fieldType === 'number' || fieldType === 'currency') {
         input = row.createEl('input', { type: 'number', cls: 'cad-create-input' });
-        input.placeholder = '0';
+        input.placeholder = uiText('0');
       } else if (fieldType === 'email') {
         input = row.createEl('input', { type: 'email', cls: 'cad-create-input' });
-        input.placeholder = 'name@example.com';
+        input.placeholder = uiText('name@example.com');
       } else {
         input = row.createEl('input', { type: 'text', cls: 'cad-create-input' });
         input.placeholder = fieldType === 'tags' ? 'tag1, tag2' : this._placeholderFor(f, isPrimary);
@@ -3881,7 +3992,7 @@ class CadenceAppView extends obsidian.ItemView {
     /* Hamburger — visible only on mobile via CSS, toggles the nav drawer */
     const burger = topbar.createEl('button', { cls: 'cad-mobile-burger' });
     try { obsidian.setIcon(burger, 'menu'); } catch (_) { }
-    burger.title = 'Show nav';
+    burger.title = this.plugin.i18n.translateText('Show nav');
     burger.addEventListener('click', () => this._toggleMobileNav());
 
     const brand = topbar.createDiv({ cls: 'cad-app-brand' });
@@ -3894,11 +4005,11 @@ class CadenceAppView extends obsidian.ItemView {
     const dark = !!this.plugin.settings.cadenceAppDark;
     const themeBtn = topRight.createEl('button', { cls: 'cad-topbar-icon-btn' });
     try { obsidian.setIcon(themeBtn, dark ? 'sun' : 'moon'); } catch (_) { }
-    themeBtn.title = dark ? 'Cadence: switch to light' : 'Cadence: switch to dark';
+    themeBtn.title = this.plugin.i18n.translateText(dark ? 'Cadence: switch to light' : 'Cadence: switch to dark');
     themeBtn.addEventListener('click', () => this._toggleCadenceDark());
 
     const eyebrow = topRight.createDiv({ cls: 'cad-app-topbar-meta' });
-    eyebrow.setText(active.label.toUpperCase());
+    eyebrow.setText(this.plugin.i18n.translateText(active.label));
 
     /* ── Body: left grouped nav + main content ──────── */
     const body = root.createDiv({ cls: 'cad-app-body' });
@@ -4753,7 +4864,7 @@ class CadenceAppView extends obsidian.ItemView {
           inp.disabled = true;
           inp.style.opacity = '0.6';
           inp.style.cursor = 'not-allowed';
-          inp.title = 'This property is read-only unless configured as a Select (Enum) in settings.';
+          inp.title = uiText('This property is read-only unless configured as a Select (Enum) in settings.');
         } else {
           inp.addEventListener('change', () => writeField(f.key, inp.value));
         }
@@ -4765,7 +4876,7 @@ class CadenceAppView extends obsidian.ItemView {
           inp.disabled = true;
           inp.style.opacity = '0.6';
           inp.style.cursor = 'not-allowed';
-          inp.title = 'This property is read-only unless configured as a Select (Enum) in settings.';
+          inp.title = uiText('This property is read-only unless configured as a Select (Enum) in settings.');
         } else {
           inp.addEventListener('input', () => debouncedWrite(f.key, inp.value));
           inp.addEventListener('blur', () => writeField(f.key, inp.value));
@@ -4777,7 +4888,7 @@ class CadenceAppView extends obsidian.ItemView {
           inp.disabled = true;
           inp.style.opacity = '0.6';
           inp.style.cursor = 'not-allowed';
-          inp.title = 'This property is read-only unless configured as a Select (Enum) in settings.';
+          inp.title = uiText('This property is read-only unless configured as a Select (Enum) in settings.');
         } else {
           inp.addEventListener('input', () => debouncedWrite(f.key, inp.value));
           inp.addEventListener('blur', () => writeField(f.key, inp.value));
@@ -4827,7 +4938,7 @@ class CadenceAppView extends obsidian.ItemView {
           inp.style.padding = '0';
           inp.style.margin = '0';
           inp.style.height = '24px';
-          inp.placeholder = 'Add ' + f.label.toLowerCase() + '...';
+          inp.placeholder = uiText(`Add ${f.label.toLowerCase()}...`);
 
           if (!isCore && f.key === 'type') {
             inp.disabled = true;
@@ -5073,12 +5184,12 @@ class CadenceAppView extends obsidian.ItemView {
         } else {
           const inp = row.createEl('input', { type: 'text', cls: 'cad-form-input' });
           if (current) inp.value = String(current);
-          if (f.key === primaryKey) inp.placeholder = `${def.label} name`;
+          if (f.key === primaryKey) inp.placeholder = uiText(`${def.label} name`);
           if (!isCore && f.key === 'type') {
             inp.disabled = true;
             inp.style.opacity = '0.6';
             inp.style.cursor = 'not-allowed';
-            inp.title = 'This property is read-only unless configured as a Select (Enum) in settings.';
+            inp.title = uiText('This property is read-only unless configured as a Select (Enum) in settings.');
           } else {
             inp.addEventListener('input', () => debouncedWrite(f.key, inp.value));
             inp.addEventListener('blur', () => writeField(f.key, inp.value));
@@ -5284,7 +5395,7 @@ class CadenceAppView extends obsidian.ItemView {
         inp.style.padding = '0';
         inp.style.height = '24px';
         inp.style.lineHeight = '24px';
-        inp.placeholder = `Add ${label.toLowerCase()}...`;
+        inp.placeholder = uiText(`Add ${label.toLowerCase()}...`);
 
         const suggestionsBox = cell.createDiv({ cls: 'cad-pd-tag-suggestions' });
         suggestionsBox.style.position = 'absolute';
@@ -5740,7 +5851,7 @@ class CadenceAppView extends obsidian.ItemView {
         inp.style.padding = '0';
         inp.style.height = '24px';
         inp.style.lineHeight = '24px';
-        inp.placeholder = `Add ${label.toLowerCase()}...`;
+        inp.placeholder = uiText(`Add ${label.toLowerCase()}...`);
 
         const suggestionsBox = cell.createDiv({ cls: 'cad-pd-tag-suggestions' });
         suggestionsBox.style.position = 'absolute';
@@ -6137,7 +6248,7 @@ class CadenceAppView extends obsidian.ItemView {
 
         const titleInp = row.createEl('input', { type: 'text', cls: 'cad-pd-mile-title' });
         titleInp.value = m.title || '';
-        titleInp.placeholder = 'Milestone title';
+        titleInp.placeholder = uiText('Milestone title');
 
         // Check if any tasks in this project are linked to this milestone
         if (projectSections) {
@@ -6182,7 +6293,7 @@ class CadenceAppView extends obsidian.ItemView {
           }
         });
         const del = row.createEl('button', { cls: 'cad-btn cad-btn-sm cad-btn-danger', text: '×' });
-        del.title = 'Delete milestone';
+        del.title = uiText('Delete milestone');
         del.addEventListener('click', async () => {
           items.splice(idx, 1);
           await this._commitMilestones(file, items, flashSaved, false, rawKey);
@@ -6196,7 +6307,7 @@ class CadenceAppView extends obsidian.ItemView {
           if (hasNotes) {
             const preview = notesEl.createDiv({ cls: 'cad-mile-notes-preview' });
             preview.setText(items[idx].notes);
-            preview.title = 'Click to edit notes';
+            preview.title = uiText('Click to edit notes');
             preview.addEventListener('click', openNotesEditor);
           } else {
             const addBtn = notesEl.createEl('a', { cls: 'cad-mile-notes-add', text: '+ Add notes' });
@@ -6207,7 +6318,7 @@ class CadenceAppView extends obsidian.ItemView {
           notesEl.empty();
           const ta = notesEl.createEl('textarea', { cls: 'cad-mile-notes-textarea' });
           ta.value = items[idx].notes || '';
-          ta.placeholder = 'Notes — context, follow-ups, what happened…';
+          ta.placeholder = uiText('Notes — context, follow-ups, what happened…');
           const autosize = () => {
             ta.style.height = 'auto';
             ta.style.height = Math.max(60, ta.scrollHeight + 2) + 'px';
@@ -6315,7 +6426,7 @@ class CadenceAppView extends obsidian.ItemView {
         } else {
           const titleInp = row.createEl('input', { type: 'text', cls: 'cad-pd-task-title' });
           titleInp.value = cleanTaskDisplayTitle(t.title);
-          titleInp.placeholder = 'Task description';
+          titleInp.placeholder = uiText('Task description');
 
           if (this._focusTaskIdx === idx) {
             this._focusTaskIdx = null;
@@ -6340,7 +6451,7 @@ class CadenceAppView extends obsidian.ItemView {
             }
           });
 
-          msSelect.title = currentMs ? `Milestone: ${currentMs}` : 'Associate task to a milestone';
+          msSelect.title = uiText(currentMs ? `Milestone: ${currentMs}` : 'Associate task to a milestone');
 
           msSelect.addEventListener('change', async () => {
             const selectedMs = msSelect.value;
@@ -6357,10 +6468,10 @@ class CadenceAppView extends obsidian.ItemView {
             items[idx].title = newTitle;
             if (selectedMs) {
               msSelect.addClass('active');
-              msSelect.title = `Milestone: ${selectedMs}`;
+              msSelect.title = uiText(`Milestone: ${selectedMs}`);
             } else {
               msSelect.removeClass('active');
-              msSelect.title = 'Associate task to a milestone';
+              msSelect.title = uiText('Associate task to a milestone');
             }
 
             await this._commitTasks(file, items, flashSaved, false, rawKey);
@@ -6429,9 +6540,9 @@ class CadenceAppView extends obsidian.ItemView {
             cls: 'cad-btn cad-btn-sm cad-pd-task-bell' + (hasSchedule ? ' linked' : ''),
             text: hasSchedule ? '🔔' : '🔕',
           });
-          bell.title = hasSchedule
+          bell.title = uiText(hasSchedule
             ? `Scheduled: ${reminderTimeStr(linked.when)}`
-            : 'Set date & reminder for this task';
+            : 'Set date & reminder for this task');
           bell.addEventListener('click', async () => {
             await commitValue();
 
@@ -6458,7 +6569,7 @@ class CadenceAppView extends obsidian.ItemView {
 
         if (this.plugin.settings.taskManagementSystem !== 'tasknotes') {
           const del = row.createEl('button', { cls: 'cad-btn cad-btn-sm cad-btn-danger', text: '×' });
-          del.title = 'Delete task';
+          del.title = uiText('Delete task');
           del.addEventListener('click', async () => {
             const oldItem = Object.assign({}, items[idx]);
             items.splice(idx, 1);
@@ -6558,7 +6669,7 @@ priority: normal
       cls: 'cad-btn cad-btn-sm',
       attr: { style: 'padding: 4px 6px; display: inline-flex; align-items: center; justify-content: center; border-radius: 4px; border: 1px solid var(--border-color); background: transparent; cursor: pointer;' }
     });
-    openBtn.title = 'Open this note natively in a split tab';
+    openBtn.title = uiText('Open this note natively in a split tab');
     try { obsidian.setIcon(openBtn, 'file-text'); } catch (_) { }
     openBtn.addEventListener('click', (ev) => {
       ev.stopPropagation();
@@ -6586,7 +6697,7 @@ priority: normal
 
     // 1. Textarea element
     const ta = body.createEl('textarea', { cls: 'cad-pd-textarea' });
-    ta.placeholder = placeholder || `Enter your ${label.toLowerCase()} here...`;
+    ta.placeholder = uiText(placeholder || `Enter your ${label.toLowerCase()} here...`);
     ta.value = currentValue;
 
     // 2. Preview element
@@ -6594,7 +6705,7 @@ priority: normal
       cls: 'cad-card-preview-wrap',
       attr: { style: 'padding: 12px 14px; min-height: 60px; cursor: pointer;' }
     });
-    previewWrap.title = 'Click to edit';
+    previewWrap.title = uiText('Click to edit');
     const previewDiv = previewWrap.createDiv({ cls: 'markdown-preview-view', attr: { style: 'padding: 0; min-height: 30px;' } });
 
     let saveTimer = null;
@@ -6659,7 +6770,7 @@ priority: normal
         toggleBtn.empty();
         try { obsidian.setIcon(toggleBtn, 'eye'); } catch (_) { }
         toggleBtn.createSpan({ text: ' Preview', attr: { style: 'margin-left: 2px;' } });
-        toggleBtn.title = 'Preview rendered markdown';
+        toggleBtn.title = uiText('Preview rendered markdown');
         autoResize();
       } else {
         renderPreview();
@@ -6668,7 +6779,7 @@ priority: normal
         toggleBtn.empty();
         try { obsidian.setIcon(toggleBtn, 'edit-3'); } catch (_) { }
         toggleBtn.createSpan({ text: ' Edit', attr: { style: 'margin-left: 2px;' } });
-        toggleBtn.title = 'Edit notes';
+        toggleBtn.title = uiText('Edit notes');
       }
     };
 
@@ -7164,7 +7275,7 @@ priority: normal
 });
 
       const delBtn = head.createEl('button', { text: '×', attr: { style: 'color: var(--text-error); border: 1px solid var(--text-error); padding: 2px 8px; font-weight: bold; border-radius: 4px; background: transparent; cursor: pointer;' } });
-      delBtn.title = 'Supprimer cette section croisée';
+      delBtn.title = uiText('Supprimer cette section croisée');
       delBtn.addEventListener('click', async () => {
         if (!confirm('Supprimer cette section croisée ?')) return;
         this.plugin.settings.crossSections = (this.plugin.settings.crossSections || []).filter(c => c.id !== config.id);
@@ -7413,7 +7524,7 @@ priority: normal
 
     /* Header */
     const today = new Date();
-    const dateStr = today.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+    const dateStr = today.toLocaleDateString(CURRENT_LOCALE, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
     this._renderPageHeader(root, `${greeting()}.`, dateStr, (right) => {
       const mk = (label, fn) => {
         const b = right.createEl('button', { cls: 'cad-btn', text: label });
@@ -7591,7 +7702,7 @@ priority: normal
       const m = firstDay.getMonth();
       const monthCell = monthsRow.createDiv({ cls: 'cad-heatmap-month-cell' });
       if (m !== lastMonth && (wIdx === 0 || firstDay.getDate() <= 7)) {
-        monthCell.setText(firstDay.toLocaleDateString(undefined, { month: 'short' }));
+        monthCell.setText(firstDay.toLocaleDateString(CURRENT_LOCALE, { month: 'short' }));
         lastMonth = m;
       }
 
@@ -7615,7 +7726,7 @@ priority: normal
           cell.addClass('is-today');
         }
 
-        const formattedDate = dayDate.toLocaleDateString(undefined, {
+        const formattedDate = dayDate.toLocaleDateString(CURRENT_LOCALE, {
           weekday: 'short',
           month: 'short',
           day: 'numeric',
@@ -7815,7 +7926,7 @@ priority: normal
 
       if (isStep) {
         const dObj = new Date(dStr + 'T12:00:00');
-        const labelStr = isLast ? 'Today' : dObj.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+        const labelStr = isLast ? 'Today' : dObj.toLocaleDateString(CURRENT_LOCALE, { month: 'short', day: 'numeric' });
 
         const xTxt = svg.createSvg('text', {
           attr: {
@@ -7882,7 +7993,7 @@ priority: normal
           });
 
           const dObj = new Date(pt.date + 'T12:00:00');
-          const dateFmt = dObj.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
+          const dateFmt = dObj.toLocaleDateString(CURRENT_LOCALE, { weekday: 'short', month: 'short', day: 'numeric' });
           const tip = `${proj.name}\n${dateFmt}: ${pt.count} ${pt.count === 1 ? 'task' : 'tasks'} done`;
 
           try {
@@ -8230,7 +8341,7 @@ priority: normal
 
       if (linkedProject) {
         const chip = row.createEl('a', { cls: 'cad-task-proj-chip', text: '📁 ' + (projectNameFromPath(this.app, linkedProject) || 'Project') });
-        chip.title = 'Open linked project';
+        chip.title = uiText('Open linked project');
         chip.addEventListener('click', (ev) => {
           ev.preventDefault();
           ev.stopPropagation();
@@ -8241,7 +8352,7 @@ priority: normal
 
       if (settings.taskManagementSystem !== 'tasknotes') {
         const linkBtn = row.createEl('button', { cls: 'cad-task-link-btn' + (linkedProject ? ' linked' : ''), text: linkedProject ? '✎' : '📁' });
-        linkBtn.title = linkedProject ? 'Change linked project' : 'Link to a project';
+        linkBtn.title = uiText(linkedProject ? 'Change linked project' : 'Link to a project');
         linkBtn.addEventListener('click', (ev) => {
           ev.stopPropagation();
           this._openTaskProjectPicker(file.path, text, linkedProject);
@@ -8927,7 +9038,7 @@ priority: normal
 
     // --- Drag Handle ---
     const grip = ctrlRow.createDiv({ attr: { style: 'cursor: grab; display: flex; align-items: center; justify-content: center; color: var(--text-muted); opacity: 0.7; padding: 2px 4px;' } });
-    grip.title = 'Drag card to reorder';
+    grip.title = uiText('Drag card to reorder');
     try { obsidian.setIcon(grip, 'grip-vertical'); } catch (_) { }
 
     // --- Delete button ---
@@ -9132,7 +9243,7 @@ priority: normal
           cls: 'cad-btn cad-btn-sm cad-pt-bell' + (linked ? ' linked' : ''),
           text: linked ? '🔔' : '🔕',
         });
-        bell.title = linked ? 'Edit reminder' : 'Set a reminder';
+        bell.title = uiText(linked ? 'Edit reminder' : 'Set a reminder');
         bell.addEventListener('click', (ev) => {
           ev.stopPropagation();
           const existing = findProjectTaskReminder(this.plugin, g.file.path, t.title);
@@ -9173,7 +9284,7 @@ priority: normal
     if (r.project) {
       const chipRow = main.createDiv({ cls: 'cad-inbox-row-meta-row' });
       const chip = chipRow.createEl('a', { cls: 'cad-rem-project-chip', text: '📁 ' + (projectNameFromPath(this.app, r.project) || 'Project') });
-      chip.title = 'Open project';
+      chip.title = uiText('Open project');
       chip.addEventListener('click', (ev) => {
         ev.preventDefault();
         ev.stopPropagation();
@@ -10289,7 +10400,7 @@ priority: normal
           p.tasks.forEach((l) => { if (/ \[(x|X)\] /.test(l)) wd++; else if (/ \[ \] /.test(l)) wo++; });
         }
       }
-      weeks.push({ start: ws, done: wd, open: wo, any: anyNote, label: ws.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) });
+      weeks.push({ start: ws, done: wd, open: wo, any: anyNote, label: ws.toLocaleDateString(CURRENT_LOCALE, { month: 'short', day: 'numeric' }) });
     }
     const maxWeek = Math.max(1, ...weeks.map((w) => w.done));
     root.createDiv({ cls: 'cad-section-label-lg', text: 'COMPLETION TREND — LAST 12 WEEKS' });
@@ -10481,7 +10592,7 @@ priority: normal
       const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
       months.push({
         date: d,
-        label: d.toLocaleDateString(undefined, { month: 'short' }),
+        label: d.toLocaleDateString(CURRENT_LOCALE, { month: 'short' }),
         revenue: 0,
         count: 0,
       });
@@ -10695,7 +10806,7 @@ priority: normal
     for (let w = 7; w >= 0; w--) {
       const ws = addDays(weekStart, -w * 7);
       const we = addDays(ws, 7);
-      weeks.push({ start: ws, end: we, count: 0, label: ws.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) });
+      weeks.push({ start: ws, end: we, count: 0, label: ws.toLocaleDateString(CURRENT_LOCALE, { month: 'short', day: 'numeric' }) });
     }
     acts.forEach((e) => {
       const when = entityValue(e, 'when', def);
@@ -11716,7 +11827,7 @@ priority: normal
 
         if (linkedProject) {
           const chip = row.createEl('a', { cls: 'cad-task-proj-chip', text: '📁 ' + (projectNameFromPath(this.app, linkedProject) || 'Project') });
-          chip.title = 'Open linked project';
+          chip.title = uiText('Open linked project');
           chip.addEventListener('click', (ev) => {
             ev.preventDefault();
             ev.stopPropagation();
@@ -11727,7 +11838,7 @@ priority: normal
 
         if (this.plugin.settings.taskManagementSystem !== 'tasknotes') {
           const linkBtn = row.createEl('button', { cls: 'cad-task-link-btn' + (linkedProject ? ' linked' : ''), text: linkedProject ? '✎' : '📁' });
-          linkBtn.title = linkedProject ? 'Change linked project' : 'Link to a project';
+          linkBtn.title = uiText(linkedProject ? 'Change linked project' : 'Link to a project');
           linkBtn.addEventListener('click', (ev) => {
             ev.stopPropagation();
             this._openTaskProjectPicker(dailyPath, text, linkedProject);
@@ -11756,7 +11867,7 @@ priority: normal
     journalSection.createDiv({ cls: 'cad-section-label' }).setText('TODAY’S ENTRY');
     const ta = journalSection.createEl('textarea', { cls: 'cad-journal' });
     ta.value = this.todayParsed.journal;
-    ta.placeholder = 'Write what’s on your mind…';
+    ta.placeholder = uiText('Write what’s on your mind…');
     ta.rows = Math.max(8, ta.value.split('\n').length + 2);
     ta.addEventListener('input', () => {
       ta.style.height = 'auto';
@@ -11872,8 +11983,8 @@ priority: normal
     const header = root.createDiv({ cls: 'cad-pl-header' });
     const titleWrap = header.createDiv({ cls: 'cad-pl-title-wrap' });
     titleWrap.createDiv({ cls: 'cad-eyebrow', text: 'WEEK OF' });
-    const startStr = days[0].toLocaleDateString(undefined, { month: 'long', day: 'numeric' });
-    const endStr = days[6].toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' });
+    const startStr = days[0].toLocaleDateString(CURRENT_LOCALE, { month: 'long', day: 'numeric' });
+    const endStr = days[6].toLocaleDateString(CURRENT_LOCALE, { month: 'long', day: 'numeric', year: 'numeric' });
     titleWrap.createDiv({ cls: 'cad-pl-title', text: `${startStr} – ${endStr}` });
 
     const nav = header.createDiv({ cls: 'cad-pl-nav' });
@@ -11942,7 +12053,7 @@ priority: normal
       const colHead = col.createDiv({ cls: 'cad-pl-day-head' });
       colHead.createDiv({
         cls: 'cad-pl-weekday',
-        text: d.date.toLocaleDateString(undefined, { weekday: 'short' }).toUpperCase(),
+        text: d.date.toLocaleDateString(CURRENT_LOCALE, { weekday: 'short' }).toUpperCase(),
       });
       colHead.createDiv({ cls: 'cad-pl-daynum', text: String(d.date.getDate()) });
       const open = d.tasks.filter((l) => / \[ \] /.test(l)).length;
@@ -12163,6 +12274,7 @@ class CadenceSettingTab extends obsidian.PluginSettingTab {
         .onChange(async (v) => {
           this.plugin.settings.language = v;
           this.plugin.i18n = createI18n(v, currentObsidianLocale(this.app));
+          CURRENT_LOCALE = this.plugin.i18n.locale;
           await this.plugin.saveSettings();
           this.display();
           this.plugin.refreshOpenViews();
@@ -12667,7 +12779,7 @@ class CadenceSettingTab extends obsidian.PluginSettingTab {
         } else if (locked) {
           const lockSpan = tdDrag.createEl('span', { text: '🔐', cls: 'cad-prop-lock-icon' });
           lockSpan.style.cursor = 'pointer';
-          lockSpan.title = 'Click to unlock this property';
+          lockSpan.title = uiText('Click to unlock this property');
           lockSpan.addEventListener('click', async (e) => {
             e.stopPropagation();
             field.locked = false;
@@ -12680,7 +12792,7 @@ class CadenceSettingTab extends obsidian.PluginSettingTab {
           const unlockSpan = tdDrag.createEl('span', { text: '🔓', cls: 'cad-prop-unlock-icon' });
           unlockSpan.style.cursor = 'pointer';
           unlockSpan.style.marginLeft = '6px';
-          unlockSpan.title = 'Click to lock this property';
+          unlockSpan.title = uiText('Click to lock this property');
           unlockSpan.addEventListener('click', async (e) => {
             e.stopPropagation();
             field.locked = true;
@@ -12928,7 +13040,7 @@ class CadenceSettingTab extends obsidian.PluginSettingTab {
             cls: 'cad-prop-input',
           });
           disabledInput.disabled = true;
-          disabledInput.placeholder = '—';
+          disabledInput.placeholder = uiText('—');
         } else if (field.type === 'enum') {
           const inputOptions = tdOptions.createEl('input', {
             type: 'text',
@@ -13073,7 +13185,7 @@ class CadenceSettingTab extends obsidian.PluginSettingTab {
             cls: 'cad-prop-input',
           });
           disabledInput.disabled = true;
-          disabledInput.placeholder = '—';
+          disabledInput.placeholder = uiText('—');
         }
 
         // 5. Delete button
@@ -13125,6 +13237,7 @@ class CadencePlugin extends obsidian.Plugin {
   async onload() {
     await this.loadSettings();
     this.i18n = createI18n(this.settings.language, currentObsidianLocale(this.app));
+    CURRENT_LOCALE = this.i18n.locale;
     this.installLocalizationAdapter();
     this.superProductivityProvider = new SuperProductivityProvider({
       app: this.app,
@@ -13259,8 +13372,16 @@ class CadencePlugin extends obsidian.Plugin {
       HTMLElement.prototype[method] = function (...args) {
         const optionIndex = method === 'createEl' ? 1 : 0;
         const options = args[optionIndex];
-        if (options && typeof options === 'object' && typeof options.text === 'string') {
-          args[optionIndex] = Object.assign({}, options, { text: textFor(this, options.text) });
+        if (options && typeof options === 'object') {
+          const localized = Object.assign({}, options);
+          if (typeof localized.text === 'string') localized.text = textFor(this, localized.text);
+          if (localized.attr && typeof localized.attr === 'object') {
+            localized.attr = Object.assign({}, localized.attr);
+            ['title', 'placeholder', 'aria-label'].forEach((key) => {
+              if (typeof localized.attr[key] === 'string') localized.attr[key] = textFor(this, localized.attr[key]);
+            });
+          }
+          args[optionIndex] = localized;
         }
         return original.apply(this, args);
       };
@@ -13281,6 +13402,20 @@ class CadencePlugin extends obsidian.Plugin {
       const original = textPrototype.setPlaceholder;
       textPrototype.setPlaceholder = function (value) {
         return original.call(this, textFor(this.inputEl, value));
+      };
+    }
+    const buttonPrototype = obsidian.ButtonComponent && obsidian.ButtonComponent.prototype;
+    if (buttonPrototype && typeof buttonPrototype.setButtonText === 'function') {
+      const original = buttonPrototype.setButtonText;
+      buttonPrototype.setButtonText = function (value) {
+        return original.call(this, textFor(this.buttonEl, value));
+      };
+    }
+    const dropdownPrototype = obsidian.DropdownComponent && obsidian.DropdownComponent.prototype;
+    if (dropdownPrototype && typeof dropdownPrototype.addOption === 'function') {
+      const original = dropdownPrototype.addOption;
+      dropdownPrototype.addOption = function (value, display) {
+        return original.call(this, value, textFor(this.selectEl, display));
       };
     }
   }
