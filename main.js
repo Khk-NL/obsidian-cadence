@@ -7,6 +7,9 @@
 'use strict';
 
 const obsidian = require('obsidian');
+const { createI18n } = require('./src/i18n');
+const CadenceTimezone = require('./src/timezone');
+const { SuperProductivityProvider } = require('./src/providers/super-productivity');
 
 const VIEW_TYPE_CADENCE_APP = 'cadence-app';
 
@@ -268,6 +271,9 @@ const BUILT_SURFACES = new Set([
 
 /* ─────────── Settings ─────────── */
 const DEFAULT_SETTINGS = {
+  language: 'auto',
+  timezone: 'system',
+  superProductivity: { enabled: false, baseUrl: '' },
   dailyNoteFolder: 'daily',
   dailyNoteFormat: 'YYYY-MM-DD',
   journalHeading: '## Journal',
@@ -394,6 +400,7 @@ const DEFAULT_SETTINGS = {
 /* Module-level — kept in sync by the plugin so the standalone fmtValue helper
    can format currency without each caller threading settings through. */
 let CURRENT_CURRENCY = 'USD';
+let CURRENT_TIMEZONE = CadenceTimezone.systemTimezone();
 
 const CURRENCY_OPTIONS = [
   { code: 'USD', label: 'USD — US Dollar' },
@@ -412,7 +419,7 @@ const CURRENCY_OPTIONS = [
 /* ─────────── Helpers ─────────── */
 function pad(n) { return String(n).padStart(2, '0'); }
 function ymd(d = new Date()) {
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  return CadenceTimezone.ymd(d, CURRENT_TIMEZONE);
 }
 function dailyNotePath(settings, date = new Date()) {
   const folder = (settings.dailyNoteFolder || '').replace(/\/$/, '');
@@ -1411,7 +1418,17 @@ function setTaskMilestone(title, milestoneName) {
 
 function cleanTaskDisplayTitle(rawTitle) {
   if (!rawTitle) return '';
-  return stripTaskMilestone(stripTaskDate(stripProjectLinks(rawTitle))).replace(/\s{2,}/g, ' ').trim();
+  return stripTaskMilestone(stripTaskDate(stripProjectLinks(String(rawTitle).replace(/<!--\s*cadence-project-task:[\s\S]*?-->/g, '')))).replace(/\s{2,}/g, ' ').trim();
+}
+
+/* A mirror is identifiable without changing a user's project-task Markdown.
+   Only lines carrying this marker may be updated or removed automatically. */
+function cadenceProjectTaskMarker(projectPath) {
+  return `<!-- cadence-project-task:${encodeURIComponent(projectPath || '')} -->`;
+}
+
+function isCadenceProjectTaskMirror(line, projectPath) {
+  return String(line || '').includes(cadenceProjectTaskMarker(projectPath));
 }
 
 function syncMilestonesWithTasks(content, tasks) {
@@ -1460,7 +1477,7 @@ function syncMilestonesWithTasks(content, tasks) {
   return { changed: true, content: newContent, milestones };
 }
 
-async function removeTaskFromDailyNote(app, settings, dateStr, cleanTitle, projectName) {
+async function removeTaskFromDailyNote(app, settings, dateStr, cleanTitle, projectPath) {
   if (!dateStr || !cleanTitle) return;
   const dateObj = new Date(dateStr + 'T12:00:00');
   if (isNaN(dateObj.getTime())) return;
@@ -1476,13 +1493,7 @@ async function removeTaskFromDailyNote(app, settings, dateStr, cleanTitle, proje
   const filtered = parsed.tasks.filter((line) => {
     const lineText = line.replace(/^\s*-\s\[(x|X| )\]\s/, '').trim();
     const cleanLine = cleanTaskDisplayTitle(lineText).toLowerCase();
-    if (cleanLine === cleanTarget) {
-      if (projectName) {
-        const links = extractProjectLinks(lineText);
-        if (links.length > 0 && !links.some((l) => l.toLowerCase() === projectName.toLowerCase())) {
-          return true;
-        }
-      }
+    if (cleanLine === cleanTarget && isCadenceProjectTaskMirror(line, projectPath)) {
       return false;
     }
     return true;
@@ -1496,6 +1507,7 @@ async function removeTaskFromDailyNote(app, settings, dateStr, cleanTitle, proje
 
 async function syncProjectTaskToDailyNote(app, settings, projectFile, task, oldTask, overrideNewDate, overrideOldDate) {
   const projectName = (projectFile && projectFile.basename) ? projectFile.basename : '';
+  const projectPath = (projectFile && projectFile.path) ? projectFile.path : projectName;
 
   const oldTitle = oldTask ? (oldTask.title || '') : '';
   const newTitle = task ? (task.title || '') : '';
@@ -1506,7 +1518,7 @@ async function syncProjectTaskToDailyNote(app, settings, projectFile, task, oldT
 
   // 1. If date changed or clean title changed or date removed, clean up old daily note
   if (oldDate && (oldDate !== newDate || oldCleanTitle !== cleanTitle || !newDate)) {
-    await removeTaskFromDailyNote(app, settings, oldDate, oldCleanTitle || cleanTitle, projectName);
+    await removeTaskFromDailyNote(app, settings, oldDate, oldCleanTitle || cleanTitle, projectPath);
   }
 
   // 2. If new date is present, add or update in that date's daily note
@@ -1528,15 +1540,15 @@ async function syncProjectTaskToDailyNote(app, settings, projectFile, task, oldT
         const updatedTasks = parsed.tasks.map((line) => {
           const lineText = line.replace(/^\s*-\s\[(x|X| )\]\s/, '').trim();
           const cleanLine = cleanTaskDisplayTitle(lineText).toLowerCase();
-          if (cleanLine === cleanTarget) {
+          if (cleanLine === cleanTarget && isCadenceProjectTaskMirror(line, projectPath)) {
             found = true;
-            return taskLineText;
+            return taskLineText + ' ' + cadenceProjectTaskMarker(projectPath);
           }
           return line;
         });
 
         if (!found) {
-          updatedTasks.push(taskLineText);
+          updatedTasks.push(taskLineText + ' ' + cadenceProjectTaskMarker(projectPath));
         }
 
         const next = replaceSection(content, settings.tasksHeading, updatedTasks.join('\n'));
@@ -2496,7 +2508,7 @@ class CadenceImportModal extends obsidian.Modal {
             } else if (fdef.type === 'date') {
               // Try to normalise to YYYY-MM-DD
               const d = new Date(val);
-              if (!isNaN(d.getTime())) val = d.toISOString().slice(0, 10);
+              if (!isNaN(d.getTime())) val = ymd(d);
             }
           }
           extras[key] = val;
@@ -4454,7 +4466,7 @@ class CadenceAppView extends obsidian.ItemView {
         const inp = row.createEl('input', { type: 'date', cls: 'cad-form-input' });
         if (current) {
           const d = new Date(current);
-          if (!isNaN(d.getTime())) inp.value = d.toISOString().slice(0, 10);
+          if (!isNaN(d.getTime())) inp.value = ymd(d);
         }
         if (!isCore && f.key === 'type') {
           inp.disabled = true;
@@ -5250,7 +5262,7 @@ class CadenceAppView extends obsidian.ItemView {
 
         if (fieldType === 'date' && current) {
           const d = new Date(current);
-          if (!isNaN(d.getTime())) inp.value = d.toISOString().slice(0, 10);
+          if (!isNaN(d.getTime())) inp.value = ymd(d);
         } else if (current != null) {
           inp.value = String(current);
         }
@@ -5695,7 +5707,7 @@ class CadenceAppView extends obsidian.ItemView {
 
         if (fieldType === 'date' && current) {
           const d = new Date(current);
-          if (!isNaN(d.getTime())) inp.value = d.toISOString().slice(0, 10);
+          if (!isNaN(d.getTime())) inp.value = ymd(d);
         } else if (current != null) {
           inp.value = String(current);
         }
@@ -5830,7 +5842,7 @@ class CadenceAppView extends obsidian.ItemView {
         });
         const dateInp = row.createEl('input', { type: 'date', cls: 'cad-pd-mile-date' });
         if (m.date instanceof Date && !isNaN(m.date.getTime())) {
-          dateInp.value = m.date.toISOString().slice(0, 10);
+          dateInp.value = ymd(m.date);
         }
         let dt;
         dateInp.addEventListener('input', () => {
@@ -6178,7 +6190,7 @@ class CadenceAppView extends obsidian.ItemView {
               } else {
                 const oldDate = parseTaskDate(oldItem.title);
                 if (oldDate && cleanT) {
-                  await removeTaskFromDailyNote(this.app, this.plugin.settings, oldDate, cleanT, file.basename);
+                  await removeTaskFromDailyNote(this.app, this.plugin.settings, oldDate, cleanT, file.path);
                 }
               }
             }
@@ -11840,6 +11852,33 @@ class CadenceSettingTab extends obsidian.PluginSettingTab {
         .onChange(async (v) => { this.plugin.settings.dailyNoteFolder = v; await this.plugin.saveSettings(); }));
 
     new obsidian.Setting(containerEl)
+      .setName(this.plugin.i18n.t('settings.language.name'))
+      .setDesc(this.plugin.i18n.t('settings.language.desc'))
+      .addDropdown((d) => d
+        .addOption('auto', 'Automatic (Obsidian)')
+        .addOption('en', 'English')
+        .addOption('zh-CN', '简体中文')
+        .setValue(this.plugin.settings.language || 'auto')
+        .onChange(async (v) => {
+          this.plugin.settings.language = v;
+          this.plugin.i18n = createI18n(v, this.app.locale);
+          await this.plugin.saveSettings();
+          this.display();
+        }));
+
+    new obsidian.Setting(containerEl)
+      .setName(this.plugin.i18n.t('settings.timezone.name'))
+      .setDesc(this.plugin.i18n.t('settings.timezone.desc'))
+      .addText((t) => t
+        .setPlaceholder('system / Asia/Shanghai')
+        .setValue(this.plugin.settings.timezone || 'system')
+        .onChange(async (v) => {
+          this.plugin.settings.timezone = v.trim() || 'system';
+          CURRENT_TIMEZONE = CadenceTimezone.resolveTimezone(this.plugin.settings.timezone);
+          await this.plugin.saveSettings();
+        }));
+
+    new obsidian.Setting(containerEl)
       .setName('Tasks heading')
       .setDesc('The H2 inside each daily note where tasks live. Default "## Today".')
       .addText((t) => t
@@ -12783,6 +12822,11 @@ class CadenceSettingTab extends obsidian.PluginSettingTab {
 class CadencePlugin extends obsidian.Plugin {
   async onload() {
     await this.loadSettings();
+    this.i18n = createI18n(this.settings.language, this.app.locale);
+    this.superProductivityProvider = new SuperProductivityProvider({
+      requestUrl: (request) => obsidian.requestUrl(request).then((result) => result.json),
+      baseUrl: this.settings.superProductivity && this.settings.superProductivity.baseUrl,
+    });
 
     // Ensure property types are strictly recognized in Obsidian
     this.app.workspace.onLayoutReady(async () => {
@@ -13040,12 +13084,12 @@ class CadencePlugin extends obsidian.Plugin {
       if (!isNaN(d.getTime())) {
         const dStr = ymd(d);
         const cleanTitle = stripTaskDate(stripProjectLinks(r.text || '')).trim();
-        let projectName = '';
+        let projectPath = r.project || '';
         if (r.project) {
           const projFile = this.app.vault.getAbstractFileByPath(r.project);
-          if (projFile) projectName = projFile.basename;
+          if (projFile) projectPath = projFile.path;
         }
-        await removeTaskFromDailyNote(this.app, this.settings, dStr, cleanTitle, projectName);
+        await removeTaskFromDailyNote(this.app, this.settings, dStr, cleanTitle, projectPath);
       }
     }
     this.settings.reminders = (this.settings.reminders || []).filter((r) => r.id !== id);
@@ -13179,6 +13223,10 @@ class CadencePlugin extends obsidian.Plugin {
     }
 
     CURRENT_CURRENCY = this.settings.currency || 'USD';
+    CURRENT_TIMEZONE = CadenceTimezone.resolveTimezone(this.settings.timezone);
+    if (!this.settings.superProductivity || typeof this.settings.superProductivity !== 'object') {
+      this.settings.superProductivity = { enabled: false, baseUrl: '' };
+    }
 
     // Initialize default project dashboard widgets if empty/missing
     if (!this.settings.projectDashboardWidgets || this.settings.projectDashboardWidgets.length === 0) {

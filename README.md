@@ -45,6 +45,8 @@ Partners · Registrations · Commissions · Leads · Certifications · Analytics
 ### Project Management
 Click a project, get a **real PM surface** — not a markdown editor. Hero with status/priority pills, owner, due date, color-banded progress bar. Left column: tickable milestones (date + title + delete on hover) and tasks with `+ Add` buttons. Right column: Brief, Scope, Risks, Stakeholders, Notes — all autosaving textareas writing back to their H2 sections. `Open as note` for full body editing in Obsidian's editor.
 
+Project tasks scheduled by Cadence can be mirrored into Daily Notes. New mirrors carry an internal HTML source marker so Cadence updates only its own generated line; it does not use task-title matching to edit or remove ordinary vault tasks.
+
 ![Project detail](docs/screenshots/04-project.png)
 
 ### Reminders
@@ -97,6 +99,13 @@ Cadence creates folders on demand: `Cadence/Contacts/`, `Cadence/Pipeline/`, `Ca
 ## Configuration
 
 Settings → Cadence:
+
+- **Language** — `Automatic (Obsidian)` is the default. English is the fallback and Simplified Chinese (`zh-CN`) is available.
+- **Timezone** — defaults to `system`; standard IANA identifiers such as `Asia/Shanghai` are accepted. Cadence uses this setting for date-only output.
+
+## Super Productivity integration roadmap
+
+Cadence will remain the dashboard and presentation layer. Super Productivity will remain the source of truth for Projects and Tasks. The first adapter is deliberately **read-only** and isolated in `src/providers/super-productivity.js`; the next stage is to verify the Local REST API endpoint/version, normalize Projects, Today Tasks, completion status, and tracked-time summary, then render those values without writing to either system.
 
 - **Modules** — Toggle Planner / CRM / PRM. Disabled modules disappear from the nav and from dependent Reports.
 - **Reminders** — Desktop notifications (opt-in, requests permission), clear completed.
