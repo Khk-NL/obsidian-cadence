@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.16.5
+
+- Closed additional Chinese UI gaps in uppercase entity labels, chart headings, field selectors, template descriptions and editor prompts.
+
 ## 0.16.4
 
 - Expanded English/zh-CN switching across navigation, page descriptions, dashboards, reports, templates, settings, placeholders, tooltips, notices and confirmation dialogs.

@@ -399,11 +399,12 @@ function createI18n(preference, obsidianLocale) {
       .replace(/^Add (.+)\.\.\.$/, (_, name) => `添加${translateText(name)}…`)
       .replace(/^(.+) name$/, (_, name) => `${translateText(name)}名称`)
       .replace(/^Enter your (.+) here\.\.\.$/, (_, name) => `在此填写${translateText(name)}…`)
+      .replace(/^Click to enter (.+)\.\.\.$/, (_, name) => `点击填写${translateText(name)}…`)
       .replace(/^\+?(\d+) more · scroll down for the full picture$/, '还有 $1 项，向下滚动查看全部')
       .replace(/^PROJECT TASKS · (\d+) open across (\d+) projects?$/, '项目任务 · $1 项未完成，涉及 $2 个项目')
       .replace(/^Target Folder: (.+)$/, '目标文件夹：$1')
       .replace(/^Defines properties and sections layout for each new daily note created in the planner\.$/, '定义计划页面中新建每日笔记的属性和分区布局。')
-      .replace(/^Defines properties and sections layout for each new (.+) item created\.$/, '定义新建$1时使用的属性和分区布局。')
+      .replace(/^Defines properties and sections layout for each new (.+) item created\.$/, (_, name) => `定义新建${translateText(name)}时使用的属性和分区布局。`)
       .replace(/^No (.+) in the last (\d+) days$/, '过去 $2 天没有$1')
       .replace(/^(.+) PROJECTS$/, (_, name) => `${translateText(name.toLowerCase())}项目`)
       .replace(/^(.+) PRIORITY$/, (_, name) => `${translateText(name.toLowerCase())}优先级`)
@@ -2971,7 +2972,9 @@ class CadenceImportModal extends CadenceModal {
       if (this.importBtn) this.importBtn.disabled = true;
     } else {
       const mappedCount = Object.values(this.mapping).filter(Boolean).length;
-      summary.setText(`Will create ${this.rows.length} ${this.rows.length === 1 ? def.label.toLowerCase() : def.plural.toLowerCase()} in ${def.folder}/  ·  ${mappedCount} column${mappedCount === 1 ? '' : 's'} mapped`);
+      summary.setText(CURRENT_LOCALE === 'zh-CN'
+        ? `将在 ${def.folder}/ 创建 ${this.rows.length} 个${uiText(this.rows.length === 1 ? def.label : def.plural)} · 已映射 ${mappedCount} 列`
+        : `Will create ${this.rows.length} ${this.rows.length === 1 ? def.label.toLowerCase() : def.plural.toLowerCase()} in ${def.folder}/  ·  ${mappedCount} column${mappedCount === 1 ? '' : 's'} mapped`);
       if (this.importBtn) this.importBtn.disabled = false;
     }
   }
@@ -3069,7 +3072,7 @@ class CadenceEntityCreateModal extends CadenceModal {
       const isPrimary = idx === 0;
       const row = form.createDiv({ cls: 'cad-create-row' });
       const label = row.createDiv({ cls: 'cad-create-label' });
-      label.setText(f.label.toUpperCase() + (isPrimary ? ' *' : ''));
+      label.setText(uiText(f.label).toUpperCase() + (isPrimary ? ' *' : ''));
 
       let input;
       const fieldType = f.type || 'text';
@@ -3457,7 +3460,7 @@ class CadenceWidgetCreateModal extends CadenceModal {
 
     // 2. Property to group by
     const entityLabel = ENTITIES[this.entityKey] ? (ENTITIES[this.entityKey].plural || this.entityKey) : this.entityKey;
-    contentEl.createEl('label', { text: `Group ${entityLabel.toUpperCase()} by Property:`, attr: { style: 'display: block; font-weight: 500; font-size: 0.85em; margin-bottom: 4px; margin-top: 12px;' }});
+    contentEl.createEl('label', { text: `Group ${uiText(entityLabel).toUpperCase()} by Property:`, attr: { style: 'display: block; font-weight: 500; font-size: 0.85em; margin-bottom: 4px; margin-top: 12px;' }});
     const selectProp = contentEl.createEl('select');
     selectProp.style.width = '100%';
     selectProp.style.padding = '6px 8px';
@@ -3469,7 +3472,7 @@ class CadenceWidgetCreateModal extends CadenceModal {
     const fields = ENTITIES[this.entityKey] ? (ENTITIES[this.entityKey].fields || []) : [];
     fields.forEach(f => {
       if (f.primary) return;
-      selectProp.createEl('option', { value: f.key, text: `${f.label} (${f.key})` });
+      selectProp.createEl('option', { value: f.key, text: `${uiText(f.label)} (${f.key})` });
     });
 
     // 3. Chart Style
@@ -3571,7 +3574,7 @@ class CadenceCrossSectionModal extends CadenceModal {
       if (def && def.fields) {
         def.fields.forEach(f => {
           if (f.primary) return;
-          selectField.createEl('option', { value: f.key, text: `${f.label} (${f.key})` });
+          selectField.createEl('option', { value: f.key, text: `${uiText(f.label)} (${f.key})` });
         });
       }
     };
@@ -3674,8 +3677,8 @@ class CadenceChartSectionModal extends CadenceModal {
       selGroup.empty();
       def.fields.forEach(f => {
         if (!f.primary) {
-          selLink.createEl('option', { value: f.key, text: `${f.label} (${f.key})` });
-          selGroup.createEl('option', { value: f.key, text: `${f.label} (${f.key})` });
+          selLink.createEl('option', { value: f.key, text: `${uiText(f.label)} (${f.key})` });
+          selGroup.createEl('option', { value: f.key, text: `${uiText(f.label)} (${f.key})` });
         }
       });
       // Pre-select sensible defaults: link = first field that matches parentEntity, group = status/stage/type
@@ -4150,7 +4153,7 @@ class CadenceAppView extends obsidian.ItemView {
         const head = groupEl.createDiv({ cls: 'cad-nav-group-head' });
         const chev = head.createSpan({ cls: 'cad-nav-group-chev' });
         try { obsidian.setIcon(chev, isCollapsed ? 'chevron-right' : 'chevron-down'); } catch (_) { }
-        head.createSpan({ cls: 'cad-nav-group-label', text: group.label.toUpperCase() });
+        head.createSpan({ cls: 'cad-nav-group-label', text: uiText(group.label).toUpperCase() });
         head.addEventListener('click', () => this.toggleGroup(group.id));
       }
 
@@ -4339,7 +4342,7 @@ class CadenceAppView extends obsidian.ItemView {
 
     if (!filtered.length) {
       const empty = root.createDiv({ cls: 'cad-empty-state' });
-      empty.createDiv({ cls: 'cad-empty-state-title', text: `No ${def.plural.toLowerCase()} yet` });
+      empty.createDiv({ cls: 'cad-empty-state-title', text: `No ${def.plural} yet` });
       empty.createDiv({ cls: 'cad-empty-state-desc', text: `Drop a markdown note in ${def.folder}/ with frontmatter, or hit "+ New" above.` });
       return;
     }
@@ -4875,7 +4878,7 @@ class CadenceAppView extends obsidian.ItemView {
     back.addEventListener('click', () => this.closeEntityDetail());
 
     const breadcrumb = headLeft.createDiv({ cls: 'cad-detail-breadcrumb' });
-    breadcrumb.createSpan({ cls: 'cad-eyebrow', text: def.plural.toUpperCase() });
+    breadcrumb.createSpan({ cls: 'cad-eyebrow', text: uiText(def.plural).toUpperCase() });
     breadcrumb.createSpan({ cls: 'cad-detail-title', text: String(titleVal) });
     breadcrumb.createDiv({ cls: 'cad-detail-path', text: file.path });
 
@@ -4959,7 +4962,7 @@ class CadenceAppView extends obsidian.ItemView {
         return; // Skip rendering the 'type' field if it is not an enum (like in Activities)
       }
       const row = form.createDiv({ cls: 'cad-form-row' });
-      row.createDiv({ cls: 'cad-form-label', text: f.label.toUpperCase() });
+      row.createDiv({ cls: 'cad-form-label', text: uiText(f.label).toUpperCase() });
 
       const current = fm[f.key];
       const fieldType = f.type || 'text';
@@ -5058,7 +5061,7 @@ class CadenceAppView extends obsidian.ItemView {
           inp.style.padding = '0';
           inp.style.margin = '0';
           inp.style.height = '24px';
-          inp.placeholder = uiText(`Add ${f.label.toLowerCase()}...`);
+          inp.placeholder = uiText(`Add ${f.label}...`);
 
           if (!isCore && f.key === 'type') {
             inp.disabled = true;
@@ -5467,7 +5470,7 @@ class CadenceAppView extends obsidian.ItemView {
 
       const cell = metaRow.createDiv({ cls: 'cad-pd-meta-cell' });
       cell.style.position = 'relative';
-      cell.createDiv({ cls: 'cad-pd-meta-label', text: label.toUpperCase() });
+      cell.createDiv({ cls: 'cad-pd-meta-label', text: uiText(label).toUpperCase() });
 
       const current = fm[key];
       const suggestionSource = getFieldSuggestionSource(f);
@@ -5515,7 +5518,7 @@ class CadenceAppView extends obsidian.ItemView {
         inp.style.padding = '0';
         inp.style.height = '24px';
         inp.style.lineHeight = '24px';
-        inp.placeholder = uiText(`Add ${label.toLowerCase()}...`);
+        inp.placeholder = uiText(`Add ${label}...`);
 
         const suggestionsBox = cell.createDiv({ cls: 'cad-pd-tag-suggestions' });
         suggestionsBox.style.position = 'absolute';
@@ -5923,7 +5926,7 @@ class CadenceAppView extends obsidian.ItemView {
 
       const cell = metaRow.createDiv({ cls: 'cad-pd-meta-cell' });
       cell.style.position = 'relative';
-      cell.createDiv({ cls: 'cad-pd-meta-label', text: label.toUpperCase() });
+      cell.createDiv({ cls: 'cad-pd-meta-label', text: uiText(label).toUpperCase() });
 
       const current = fm[key];
       const suggestionSource = getFieldSuggestionSource(f);
@@ -5971,7 +5974,7 @@ class CadenceAppView extends obsidian.ItemView {
         inp.style.padding = '0';
         inp.style.height = '24px';
         inp.style.lineHeight = '24px';
-        inp.placeholder = uiText(`Add ${label.toLowerCase()}...`);
+        inp.placeholder = uiText(`Add ${label}...`);
 
         const suggestionsBox = cell.createDiv({ cls: 'cad-pd-tag-suggestions' });
         suggestionsBox.style.position = 'absolute';
@@ -6817,7 +6820,7 @@ priority: normal
 
     // 1. Textarea element
     const ta = body.createEl('textarea', { cls: 'cad-pd-textarea' });
-    ta.placeholder = uiText(placeholder || `Enter your ${label.toLowerCase()} here...`);
+    ta.placeholder = uiText(placeholder || `Enter your ${label} here...`);
     ta.value = currentValue;
 
     // 2. Preview element
@@ -6861,7 +6864,7 @@ priority: normal
       const rawText = currentValue || '';
       if (!rawText.trim()) {
         previewDiv.createDiv({
-          text: placeholder || `Click to enter ${label.toLowerCase()}...`,
+          text: placeholder || `Click to enter ${label}...`,
           attr: { style: 'color: var(--text-faint); font-style: italic; font-size: 0.95em; padding: 4px 0;' }
         });
         return;
@@ -7104,7 +7107,7 @@ priority: normal
         col.dataset.stage = colName;
 
         const colHead = col.createDiv({ cls: 'cad-kanban-col-head' });
-        colHead.createDiv({ cls: 'cad-kanban-col-title', text: colName.toUpperCase() });
+        colHead.createDiv({ cls: 'cad-kanban-col-title', text: uiText(colName).toUpperCase() });
         colHead.createDiv({
           cls: 'cad-kanban-col-meta',
           text: hasValField ? `${items.length} · ${fmtValue(colValueSum, 'currency')}` : `${items.length}`
@@ -7422,7 +7425,7 @@ priority: normal
           def.fields.slice(1, 4).forEach(f => {
             const val = entityValue(e, f.key, def);
             if (val != null && val !== '') {
-              meta.createDiv({ text: `${f.label}: ${fmtValue(val, f.type)}` });
+              meta.createDiv({ text: `${uiText(f.label)}: ${fmtValue(val, f.type)}` });
             }
           });
         });
@@ -7433,7 +7436,7 @@ priority: normal
 
         columns.forEach(colName => {
           const col = kanbanWrap.createDiv({ cls: 'cad-stat-card', attr: { style: 'flex: 0 0 280px; padding: 12px; display: flex; flex-direction: column; min-height: 250px; background: var(--background-secondary); border: 1px solid var(--border-color); border-radius: 6px;' } });
-          col.createDiv({ text: colName.toUpperCase(), attr: { style: 'font-weight: 700; font-size: 0.8em; letter-spacing: 0.08em; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 4px;' } });
+          col.createDiv({ text: uiText(colName).toUpperCase(), attr: { style: 'font-weight: 700; font-size: 0.8em; letter-spacing: 0.08em; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 4px;' } });
 
           const colItems = filteredList.filter(e => {
             const val = entityValue(e, groupField.key, def);
@@ -7600,7 +7603,7 @@ priority: normal
       const list = groups[key];
       if (!list || !list.length) return;
       const origOpt = statusOptions.find(opt => opt.toLowerCase().replace(/\s+/g, '_') === key) || key;
-      root.createDiv({ cls: 'cad-section-label-lg', text: origOpt.toUpperCase() });
+      root.createDiv({ cls: 'cad-section-label-lg', text: uiText(origOpt).toUpperCase() });
       const section = root.createDiv({ cls: 'cad-proj-grid' });
       list.forEach((p) => {
         const card = section.createDiv({ cls: 'cad-proj-card' });
@@ -8832,7 +8835,7 @@ priority: normal
       try { obsidian.setIcon(iconSpan, def.icon || 'file-text'); } catch (_) { iconSpan.setText('📝'); }
 
       const titleInfo = infoWrap.createDiv();
-      titleInfo.createDiv({ text: def.label.toUpperCase(), attr: { style: 'font-weight: 700; font-size: 0.7rem; letter-spacing: 0.12em; color: var(--text-muted);' } });
+      titleInfo.createDiv({ text: uiText(def.label).toUpperCase(), attr: { style: 'font-weight: 700; font-size: 0.7rem; letter-spacing: 0.12em; color: var(--text-muted);' } });
       titleInfo.createEl('h3', { text: def.plural, attr: { style: 'margin: 2px 0 0 0; font-size: 1.15em; font-weight: 700;' } });
 
       const badge = head.createSpan({
@@ -8848,7 +8851,7 @@ priority: normal
 });
 
       const desc = card.createDiv({
-        text: `Defines properties and sections layout for each new ${def.label.toLowerCase()} item created.`,
+        text: `Defines properties and sections layout for each new ${def.label} item created.`,
         attr: { style: 'font-size: 0.85em; color: var(--text-muted); margin-bottom: 18px; flex: 1; line-height: 1.4;' }
 });
 
@@ -9737,7 +9740,7 @@ priority: normal
       const card = grid.createDiv({ cls: 'cad-stat-card', attr: { 'data-accent': accent } });
       card.style.cssText = 'padding: 10px 12px; display: flex; flex-direction: column; justify-content: center; min-height: 70px;';
 
-      const label = card.createDiv({ cls: 'cad-stat-label', text: String(item.label).toUpperCase() });
+      const label = card.createDiv({ cls: 'cad-stat-label', text: uiText(String(item.label)).toUpperCase() });
       label.style.cssText = 'font-size: 0.65rem; letter-spacing: 0.08em; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px;';
 
       const value = card.createDiv({ cls: 'cad-stat-value', text: String(item.count) });
@@ -11204,7 +11207,7 @@ priority: normal
         const screenY = e.clientY - rect.top;
         tooltip.style.left = `${screenX + 12}px`;
         tooltip.style.top = `${screenY + 12}px`;
-        tooltip.setText(`${hoveredNode.type.toUpperCase()}: ${hoveredNode.name}`);
+        tooltip.setText(`${uiText(hoveredNode.type).toUpperCase()}: ${hoveredNode.name}`);
       } else {
         canvas.style.cursor = isPanning ? 'grabbing' : 'default';
         tooltip.style.display = 'none';
