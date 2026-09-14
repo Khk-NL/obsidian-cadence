@@ -26,12 +26,39 @@ function createI18n(preference, obsidianLocale) {
   const dict = zh ? {
     'settings.language.name': '语言', 'settings.language.desc': '自动跟随 Obsidian 语言，或单独选择 Cadence 语言。',
     'settings.timezone.name': '时区', 'settings.timezone.desc': '默认使用系统时区；可填写标准 IANA 时区，例如 Asia/Shanghai。',
+    'Home': '首页', 'Planner': '计划', 'Inbox': '收件箱', 'Today': '今天', 'Calendar': '日历', 'Projects': '项目',
+    'Dashboard': '仪表盘', 'CRM': '客户关系', 'PRM': '合作伙伴关系', 'Workflow': '工作流', 'Reports': '报告',
+    'Settings': '设置', 'Templates': '模板', 'Team': '团队', 'Quick capture': '快速记录', 'Capture': '记录',
+    'Cancel': '取消', 'Save': '保存', 'Delete': '删除', 'Remove': '移除', 'Change': '更改', 'Clear': '清除',
+    'Create': '创建', 'Import': '导入', 'Import CSV': '导入 CSV', 'Open as note': '作为笔记打开',
+    'New reminder': '新提醒', 'Edit reminder': '编辑提醒', 'Create reminder': '创建提醒', 'Remind me': '提醒我',
+    'No repeat': '不重复', 'Daily': '每天', 'Weekly': '每周', 'Today': '今天', 'Tomorrow': '明天',
+    'Project': '项目', 'Projects': '项目', 'Task': '任务', 'Tasks': '任务', 'Milestone': '里程碑', 'Milestones': '里程碑',
+    'Notes': '备注', 'NOTE SECTIONS': '笔记分区', 'Add': '添加', 'Done': '已完成', 'Open': '未完成',
+    'Currency': '货币', 'Week starts on': '每周起始日', 'Daily note folder': '每日笔记文件夹',
+    'Tasks heading': '任务标题', 'Journal heading': '日志标题', 'Open Cadence': '打开 Cadence',
+    'COMING SOON': '即将推出', 'soon': '即将推出', 'Paste': '粘贴', 'Sample': '示例', 'Maps to': '映射到',
+    'CSV column': 'CSV 列', 'CSV DATA': 'CSV 数据', 'IMPORT AS': '导入为', 'WHAT': '内容', 'WHEN': '时间',
+    'REPEAT': '重复', 'PROJECT': '项目', 'NOTES': '备注', 'All Projects': '全部项目', 'No tasks yet.': '还没有任务。',
+    'No milestones yet — add the first one.': '还没有里程碑，添加第一个吧。', 'Saved': '已保存',
   } : {};
   const fallback = {
     'settings.language.name': 'Language', 'settings.language.desc': 'Use Obsidian language automatically, or choose a Cadence language.',
     'settings.timezone.name': 'Timezone', 'settings.timezone.desc': 'Use system timezone by default. Enter a standard IANA timezone such as Asia/Shanghai.',
   };
-  return { locale: zh ? 'zh-CN' : 'en', t: (key) => dict[key] || fallback[key] || key };
+  const translateText = (value) => {
+    if (!zh || typeof value !== 'string') return value;
+    if (dict[value]) return dict[value];
+    return value
+      .replace(/^New (.+)$/, (_, name) => `新建${translateText(name)}`)
+      .replace(/^Create (.+)$/, (_, name) => `创建${translateText(name)}`)
+      .replace(/^Edit (.+)$/, (_, name) => `编辑${translateText(name)}`)
+      .replace(/^Delete (.+)$/, (_, name) => `删除${translateText(name)}`)
+      .replace(/^Open (.+)$/, (_, name) => `打开${translateText(name)}`)
+      .replace(/^(\d+) tasks$/, '$1 个任务')
+      .replace(/^(\d+) milestones$/, '$1 个里程碑');
+  };
+  return { locale: zh ? 'zh-CN' : 'en', t: (key) => dict[key] || fallback[key] || key, translateText };
 }
 class SuperProductivityProvider {
   constructor({ requestUrl, baseUrl }) { this.requestUrl = requestUrl; this.baseUrl = String(baseUrl || '').replace(/\/$/, ''); }
@@ -437,6 +464,7 @@ let CURRENT_TIMEZONE = CadenceTimezone.systemTimezone();
 
 const CURRENCY_OPTIONS = [
   { code: 'USD', label: 'USD — US Dollar' },
+  { code: 'CNY', label: 'CNY — Chinese Yuan (人民币)' },
   { code: 'EUR', label: 'EUR — Euro' },
   { code: 'GBP', label: 'GBP — British Pound' },
   { code: 'ZAR', label: 'ZAR — South African Rand' },
@@ -11755,6 +11783,7 @@ class CadenceSettingTab extends obsidian.PluginSettingTab {
 
   display() {
     const { containerEl } = this;
+    containerEl.addClass('cadence-settings');
     containerEl.empty();
     containerEl.createEl('h2', { text: 'Cadence' });
 
@@ -12856,6 +12885,7 @@ class CadencePlugin extends obsidian.Plugin {
   async onload() {
     await this.loadSettings();
     this.i18n = createI18n(this.settings.language, this.app.locale);
+    this.installLocalizationAdapter();
     this.superProductivityProvider = new SuperProductivityProvider({
       requestUrl: (request) => obsidian.requestUrl(request).then((result) => result.json),
       baseUrl: this.settings.superProductivity && this.settings.superProductivity.baseUrl,
@@ -12973,6 +13003,33 @@ class CadencePlugin extends obsidian.Plugin {
         await this.handleProjectDeletion(file);
       })
     );
+  }
+
+  installLocalizationAdapter() {
+    if (window.__cadenceLocalizationAdapterInstalled) return;
+    window.__cadenceLocalizationAdapterInstalled = true;
+    const belongsToCadence = (element) => element && typeof element.closest === 'function'
+      && Boolean(element.closest('.cadence-app, .cadence-settings'));
+    const textFor = (element, value) => {
+      const plugin = window.__cadencePlugin;
+      return belongsToCadence(element) && plugin && plugin.i18n ? plugin.i18n.translateText(value) : value;
+    };
+    ['createEl', 'createDiv', 'createSpan'].forEach((method) => {
+      const original = HTMLElement.prototype[method];
+      if (typeof original !== 'function') return;
+      HTMLElement.prototype[method] = function (...args) {
+        const optionIndex = method === 'createEl' ? 1 : 0;
+        const options = args[optionIndex];
+        if (options && typeof options === 'object' && typeof options.text === 'string') {
+          args[optionIndex] = Object.assign({}, options, { text: textFor(this, options.text) });
+        }
+        return original.apply(this, args);
+      };
+    });
+    const originalSetText = HTMLElement.prototype.setText;
+    if (typeof originalSetText === 'function') {
+      HTMLElement.prototype.setText = function (value) { return originalSetText.call(this, textFor(this, value)); };
+    }
   }
 
   /* ── Quick capture API ── */
@@ -13244,6 +13301,7 @@ class CadencePlugin extends obsidian.Plugin {
   async loadSettings() {
     const loadedData = await this.loadData() || {};
     this.settings = Object.assign({}, DEFAULT_SETTINGS, loadedData);
+    window.__cadencePlugin = this;
 
     // Deep default customEntities if missing or empty
     if (!this.settings.customEntities) {
