@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.16.4
+
+- Expanded English/zh-CN switching across navigation, page descriptions, dashboards, reports, templates, settings, placeholders, tooltips, notices and confirmation dialogs.
+- Localized dynamic counts and chart labels while preserving technical identifiers and user-authored note content.
+- Added a localization audit script for static UI strings.
+
 ## Unreleased
 
 - Added CNY currency and centralized runtime UI text localization for Cadence surfaces.

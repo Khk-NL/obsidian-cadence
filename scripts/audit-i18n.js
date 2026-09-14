@@ -23,6 +23,7 @@ const patterns = [
   /\btext:\s*(`(?:\\.|[^`\\])*`)/g,
   /\.setText\(\s*(`(?:\\.|[^`\\])*`)/g,
   /uiText\(\s*('(?:\\.|[^'\\])*'|"(?:\\.|[^"\\])*")/g,
+  /\.addOption\(\s*['"][^'"]+['"]\s*,\s*('(?:\\.|[^'\\])*'|"(?:\\.|[^"\\])*")/g,
 ];
 for (const pattern of patterns) {
   for (const match of source.matchAll(pattern)) {
@@ -33,6 +34,15 @@ for (const pattern of patterns) {
     if (!candidates.has(value)) candidates.set(value, line);
   }
 }
-const untranslated = [...candidates].filter(([value]) => translate(value) === value);
+const retainedExamples = new Set(['Cadence', 'CADENCE', 'TaskNotes', 'daily', 'https://your-cadence-instance', 'name@example.com']);
+const untranslated = [...candidates].filter(([value]) => translate(value) === value && !retainedExamples.has(value));
 for (const [value, line] of untranslated) console.log(`${line}: ${value}`);
 console.log(`Untranslated: ${untranslated.length}/${candidates.size}`);
+if (untranslated.length) process.exitCode = 1;
+if (process.argv.includes('--mixed')) {
+  const allowed = /\b(?:Cadence|Obsidian|TaskNotes|Super Productivity|CSV|Markdown|Frontmatter|API|JWT|USD|CNY|EUR|GBP|ZAR|AUD|CAD|CHF|JPY|INR|BRL|AED|IANA|KPI)\b/g;
+  for (const [value, line] of candidates) {
+    const output = translate(value);
+    if (/[A-Za-z]{3}/.test(output.replace(allowed, ''))) console.log(`${line}: ${value} => ${output}`);
+  }
+}

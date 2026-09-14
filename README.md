@@ -1,5 +1,7 @@
 # Cadence — a workspace for working life
 
+Cadence's interface supports English and Simplified Chinese. In Cadence settings, choose **Automatic (Obsidian)** to follow Obsidian's language, or select **English** / **简体中文** explicitly. English remains the fallback. Existing Markdown notes and task data are not converted when the interface language changes.
+
 A unified Obsidian plugin for **CRM, PRM, project management, daily planning, and reminders** — all on top of plain markdown. No server, no sync service, no lock-in. Your vault stays your vault.
 
 ![Cadence Home](docs/screenshots/01-home.png)

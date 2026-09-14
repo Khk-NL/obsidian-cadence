@@ -88,6 +88,8 @@ function createI18n(preference, obsidianLocale) {
     'Select entity': '选择实体', 'Choose which entity to customize.': '选择要自定义的实体。',
     'Search projects to link this reminder to…': '搜索要关联此提醒的项目…',
     'Search .csv files…': '搜索 CSV 文件…',
+    'Pick a project (or type "unlink" to remove)': '选择项目（输入“unlink”可解除关联）',
+    'Pick a project to link this task to': '选择要关联此任务的项目',
     'Open Inbox →': '打开收件箱 →', 'Open Today →': '打开今天 →', 'Open Calendar →': '打开日历 →',
     'Open Partners →': '打开合作伙伴 →', 'Open Projects →': '打开项目 →',
     'Open Pipeline →': '打开销售管道 →', 'Open Activities →': '打开活动 →',
@@ -222,7 +224,7 @@ function createI18n(preference, obsidianLocale) {
     'Enter milestones section title:': '输入里程碑分区标题：',
     'Enter section title:': '输入分区标题：', 'Enter chart section title:': '输入图表分区标题：',
     'Quick add — today': '快速添加 · 今天', 'What needs doing?': '需要做什么？',
-    'Quick add a task — Enter to save': '快速添加任务 · 按 Enter 保存',
+    'Quick add a task — Enter to save': '快速添加任务 · 按回车键保存',
     'e.g. VIP Contacts': '例如重要联系人', 'Option A, Option B...': '选项一、选项二…',
     'Projects by Status': '按状态查看项目', 'Projects by Priority': '按优先级查看项目',
     'Deals by Stage': '按阶段查看商机', 'Deals by Owner': '按负责人查看商机',
@@ -280,6 +282,66 @@ function createI18n(preference, obsidianLocale) {
     'Set date & reminder for this task': '为此任务设置日期和提醒',
     'Change linked project': '更改关联项目', 'Link to a project': '关联项目',
     'Set a reminder': '设置提醒',
+    'Automatic (Obsidian)': '自动（跟随 Obsidian）', 'English': '英语',
+    'Open Cadence — Home (command centre)': '打开 Cadence · 首页',
+    'Open Cadence — Today': '打开 Cadence · 今天',
+    'Open Cadence — Calendar (week)': '打开 Cadence · 周日历',
+    'Open Cadence — Pipeline': '打开 Cadence · 销售管道',
+    'Open Cadence — Inbox': '打开 Cadence · 收件箱',
+    'New today entry (creates if missing)': '新建今日日志（不存在时创建）',
+    'Cadence quick capture': 'Cadence 快速记录',
+    'Quick capture (with optional reminder)': '快速记录（可设置提醒）',
+    'New Text Section': '新建文本分区', 'New Task List Block': '新建任务列表区块',
+    'New Milestones Block': '新建里程碑区块', 'New Cross-Linked Section': '新建关联分区',
+    'New Analytics Chart': '新建分析图表', 'New Property': '新属性',
+    'Open project': '打开项目',
+    'NOW · OVERDUE OR DUE WITHIN 1 HOUR': '现在 · 已逾期或一小时内到期',
+    'THIS WEEK': '本周', 'LATER · UNSCHEDULED': '稍后 · 未安排',
+    'Good morning': '早上好', 'Good afternoon': '下午好', 'Good evening': '晚上好',
+    'Templates Dashboard': '模板仪表盘',
+    'Manage and visually edit the templates for your entities': '管理并可视化编辑实体模板',
+    'CRM Dashboard': '客户关系仪表盘', 'Pipeline · momentum · recent activity': '销售管道 · 进展 · 近期活动',
+    'Last 30 days · across your daily notes': '过去 30 天 · 基于每日笔记',
+    'Pipeline report': '销售管道报告', 'Coverage, forecast and aging across all deals': '全部商机的覆盖情况、预测与停滞时间',
+    'Sales report': '销售报告', 'Closed-won and lost · performance over time': '赢单与丢单 · 按时间查看表现',
+    'Partners report': '合作伙伴报告', 'Partner-sourced revenue, tier mix, certification health': '合作伙伴来源收入、级别分布与认证情况',
+    'Activity report': '活动报告', 'Calls, meetings, emails and notes — mix and momentum': '通话、会议、邮件及笔记的组成与趋势',
+    'PRM analytics': '合作伙伴分析', 'Partner programme health, tier mix and revenue contribution': '合作伙伴计划状况、级别分布与收入贡献',
+    'never contacted': '从未联系',
+    'Current Streak': '当前连续天数', 'Longest Streak': '最长连续天数',
+    'Active Days': '活跃天数', 'Tasks Done': '已完成任务',
+    'Active today ✓': '今天已活跃 ✓', 'Complete work today!': '今天完成一项任务吧！',
+    'Personal record': '个人记录', 'Total days logged': '累计记录天数',
+    'Completed across notes': '笔记中的完成总数',
+    'Delete this reminder?': '删除这条提醒吗？',
+    'Supprimer cette section croisée ?': '删除这个关联分区吗？',
+    'Delete this custom template? Cadence will fall back to using the default structure.': '删除此自定义模板吗？Cadence 将恢复使用默认结构。',
+    'Active Template': '当前模板', 'Default': '默认', 'Reset to Default': '恢复默认',
+    'Add Block': '添加区块', 'Enter a name': '输入名称', 'Confirm Action': '确认操作',
+    'Schedule': '安排时间', 'Add a time': '添加时间', 'Mark done': '标记完成',
+    'Add task': '添加任务', 'Project due': '项目到期',
+    'Registration expires': '登记到期', 'Cert expires': '认证到期',
+    'No tasks logged this week yet': '本周还没有任务记录',
+    'To Do': '待办', 'In Progress': '进行中',
+    'Table': '表格', 'Kanban': '看板', 'Tile': '磁贴',
+    'TABLE': '表格', 'KANBAN': '看板', 'TILE': '磁贴',
+    'PROJECTS': '项目', 'REPORTS': '报告', 'SALES': '销售', 'PRODUCTIVITY': '效率',
+    '↻ daily': '↻ 每天', '↻ weekly': '↻ 每周',
+    'Nothing here yet.': '这里还没有内容。', 'no data': '没有数据', 'no note': '没有笔记',
+    'Count': '数量', 'Email': '邮箱', 'Cadence reminder': 'Cadence 提醒',
+    'Proposal': '方案', 'Negotiation': '谈判', 'Won': '赢单', 'Lost': '丢单',
+    'Native (Cadence)': 'Cadence 内置', 'Monday': '星期一', 'Sunday': '星期日',
+    'Brief': '简介', 'Scope': '范围', 'Risks': '风险', 'Stakeholders': '相关方',
+    'tag1, tag2': '标签一, 标签二', 'system / Asia/Shanghai': '系统 / Asia/Shanghai',
+    'e.g. Jane Smith': '例如：张三', 'e.g. Acme Corp': '例如：示例公司',
+    'e.g. Acme Distribution': '例如：示例经销商', 'e.g. Acme — FTTH expansion': '例如：示例公司 — 项目扩展',
+    'e.g. Vodacom 12-site FTTB': '例如：12 个站点的登记',
+    'e.g. C-2026-Q2-0042': '例如：C-2026-Q2-0042',
+    'e.g. Sarah from Vodacom': '例如：来自示例公司的李四',
+    'e.g. Cisco CCNP — May 2026': '例如：认证名称 — 2026 年 5 月',
+    'e.g. Discovery call with Jane': '例如：与张三的初次通话',
+    'e.g. Outbound — SMB': '例如：外联 — 中小企业',
+    'e.g. Q3 Cadence launch': '例如：第三季度发布 Cadence',
   } : {};
   const fallback = {
     'settings.language.name': 'Language', 'settings.language.desc': 'Use Obsidian language automatically, or choose a Cadence language.',
@@ -289,6 +351,49 @@ function createI18n(preference, obsidianLocale) {
     if (!zh || typeof value !== 'string') return value;
     if (dict[value]) return dict[value];
     return value
+      .replace(/^Delete chart "(.+)"\?$/, '删除图表“$1”吗？')
+      .replace(/^(\d+) of (\d+) tasks completed(?: for this milestone)?$/, '已完成 $1/$2 个任务')
+      .replace(/^INBOX — (\d+) items?( · (\d+) overdue)?$/, (_, total, overduePart, overdue) => `收件箱 — ${total} 项${overdue ? ` · ${overdue} 项逾期` : ''}`)
+      .replace(/^TODAY — (\d+) open · (\d+) done$/, '今天 — $1 项未完成 · $2 项已完成')
+      .replace(/^THIS WEEK — (\d+)\/(\d+) done$/, '本周 — 完成 $1/$2 项')
+      .replace(/^UPCOMING · NEXT 7 DAYS — (\d+)$/, '近期事项 · 未来 7 天 — $1 项')
+      .replace(/^PARTNERS — (\d+)$/, '合作伙伴 — $1 个')
+      .replace(/^ACTIVE PROJECTS — (\d+)$/, '进行中的项目 — $1 个')
+      .replace(/^PIPELINE — (\d+) open · (.+)$/, '销售管道 — $1 个进行中商机 · $2')
+      .replace(/^RECENT ACTIVITY — (\d+)$/, '近期活动 — $1 项')
+      .replace(/ \(\+(\d+) more\)$/, '（另有 $1 项）')
+      .replace(/^(\d+) Days?$/, '$1 天')
+      .replace(/^(\d+) Tasks?$/, '$1 个任务')
+      .replace(/^Created (.+): (.+)\nSaved to (.+)$/, '已创建$1：$2\n保存位置：$3')
+      .replace(/^Cadence: failed to create (.+) — (.+)$/, 'Cadence：创建$1失败 · $2')
+      .replace(/^Fiche projet créée automatiquement pour "(.+)"\.$/, '已为“$1”自动创建项目档案。')
+      .replace(/^Fiche contact créée automatiquement pour "(.+)"\.$/, '已为“$1”自动创建联系人档案。')
+      .replace(/^Lien automatique : Projet "(.+)" associé au contact "(.+)"\.$/, '已自动将项目“$1”关联到联系人“$2”。')
+      .replace(/^Lien automatique : Projet "(.+)" dissocié du contact "(.+)"\.$/, '已自动解除项目“$1”与联系人“$2”的关联。')
+      .replace(/^Lien automatique : Projet "(.+)" associé à "(.+)"\.$/, '已自动将项目“$1”关联到“$2”。')
+      .replace(/^Lien automatique : Projet "(.+)" dissocié de "(.+)"\.$/, '已自动解除项目“$1”与“$2”的关联。')
+      .replace(/^Lien automatique : Projet "(.+)" supprimé du contact "(.+)"\.$/, '已从联系人“$2”移除项目“$1”。')
+      .replace(/^(\d+) (.+) in (Cadence\/.+)$/, (_, count, entity, folder) => `${count} 个${translateText(entity)} · 位于 ${folder}`)
+      .replace(/^(\d+) (.+) · (.+) total$/, (_, count, entity, total) => `${count} 个${translateText(entity)} · 总额 ${total}`)
+      .replace(/^(\d+) items? · capture once, surface at the right time$/, '$1 个事项 · 随时记录，按时呈现')
+      .replace(/^Good morning\.$/, '早上好。')
+      .replace(/^Good afternoon\.$/, '下午好。')
+      .replace(/^Good evening\.$/, '晚上好。')
+      .replace(/^Good (morning|afternoon|evening)\. Nothing on the books — your day is clear\.$/, (_, time) => `${translateText(`Good ${time}`)}。今天暂无安排。`)
+      .replace(/^Good (morning|afternoon|evening)\. You have (\d+) things? to handle\.$/, (_, time, count) => `${translateText(`Good ${time}`)}。今天有 ${count} 件事待处理。`)
+      .replace(/^(.+) — never contacted(.*)$/, '$1 · 从未联系$2')
+      .replace(/^(.+) — (\d+) days? quiet(.*)$/, '$1 · 已有 $2 天未联系$3')
+      .replace(/^No CSV column maps to "(.+)" — required to name the file\. Pick a column above\.$/, '没有 CSV 列映射到必填的“$1”；请在上方选择一列。')
+      .replace(/^Will create (\d+) (.+) in (.+)\/  ·  (\d+) columns? mapped$/, '将在 $3/ 创建 $1 个$2 · 已映射 $4 列')
+      .replace(/^Group (.+) by Property:$/, '按属性对$1分组：')
+      .replace(/^Drop a markdown note in (.+)\/ with frontmatter, or hit "\+ New" above\.$/, '将带 Frontmatter 的 Markdown 笔记放入 $1/，或点击上方“+ 新建”。')
+      .replace(/^(.+): $/, (_, name) => `${translateText(name)}：`)
+      .replace(/^NEXT · (.+)$/, '下一项 · $1')
+      .replace(/^(.+) · (\d+) open · (\d+) done$/, (_, name, open, done) => `${translateText(name)} · ${open} 项未完成 · ${done} 项已完成`)
+      .replace(/^(.+) · (\d+)\/(\d+)$/, (_, name, done, total) => `${translateText(name)} · ${done}/${total}`)
+      .replace(/^(.+) · (\d+) ([A-Za-z][A-Za-z ]*)$/, (_, name, count, entity) => `${translateText(name)} · ${count} 个${translateText(entity)}`)
+      .replace(/^Properties for: (.+)$/, (_, name) => `${translateText(name)}属性`)
+      .replace(/^Super Productivity unavailable: (.+)$/, 'Super Productivity 暂不可用：$1')
       .replace(/^Scheduled: (.+)$/, '计划时间：$1')
       .replace(/^Milestone: (.+)$/, '里程碑：$1')
       .replace(/^Add (.+)\.\.\.$/, (_, name) => `添加${translateText(name)}…`)
@@ -312,7 +417,9 @@ function createI18n(preference, obsidianLocale) {
       .replace(/^(.+) — (.+) · (\d+) deals$/, '$1 · $2 · $3 个商机')
       .replace(/^(\d+) reminders? due later today$/, '今天晚些时候有 $1 条提醒到期')
       .replace(/^(\d+) deal closes? this week · (.+)$/, '本周有 $1 个商机预计成交 · $2')
-      .replace(/^(\d+) deals won this week · (.+)$/, '本周赢单 $1 个 · $2')
+      .replace(/^(\d+) deals? won this week · (.+)$/, '本周赢单 $1 个 · $2')
+      .replace(/^(\d+) projects? · (\d+)\/(\d+) tasks complete · (\d+)h (\d+)m tracked$/, '$1 个项目 · 完成 $2/$3 个任务 · 记录 $4 小时 $5 分钟')
+      .replace(/^(\d+) task(s)? completed for this milestone$/, '此里程碑已完成 $1 个任务')
       .replace(/^(.+) · "(.+)" — due today$/, '$1 · “$2”今天到期')
       .replace(/^(.+) · "(.+)" — due tomorrow$/, '$1 · “$2”明天到期')
       .replace(/^(.+) · "(.+)" — due in (\d+) days$/, '$1 · “$2”将在 $3 天后到期')
@@ -354,6 +461,7 @@ function createI18n(preference, obsidianLocale) {
       .replace(/^(\d+) done$/, '$1 项已完成')
       .replace(/^Due: (.+)$/, '截止：$1')
       .replace(/^No (.+) yet$/, (_, name) => `还没有${translateText(name)}`)
+      .replace(/^([A-Z]{3}) amount$/, '$1 金额')
       .replace(/^All (.+)$/, (_, name) => `全部${translateText(name)}`)
       .replace(/^\+ New (.+)$/, (_, name) => `+ 新建${translateText(name)}`)
       .replace(/^\+ Add (.+)$/, (_, name) => `+ 添加${translateText(name)}`)
@@ -364,6 +472,10 @@ function createI18n(preference, obsidianLocale) {
       .replace(/^Open (.+)$/, (_, name) => `打开${translateText(name)}`)
       .replace(/^(\d+) tasks$/, '$1 个任务')
       .replace(/^(\d+) milestones$/, '$1 个里程碑')
+      .replace(/^Remove section "(.+)" from template$/, (_, name) => `从模板中移除“${translateText(name)}”分区`)
+      .replace(/^Remove the section "(.+)" from this template\?$/, (_, name) => `从此模板中移除“${translateText(name)}”分区吗？`)
+      .replace(/^Are you sure you want to reset the template for (.+)\? Your visual changes will be overwritten\.$/, (_, name) => `确定要重置${translateText(name)}模板吗？这会覆盖可视化编辑的内容。`)
+      .replace(/^Warning: The section "(.+)" has active content in the following files:\n(.+)\n\nAre you sure you want to delete it from the template\?$/, '警告：“$1”分区在以下文件中有内容：\n$2\n\n确定要从模板中删除它吗？')
       .replace(/^(\d+)% of total$/, '占总数 $1%');
   };
   return { locale: zh ? 'zh-CN' : 'en', t: (key) => dict[key] || fallback[key] || key, translateText };
@@ -375,6 +487,7 @@ function uiText(value) {
   const i18n = window.__cadencePlugin && window.__cadencePlugin.i18n;
   return i18n ? i18n.translateText(value) : value;
 }
+function cadenceConfirm(message) { return confirm(uiText(message)); }
 class CadenceNotice extends obsidian.Notice {
   constructor(message, ...rest) {
     const i18n = window.__cadencePlugin && window.__cadencePlugin.i18n;
@@ -2529,7 +2642,7 @@ class CadenceReminderEditModal extends CadenceModal {
       del.type = 'button';
       del.style.marginRight = 'auto';
       del.addEventListener('click', async () => {
-        if (!confirm('Delete this reminder?')) return;
+        if (!cadenceConfirm('Delete this reminder?')) return;
         await this.plugin.deleteReminder(this.reminder.id);
         this._submitted = true;
         this.close();
@@ -2601,7 +2714,7 @@ class CadenceReminderEditModal extends CadenceModal {
       constructor(app, projs) {
         super(app);
         this.projs = projs;
-        this.setPlaceholder('Search projects to link this reminder to…');
+        this.setPlaceholder(uiText('Search projects to link this reminder to…'));
       }
       getSuggestions(query) {
         const q = (query || '').toLowerCase();
@@ -2727,7 +2840,7 @@ class CadenceImportModal extends CadenceModal {
         return;
       }
       const picker = new (class extends obsidian.SuggestModal {
-        constructor(app, files, onPick) { super(app); this.files = files; this.onPick = onPick; this.setPlaceholder('Search .csv files…'); }
+        constructor(app, files, onPick) { super(app); this.files = files; this.onPick = onPick; this.setPlaceholder(uiText('Search .csv files…')); }
         getSuggestions(q) { return this.files.filter((f) => f.path.toLowerCase().includes(q.toLowerCase())); }
         renderSuggestion(file, el) { el.setText(file.path); }
         onChooseSuggestion(file) { this.onPick(file); }
@@ -2983,7 +3096,7 @@ class CadenceEntityCreateModal extends CadenceModal {
         input.placeholder = uiText('name@example.com');
       } else {
         input = row.createEl('input', { type: 'text', cls: 'cad-create-input' });
-        input.placeholder = fieldType === 'tags' ? 'tag1, tag2' : this._placeholderFor(f, isPrimary);
+        input.placeholder = uiText(fieldType === 'tags' ? 'tag1, tag2' : this._placeholderFor(f, isPrimary));
 
         const suggestionSource = getFieldSuggestionSource(f);
         const hasSuggestions = suggestionSource !== 'none';
@@ -3814,7 +3927,7 @@ class CadenceAppView extends obsidian.ItemView {
         super(app);
         this.projs = projs;
         this.hasLink = hasLink;
-        this.setPlaceholder(hasLink ? 'Pick a project (or type "unlink" to remove)' : 'Pick a project to link this task to');
+        this.setPlaceholder(uiText(hasLink ? 'Pick a project (or type "unlink" to remove)' : 'Pick a project to link this task to'));
       }
       getSuggestions(query) {
         const q = (query || '').toLowerCase();
@@ -3972,6 +4085,13 @@ class CadenceAppView extends obsidian.ItemView {
   }
 
   async render() {
+    if (this.plugin.settings.language === 'auto') {
+      const nextI18n = createI18n('auto', currentObsidianLocale(this.app));
+      if (nextI18n.locale !== this.plugin.i18n.locale) {
+        this.plugin.i18n = nextI18n;
+        CURRENT_LOCALE = nextI18n.locale;
+      }
+    }
     if (this._isRendering) {
       this._needsRenderAgain = true;
       return;
@@ -4871,7 +4991,7 @@ class CadenceAppView extends obsidian.ItemView {
       } else if (fieldType === 'number' || fieldType === 'currency') {
         const inp = row.createEl('input', { type: 'number', cls: 'cad-form-input' });
         if (current != null) inp.value = String(current);
-        if (fieldType === 'currency') inp.placeholder = `${this.plugin.settings.currency || 'USD'} amount`;
+        if (fieldType === 'currency') inp.placeholder = uiText(`${this.plugin.settings.currency || 'USD'} amount`);
         if (!isCore && f.key === 'type') {
           inp.disabled = true;
           inp.style.opacity = '0.6';
@@ -5650,7 +5770,7 @@ class CadenceAppView extends obsidian.ItemView {
         sel.addEventListener('change', commit);
       } else {
         const inp = cell.createEl('input', { type: fieldType === 'date' ? 'date' : (fieldType === 'number' || fieldType === 'currency' ? 'number' : 'text'), cls: 'cad-pd-meta-input' });
-        if (fieldType === 'currency') inp.placeholder = `${this.plugin.settings.currency || 'USD'} amount`;
+        if (fieldType === 'currency') inp.placeholder = uiText(`${this.plugin.settings.currency || 'USD'} amount`);
 
         if (fieldType === 'date' && current) {
           const d = new Date(current);
@@ -6095,7 +6215,7 @@ class CadenceAppView extends obsidian.ItemView {
         sel.addEventListener('change', commit);
       } else {
         const inp = cell.createEl('input', { type: fieldType === 'date' ? 'date' : (fieldType === 'number' || fieldType === 'currency' ? 'number' : 'text'), cls: 'cad-pd-meta-input' });
-        if (fieldType === 'currency') inp.placeholder = `${this.plugin.settings.currency || 'USD'} amount`;
+        if (fieldType === 'currency') inp.placeholder = uiText(`${this.plugin.settings.currency || 'USD'} amount`);
 
         if (fieldType === 'date' && current) {
           const d = new Date(current);
@@ -6182,7 +6302,7 @@ class CadenceAppView extends obsidian.ItemView {
     const card = parent.createDiv({ cls: 'cad-pd-card' });
     const head = card.createDiv({ cls: 'cad-pd-card-head' });
     const { cleanLabel } = parseHeaderKey(rawKey);
-    head.createDiv({ cls: 'cad-pd-card-title', text: `${cleanLabel.toUpperCase()} · ${milestones.filter((m) => m.done).length}/${milestones.length}` });
+    head.createDiv({ cls: 'cad-pd-card-title', text: `${uiText(cleanLabel).toUpperCase()} · ${milestones.filter((m) => m.done).length}/${milestones.length}` });
     const addBtn = head.createEl('button', { cls: 'cad-btn cad-btn-sm', text: '+ Add' });
 
     const list = card.createDiv({ cls: 'cad-pd-checklist' });
@@ -6266,7 +6386,7 @@ class CadenceAppView extends obsidian.ItemView {
             const doneCount = linked.filter(t => !!t.done).length;
             const badge = row.createSpan({ cls: 'cad-mile-task-badge' + (doneCount === linked.length ? ' all-done' : '') });
             badge.setText(`${doneCount}/${linked.length} tasks`);
-            badge.title = `${doneCount} of ${linked.length} tasks completed for this milestone`;
+            badge.title = uiText(`${doneCount} of ${linked.length} tasks completed for this milestone`);
           }
         }
 
@@ -6374,7 +6494,7 @@ class CadenceAppView extends obsidian.ItemView {
 
     const open = tasksList.filter((t) => !t.done).length;
     const { cleanLabel } = parseHeaderKey(rawKey);
-    head.createDiv({ cls: 'cad-pd-card-title', text: `${cleanLabel.toUpperCase()} · ${open} open · ${tasksList.length - open} done` });
+    head.createDiv({ cls: 'cad-pd-card-title', text: `${uiText(cleanLabel).toUpperCase()} · ${open} open · ${tasksList.length - open} done` });
     const addBtn = head.createEl('button', { cls: 'cad-btn cad-btn-sm', text: '+ Add' });
 
     const list = card.createDiv({ cls: 'cad-pd-checklist' });
@@ -7129,7 +7249,7 @@ priority: normal
           const card = parent.createDiv({ cls: 'cad-pd-card' });
           card.style.gridColumn = '1 / -1';
           const head = card.createDiv({ cls: 'cad-pd-card-head' });
-          head.createDiv({ cls: 'cad-pd-card-title', text: `${cleanLabel.toUpperCase()} · ${filteredList.length}` });
+          head.createDiv({ cls: 'cad-pd-card-title', text: `${uiText(cleanLabel).toUpperCase()} · ${filteredList.length}` });
 
           const addBtn = head.createEl('button', { cls: 'cad-btn cad-btn-sm', text: `+ Add ${def.label}` });
           addBtn.addEventListener('click', () => {
@@ -7145,7 +7265,7 @@ priority: normal
           ];
           viewOptions.forEach(({ v, icon, title }) => {
             const vBtn = viewSwitch.createEl('button', {attr: { style: `padding: 4px 6px; display: inline-flex; align-items: center; justify-content: center; border-radius: 4px; cursor: pointer; border: 1px solid var(--border-color); background: ${v === viewType ? 'var(--interactive-accent)' : 'transparent'}; color: ${v === viewType ? 'var(--text-on-accent)' : 'var(--text-muted)'};` }});
-            vBtn.title = title;
+            vBtn.title = uiText(title);
             try { obsidian.setIcon(vBtn, icon); } catch (_) { }
 
             if (v !== viewType) {
@@ -7207,7 +7327,7 @@ priority: normal
           const card = parent.createDiv({ cls: 'cad-pd-card' });
           card.style.gridColumn = '1 / -1';
           const head = card.createDiv({ cls: 'cad-pd-card-head' });
-          head.createDiv({ cls: 'cad-pd-card-title', text: `${cleanLabel.toUpperCase()} · ${filteredList.length} ${def.plural}` });
+          head.createDiv({ cls: 'cad-pd-card-title', text: `${uiText(cleanLabel).toUpperCase()} · ${filteredList.length} ${uiText(def.plural)}` });
 
           // Chart style switcher — saved back to the entity note
           const styleSwitch = head.createDiv({ attr: { style: 'display: flex; gap: 3px; margin-left: 8px;' } });
@@ -7270,14 +7390,14 @@ priority: normal
 
       const head = secWrap.createDiv({ attr: { style: 'display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;' } });
       head.createEl('h3', {
-        text: `${def.plural.toUpperCase()} (${config.linkField.toUpperCase()}) — ${config.viewType.toUpperCase()}`,
+        text: `${uiText(def.plural).toUpperCase()} (${config.linkField.toUpperCase()}) — ${uiText(config.viewType.toUpperCase())}`,
         attr: { style: 'margin: 0; font-size: 1.1em; font-weight: 700; letter-spacing: 0.05em;' }
 });
 
       const delBtn = head.createEl('button', { text: '×', attr: { style: 'color: var(--text-error); border: 1px solid var(--text-error); padding: 2px 8px; font-weight: bold; border-radius: 4px; background: transparent; cursor: pointer;' } });
       delBtn.title = uiText('Supprimer cette section croisée');
       delBtn.addEventListener('click', async () => {
-        if (!confirm('Supprimer cette section croisée ?')) return;
+        if (!cadenceConfirm('Supprimer cette section croisée ?')) return;
         this.plugin.settings.crossSections = (this.plugin.settings.crossSections || []).filter(c => c.id !== config.id);
         await this.plugin.saveSettings();
         this.render();
@@ -7732,7 +7852,9 @@ priority: normal
           day: 'numeric',
           year: 'numeric',
         });
-        const tooltipText = `${formattedDate}\n${total} ${total === 1 ? 'activity' : 'activities'} (${data.tasks} tasks, ${data.notes} notes)`;
+        const tooltipText = CURRENT_LOCALE === 'zh-CN'
+          ? `${formattedDate}\n${total} 次活动（${data.tasks} 个任务，${data.notes} 篇笔记）`
+          : `${formattedDate}\n${total} ${total === 1 ? 'activity' : 'activities'} (${data.tasks} tasks, ${data.notes} notes)`;
 
         try {
           obsidian.setTooltip(cell, tooltipText);
@@ -7939,7 +8061,7 @@ priority: normal
             class: 'cad-linechart-axis-label',
           }
         });
-        xTxt.setText(labelStr);
+        xTxt.setText(uiText(labelStr));
       }
     });
 
@@ -7994,7 +8116,9 @@ priority: normal
 
           const dObj = new Date(pt.date + 'T12:00:00');
           const dateFmt = dObj.toLocaleDateString(CURRENT_LOCALE, { weekday: 'short', month: 'short', day: 'numeric' });
-          const tip = `${proj.name}\n${dateFmt}: ${pt.count} ${pt.count === 1 ? 'task' : 'tasks'} done`;
+          const tip = CURRENT_LOCALE === 'zh-CN'
+            ? `${proj.name}\n${dateFmt}：完成 ${pt.count} 个任务`
+            : `${proj.name}\n${dateFmt}: ${pt.count} ${pt.count === 1 ? 'task' : 'tasks'} done`;
 
           try {
             obsidian.setTooltip(circle, tip);
@@ -8773,7 +8897,7 @@ priority: normal
         const targetPath = `${templatesFolder}/${entityKey}.md`;
         let tFile = this.app.vault.getAbstractFileByPath(targetPath);
         if (tFile && tFile instanceof obsidian.TFile) {
-          if (!confirm(`Are you sure you want to reset the template for ${def.label}? Your visual changes will be overwritten.`)) return;
+          if (!cadenceConfirm(`Are you sure you want to reset the template for ${def.label}? Your visual changes will be overwritten.`)) return;
           await this.app.vault.modify(tFile, templateContent);
           new CadenceNotice(`Template reset for ${def.label}.`);
         } else {
@@ -8828,7 +8952,7 @@ priority: normal
 
     const deleteBtn = headRight.createEl('button', { cls: 'cad-btn cad-btn-danger', text: 'Delete' });
     deleteBtn.addEventListener('click', async () => {
-      if (!confirm(`Delete this custom template? Cadence will fall back to using the default structure.`)) return;
+      if (!cadenceConfirm(`Delete this custom template? Cadence will fall back to using the default structure.`)) return;
       try {
         await this.app.vault.trash(file, true);
         new CadenceNotice(`Custom template deleted.`);
@@ -9043,17 +9167,17 @@ priority: normal
 
     // --- Delete button ---
     const delBtn = ctrlRow.createEl('button', { text: '×', attr: { style: 'color: var(--text-error); padding: 0 4px; font-weight: bold; background: transparent; border: none; font-size: 1.25em; cursor: pointer;' } });
-    delBtn.title = `Remove section "${cleanLabel}" from template`;
+    delBtn.title = uiText(`Remove section "${cleanLabel}" from template`);
     delBtn.addEventListener('click', async (ev) => {
       ev.stopPropagation();
       const usedFiles = await this._getFilesUsingTemplateSection(entityKey, rawKey);
       if (usedFiles.length > 0) {
         const fileNames = usedFiles.map(f => f.basename).join(', ');
-        if (!confirm(`Warning: The section "${cleanLabel}" has active content in the following files:\n${fileNames}\n\nAre you sure you want to delete it from the template?`)) {
+        if (!cadenceConfirm(`Warning: The section "${cleanLabel}" has active content in the following files:\n${fileNames}\n\nAre you sure you want to delete it from the template?`)) {
           return;
         }
       } else {
-        if (!confirm(`Remove the section "${cleanLabel}" from this template?`)) return;
+        if (!cadenceConfirm(`Remove the section "${cleanLabel}" from this template?`)) return;
       }
       
       const curContent = await this.app.vault.read(file);
@@ -9312,7 +9436,7 @@ priority: normal
     const actions = row.createDiv({ cls: 'cad-inbox-actions' });
     const mk = (label, title, fn) => {
       const b = actions.createEl('button', { cls: 'cad-btn cad-btn-sm', text: label });
-      b.title = title;
+      b.title = uiText(title);
       b.addEventListener('click', (ev) => { ev.stopPropagation(); fn(); });
       return b;
     };
@@ -9333,7 +9457,7 @@ priority: normal
     });
     doneBtn.classList.add('primary');
     const delBtn = mk('×', 'Delete', () => {
-      if (confirm('Delete this reminder?')) this.plugin.deleteReminder(r.id);
+      if (cadenceConfirm('Delete this reminder?')) this.plugin.deleteReminder(r.id);
     });
     delBtn.classList.add('cad-btn-danger');
   }
@@ -9950,7 +10074,7 @@ priority: normal
         const head = card.createDiv({ cls: 'cad-dash-card-head', attr: { style: 'display: flex; justify-content: space-between; align-items: center; padding: 10px 14px;' } });
         const fieldKey = w.groupBy;
 
-        head.createDiv({ cls: 'cad-dash-card-title', text: w.title.toUpperCase(), attr: { style: 'font-weight: 700; font-size: 0.75rem; letter-spacing: 0.12em;' } });
+        head.createDiv({ cls: 'cad-dash-card-title', text: uiText(w.title).toUpperCase(), attr: { style: 'font-weight: 700; font-size: 0.75rem; letter-spacing: 0.12em;' } });
 
         const actionsWrap = head.createDiv({ attr: { style: 'display: flex; gap: 8px; align-items: center;' } });
 
@@ -9985,7 +10109,7 @@ priority: normal
         const delBtn = actionsWrap.createEl('button', { cls: 'cad-btn',
           text: '×', attr: { style: 'color: var(--text-error); padding: 2px 8px; font-weight: bold; border-color: var(--text-error); font-size: 1.1em; height: auto; border-radius: 4px; background: transparent;' } });
         delBtn.addEventListener('click', async () => {
-          if (!confirm(`Delete chart "${w.title}"?`)) return;
+          if (!cadenceConfirm(`Delete chart "${w.title}"?`)) return;
           this.plugin.settings.projectDashboardWidgets = (this.plugin.settings.projectDashboardWidgets || []).filter(item => item.id !== w.id);
           await this.plugin.saveSettings();
           this.render();
@@ -10195,7 +10319,7 @@ priority: normal
         const head = card.createDiv({ cls: 'cad-dash-card-head', attr: { style: 'display: flex; justify-content: space-between; align-items: center; padding: 10px 14px;' } });
         const fieldKey = w.groupBy;
 
-        head.createDiv({ cls: 'cad-dash-card-title', text: w.title.toUpperCase(), attr: { style: 'font-weight: 700; font-size: 0.75rem; letter-spacing: 0.12em;' } });
+        head.createDiv({ cls: 'cad-dash-card-title', text: uiText(w.title).toUpperCase(), attr: { style: 'font-weight: 700; font-size: 0.75rem; letter-spacing: 0.12em;' } });
 
         const actionsWrap = head.createDiv({ attr: { style: 'display: flex; gap: 8px; align-items: center;' } });
 
@@ -10230,7 +10354,7 @@ priority: normal
         const delBtn = actionsWrap.createEl('button', { cls: 'cad-btn',
           text: '×', attr: { style: 'color: var(--text-error); padding: 2px 8px; font-weight: bold; border-color: var(--text-error); font-size: 1.1em; height: auto; border-radius: 4px; background: transparent;' } });
         delBtn.addEventListener('click', async () => {
-          if (!confirm(`Delete chart "${w.title}"?`)) return;
+          if (!cadenceConfirm(`Delete chart "${w.title}"?`)) return;
           this.plugin.settings.crmDashboardWidgets = (this.plugin.settings.crmDashboardWidgets || []).filter(item => item.id !== w.id);
           await this.plugin.saveSettings();
           this.render();
@@ -10378,7 +10502,7 @@ priority: normal
       const ratio = p.done / max;
       bar.dataset.band = p.done === 0 ? 'empty' : ratio < 0.34 ? 'low' : ratio < 0.67 ? 'mid' : 'high';
       const lbl = col.createDiv({ cls: 'cad-bar-label', text: String(p.date.getDate()) });
-      bar.title = `${p.date.toLocaleDateString()} — ${p.done} done, ${p.open} open`;
+      bar.title = uiText(`${p.date.toLocaleDateString()} — ${p.done} done, ${p.open} open`);
       void lbl;
     });
 
@@ -10411,7 +10535,7 @@ priority: normal
       bar.style.height = `${(w.done / maxWeek) * 100}%`;
       const ratio = w.done / maxWeek;
       bar.dataset.band = w.done === 0 ? 'empty' : ratio < 0.34 ? 'low' : ratio < 0.67 ? 'mid' : 'high';
-      bar.title = `Week of ${w.label} — ${w.done} done, ${w.open} open`;
+      bar.title = uiText(`Week of ${w.label} — ${w.done} done, ${w.open} open`);
       col.createDiv({ cls: 'cad-bar-label', text: w.label });
     });
 
@@ -10613,7 +10737,7 @@ priority: normal
       bar.style.height = `${(m.revenue / maxRev) * 100}%`;
       const ratio = m.revenue / maxRev;
       bar.dataset.band = m.revenue === 0 ? 'empty' : ratio < 0.34 ? 'low' : ratio < 0.67 ? 'mid' : 'high';
-      bar.title = `${m.label} — ${fmtValue(m.revenue, 'currency')} · ${m.count} deals`;
+      bar.title = uiText(`${m.label} — ${fmtValue(m.revenue, 'currency')} · ${m.count} deals`);
       col.createDiv({ cls: 'cad-bar-label', text: m.label });
     });
 
@@ -10711,7 +10835,7 @@ priority: normal
         const mini = tierBody.createDiv({ cls: 'cad-mini-stat' });
         mini.dataset.accent = tierAccent[tier] || 'sky';
         mini.createDiv({ cls: 'cad-mini-stat-value', text: String(count) });
-        mini.createDiv({ cls: 'cad-mini-stat-label', text: tier.toUpperCase() });
+        mini.createDiv({ cls: 'cad-mini-stat-label', text: uiText(tier).toUpperCase() });
       });
     }
 
@@ -10825,7 +10949,7 @@ priority: normal
       bar.style.height = `${(w.count / maxWeek) * 100}%`;
       const ratio = w.count / maxWeek;
       bar.dataset.band = w.count === 0 ? 'empty' : ratio < 0.34 ? 'low' : ratio < 0.67 ? 'mid' : 'high';
-      bar.title = `Week of ${w.label} — ${w.count} activities`;
+      bar.title = uiText(`Week of ${w.label} — ${w.count} activities`);
       col.createDiv({ cls: 'cad-bar-label', text: w.label });
     });
 
@@ -11296,7 +11420,7 @@ priority: normal
         const mini = tierBody.createDiv({ cls: 'cad-mini-stat' });
         mini.dataset.accent = tierAccent[tier] || 'sky';
         mini.createDiv({ cls: 'cad-mini-stat-value', text: String(count) });
-        mini.createDiv({ cls: 'cad-mini-stat-label', text: tier.toUpperCase() });
+        mini.createDiv({ cls: 'cad-mini-stat-label', text: uiText(tier).toUpperCase() });
         const sub = mini.createDiv({ cls: 'cad-stat-sub' });
         sub.style.marginTop = '4px';
         sub.setText(value > 0 ? fmtValue(value, 'currency') : '—');
@@ -11388,7 +11512,7 @@ priority: normal
         const head = card.createDiv({ cls: 'cad-dash-card-head', attr: { style: 'display: flex; justify-content: space-between; align-items: center; padding: 10px 14px;' } });
         const fieldKey = w.groupBy;
 
-        head.createDiv({ cls: 'cad-dash-card-title', text: w.title.toUpperCase(), attr: { style: 'font-weight: 700; font-size: 0.75rem; letter-spacing: 0.12em;' } });
+        head.createDiv({ cls: 'cad-dash-card-title', text: uiText(w.title).toUpperCase(), attr: { style: 'font-weight: 700; font-size: 0.75rem; letter-spacing: 0.12em;' } });
 
         const actionsWrap = head.createDiv({ attr: { style: 'display: flex; gap: 8px; align-items: center;' } });
 
@@ -11423,7 +11547,7 @@ priority: normal
         const delBtn = actionsWrap.createEl('button', { cls: 'cad-btn',
           text: '×', attr: { style: 'color: var(--text-error); padding: 2px 8px; font-weight: bold; border-color: var(--text-error); font-size: 1.1em; height: auto; border-radius: 4px; background: transparent;' } });
         delBtn.addEventListener('click', async () => {
-          if (!confirm(`Delete chart "${w.title}"?`)) return;
+          if (!cadenceConfirm(`Delete chart "${w.title}"?`)) return;
           this.plugin.settings.prmDashboardWidgets = (this.plugin.settings.prmDashboardWidgets || []).filter(item => item.id !== w.id);
           await this.plugin.saveSettings();
           this.render();
@@ -13142,7 +13266,7 @@ class CadenceSettingTab extends obsidian.PluginSettingTab {
             const picker = new (class extends obsidian.SuggestModal {
               constructor(app) {
                 super(app);
-                this.setPlaceholder('Rechercher un dossier du vault…');
+                this.setPlaceholder(uiText('Rechercher un dossier du vault…'));
               }
               getSuggestions(q) {
                 const ql = q.toLowerCase();
@@ -13255,36 +13379,36 @@ class CadencePlugin extends obsidian.Plugin {
     );
 
     // Single ribbon icon → opens the Cadence app
-    this.addRibbonIcon('sparkles', 'Open Cadence', () => this.openApp());
+    this.addRibbonIcon('sparkles', uiText('Open Cadence'), () => this.openApp());
 
     this.addCommand({
       id: 'open-cadence',
-      name: 'Open Cadence',
+      name: uiText('Open Cadence'),
       callback: () => this.openApp(),
     });
     this.addCommand({
       id: 'open-cadence-home',
-      name: 'Open Cadence — Home (command centre)',
+      name: uiText('Open Cadence — Home (command centre)'),
       callback: () => this.openApp('home'),
     });
     this.addCommand({
       id: 'open-cadence-today',
-      name: 'Open Cadence — Today',
+      name: uiText('Open Cadence — Today'),
       callback: () => this.openApp('planner.today'),
     });
     this.addCommand({
       id: 'open-cadence-calendar',
-      name: 'Open Cadence — Calendar (week)',
+      name: uiText('Open Cadence — Calendar (week)'),
       callback: () => this.openApp('planner.calendar'),
     });
     this.addCommand({
       id: 'open-cadence-pipeline',
-      name: 'Open Cadence — Pipeline',
+      name: uiText('Open Cadence — Pipeline'),
       callback: () => this.openApp('crm.pipeline'),
     });
     this.addCommand({
       id: 'new-daily-entry',
-      name: 'New today entry (creates if missing)',
+      name: uiText('New today entry (creates if missing)'),
       callback: async () => {
         const file = await ensureDailyNote(this.app, this.settings);
         this.app.workspace.openLinkText(file.path, '', false);
@@ -13294,22 +13418,22 @@ class CadencePlugin extends obsidian.Plugin {
     this.addSettingTab(new CadenceSettingTab(this.app, this));
 
     // ─── Quick capture (with optional reminder) ───
-    this.addRibbonIcon('plus-circle', 'Cadence quick capture', () => this.openQuickCapture());
+    this.addRibbonIcon('plus-circle', uiText('Cadence quick capture'), () => this.openQuickCapture());
     this.addCommand({
       id: 'quick-capture',
-      name: 'Quick capture (with optional reminder)',
+      name: uiText('Quick capture (with optional reminder)'),
       hotkeys: [{ modifiers: ['Mod', 'Shift'], key: 'i' }],
       callback: () => this.openQuickCapture(),
     });
     this.addCommand({
       id: 'open-cadence-inbox',
-      name: 'Open Cadence — Inbox',
+      name: uiText('Open Cadence — Inbox'),
       callback: () => this.openApp('planner.inbox'),
     });
 
     this.addCommand({
       id: 'cadence-import-csv',
-      name: 'Import from CSV',
+      name: uiText('Import from CSV'),
       callback: () => {
         // Default to whichever entity list the user is on, fallback to contact
         let entityKey = 'contact';
@@ -13631,7 +13755,7 @@ class CadencePlugin extends obsidian.Plugin {
     if (this.settings.desktopNotifications && typeof Notification !== 'undefined') {
       try {
         if (Notification.permission === 'granted') {
-          new Notification('Cadence reminder', { body: r.text });
+          new Notification(uiText('Cadence reminder'), { body: r.text });
         }
       } catch (_) { }
     }
