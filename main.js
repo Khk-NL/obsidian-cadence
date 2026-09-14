@@ -61,13 +61,18 @@ function createI18n(preference, obsidianLocale) {
   return { locale: zh ? 'zh-CN' : 'en', t: (key) => dict[key] || fallback[key] || key, translateText };
 }
 class SuperProductivityProvider {
-  constructor({ requestUrl, baseUrl }) { this.requestUrl = requestUrl; this.baseUrl = String(baseUrl || '').replace(/\/$/, ''); }
-  isConfigured() { return Boolean(this.baseUrl && this.requestUrl); }
+  constructor({ app }) { this.app = app; }
+  getPlugin() { return this.app.plugins && this.app.plugins.getPlugin('superproductivity-todo-sync'); }
+  isConfigured() { const plugin = this.getPlugin(); return Boolean(plugin && plugin.api); }
   async getSnapshot() {
     if (!this.isConfigured()) return { projects: [], todayTasks: [], summary: null, unavailable: true };
-    const get = async (path) => this.requestUrl({ url: `${this.baseUrl}${path}`, method: 'GET' });
-    const [projects, todayTasks, summary] = await Promise.all([get('/projects'), get('/tasks/today'), get('/summary/today')]);
-    return { projects: projects || [], todayTasks: todayTasks || [], summary: summary || null, unavailable: false };
+    const api = this.getPlugin().api;
+    const [projects, tasks] = await Promise.all([api.getProjects(), api.getTasks()]);
+    const today = CadenceTimezone.ymd(new Date(), CURRENT_TIMEZONE);
+    const todayTasks = tasks.filter((task) => task.dueDay === today);
+    const done = todayTasks.filter((task) => task.isDone).length;
+    const trackedMs = todayTasks.reduce((sum, task) => sum + (Number(task.timeSpentOnDay) || 0), 0);
+    return { projects, todayTasks, summary: { total: todayTasks.length, done, trackedMs }, unavailable: false };
   }
 }
 
@@ -9311,6 +9316,23 @@ priority: normal
     });
   }
 
+  async _renderSuperProductivitySummary(root) {
+    const provider = this.plugin.superProductivityProvider;
+    if (!provider || !provider.isConfigured()) return;
+    try {
+      const snapshot = await provider.getSnapshot();
+      const card = root.createDiv({ cls: 'cad-home-card', attr: { style: 'margin: 20px 32px 0;' } });
+      card.createDiv({ cls: 'cad-home-card-title', text: 'SUPER PRODUCTIVITY · TODAY' });
+      const summary = snapshot.summary || { total: 0, done: 0, trackedMs: 0 };
+      const hours = Math.floor(summary.trackedMs / 3600000);
+      const minutes = Math.floor((summary.trackedMs % 3600000) / 60000);
+      card.createDiv({ cls: 'cad-home-card-body', text: `${snapshot.projects.length} projects · ${summary.done}/${summary.total} tasks complete · ${hours}h ${minutes}m tracked` });
+      snapshot.todayTasks.slice(0, 8).forEach((task) => card.createDiv({ cls: 'cad-home-row', text: `${task.isDone ? '✓' : '○'} ${task.title}` }));
+    } catch (error) {
+      root.createDiv({ cls: 'cad-empty', text: `Super Productivity unavailable: ${error.message}` });
+    }
+  }
+
   /* ── Projects Dashboard ─────────────────── */
   async renderProjectsDashboard(root) {
     root.addClass('cadence-dashboard');
@@ -9329,6 +9351,8 @@ priority: normal
       const newProj = right.createEl('button', { cls: 'cad-btn primary', text: '+ New Project' });
       newProj.addEventListener('click', () => this._createEntityFromPrompt('project'));
     });
+
+    await this._renderSuperProductivitySummary(root);
 
     // ─── Daily Streak & Activity Heatmap ───────────────
     await this._renderActivityHeatmapCard(root);
@@ -12887,8 +12911,7 @@ class CadencePlugin extends obsidian.Plugin {
     this.i18n = createI18n(this.settings.language, this.app.locale);
     this.installLocalizationAdapter();
     this.superProductivityProvider = new SuperProductivityProvider({
-      requestUrl: (request) => obsidian.requestUrl(request).then((result) => result.json),
-      baseUrl: this.settings.superProductivity && this.settings.superProductivity.baseUrl,
+      app: this.app,
     });
 
     // Ensure property types are strictly recognized in Obsidian
