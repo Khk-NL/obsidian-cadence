@@ -196,6 +196,15 @@ function createI18n(preference, obsidianLocale) {
     'Onboarding': '入驻中', 'Inactive': '未启用', 'Churned': '已流失',
     'active': '进行中', 'on_hold': '暂停', 'backlog': '待办', 'done': '已完成',
     'cancelled': '已取消', 'low': '低', 'medium': '中', 'high': '高',
+    'No projects yet. Create one in Planner → Projects first.': '还没有项目，请先在“计划 → 项目”中创建。',
+    'No .csv files found in vault. Drop one in the vault first.': '仓库中未找到 CSV 文件，请先添加一个。',
+    'Please enter a chart title.': '请输入图表标题。', 'Add a task title first.': '请先填写任务标题。',
+    'Daily Note template successfully enabled.': '每日笔记模板已启用。',
+    'Custom template deleted.': '已删除自定义模板。', 'Added to today': '已添加到今天。',
+    'Section saved': '分区已保存。', 'Please enter a page label.': '请输入页面名称。',
+    'Impossible de réordonner : les propriétés verrouillées (🔒) doivent conserver leur position initiale.': '无法重排：锁定的属性（🔒）必须保持原位。',
+    'Technical key cannot be empty and must be alphanumeric.': '技术键名不能为空，且只能包含字母和数字。',
+    'This technical key is already in use.': '该技术键名已被使用。',
   } : {};
   const fallback = {
     'settings.language.name': 'Language', 'settings.language.desc': 'Use Obsidian language automatically, or choose a Cadence language.',
@@ -205,6 +214,30 @@ function createI18n(preference, obsidianLocale) {
     if (!zh || typeof value !== 'string') return value;
     if (dict[value]) return dict[value];
     return value
+      .replace(/^Migrated (\d+) files for field "(.+)" to type "(.+)"\.$/, '已将 $1 个文件中的“$2”字段转换为“$3”类型。')
+      .replace(/^Renamed frontmatter key "(.+)" to "(.+)" in (\d+) files\.$/, '已在 $3 个文件中将 Frontmatter 键名“$1”改为“$2”。')
+      .replace(/^Failed to read (.+): (.+)$/, '读取 $1 失败：$2')
+      .replace(/^Imported (\d+) (.+) in (\d+)s(.*)$/, '已在 $3 秒内导入 $1 个$2$4')
+      .replace(/^Moved to (.+)$/, '已移动到 $1')
+      .replace(/^Failed to move: (.+)$/, '移动失败：$1')
+      .replace(/^Deleted (.+): (.+)$/, '已删除$1：$2')
+      .replace(/^Delete failed: (.+)$/, '删除失败：$1')
+      .replace(/^Save failed: (.+)$/, '保存失败：$1')
+      .replace(/^Created new (.+): (.+)$/, '已创建$1：$2')
+      .replace(/^Template reset for (.+)\.$/, '已重置$1模板。')
+      .replace(/^Template successfully enabled for (.+)\.$/, '已启用$1模板。')
+      .replace(/^Section "(.+)" added to template\.$/, '已将“$1”分区添加到模板。')
+      .replace(/^Section "(.+)" removed\.$/, '已移除“$1”分区。')
+      .replace(/^Project status set to (.+)$/, '项目状态已设为 $1')
+      .replace(/^Project priority set to (.+)$/, '项目优先级已设为 $1')
+      .replace(/^Failed to change status: (.+)$/, '更改状态失败：$1')
+      .replace(/^Failed to change priority: (.+)$/, '更改优先级失败：$1')
+      .replace(/^Page "(.+)" added successfully\.$/, '已添加页面“$1”。')
+      .replace(/^Linked key to existing property "(.+)"\.$/, '已关联到现有属性“$1”。')
+      .replace(/^Reminder set · (.+)$/, '提醒已设置 · $1')
+      .replace(/^Captured to Inbox(.*)$/, '已记录到收件箱$1')
+      .replace(/ · added to (.+)$/, ' · 已添加到$1')
+      .replace(/^Error: (.+)$/, '错误：$1')
       .replace(/^(\d+) projects · (\d+)\/(\d+) tasks complete · (\d+)h (\d+)m tracked$/, '$1 个项目 · 完成 $2/$3 个任务 · 记录 $4 小时 $5 分钟')
       .replace(/^No completed project tasks in the last (\d+) days$/, '过去 $1 天没有已完成的项目任务')
       .replace(/^(\d+)\/(\d+) milestones complete$/, '完成 $1/$2 个里程碑')
@@ -228,6 +261,15 @@ function createI18n(preference, obsidianLocale) {
       .replace(/^(\d+)% of total$/, '占总数 $1%');
   };
   return { locale: zh ? 'zh-CN' : 'en', t: (key) => dict[key] || fallback[key] || key, translateText };
+}
+function currentObsidianLocale(app) {
+  return (obsidian.moment && obsidian.moment.locale()) || (app && app.locale) || 'en';
+}
+class CadenceNotice extends obsidian.Notice {
+  constructor(message, ...rest) {
+    const i18n = window.__cadencePlugin && window.__cadencePlugin.i18n;
+    super(i18n ? i18n.translateText(message) : message, ...rest);
+  }
 }
 class SuperProductivityProvider {
   constructor({ app }) { this.app = app; }
@@ -1287,7 +1329,7 @@ async function migrateFrontmatterType(app, entityKey, fieldKey, oldType, newType
       count++;
     });
   }
-  new obsidian.Notice(`Migrated ${count} files for field "${fieldKey}" to type "${newType}".`);
+  new CadenceNotice(`Migrated ${count} files for field "${fieldKey}" to type "${newType}".`);
 }
 
 async function migrateFrontmatterKey(app, entityKey, oldKey, newKey) {
@@ -1304,7 +1346,7 @@ async function migrateFrontmatterKey(app, entityKey, oldKey, newKey) {
       }
     });
   }
-  new obsidian.Notice(`Renamed frontmatter key "${oldKey}" to "${newKey}" in ${count} files.`);
+  new CadenceNotice(`Renamed frontmatter key "${oldKey}" to "${newKey}" in ${count} files.`);
 }
 
 function readEntity(app, file) {
@@ -2409,7 +2451,7 @@ class CadenceReminderEditModal extends CadenceModal {
       }
       if (this.isNew) {
         await this.plugin.addReminder(fields);
-        new obsidian.Notice(fields.when
+        new CadenceNotice(fields.when
           ? `Reminder set · ${reminderTimeStr(fields.when)}`
           : 'Captured to Inbox');
       } else {
@@ -2439,7 +2481,7 @@ class CadenceReminderEditModal extends CadenceModal {
     // Use the scoped listEntityFiles helper rather than enumerating the whole vault.
     const projectFiles = listEntityFiles(this.app, 'project');
     if (!projectFiles.length) {
-      new obsidian.Notice('No projects yet. Create one in Planner → Projects first.');
+      new CadenceNotice('No projects yet. Create one in Planner → Projects first.');
       return;
     }
     const projects = projectFiles.map((f) => ({ file: f, name: projectNameFromPath(this.app, f.path) }));
@@ -2570,7 +2612,7 @@ class CadenceImportModal extends CadenceModal {
       // would defeat the feature. All other entity reads are folder-scoped.
       const csvFiles = this.app.vault.getFiles().filter((f) => f.path.toLowerCase().endsWith('.csv'));
       if (!csvFiles.length) {
-        new obsidian.Notice('No .csv files found in vault. Drop one in the vault first.');
+        new CadenceNotice('No .csv files found in vault. Drop one in the vault first.');
         return;
       }
       const picker = new (class extends obsidian.SuggestModal {
@@ -2586,7 +2628,7 @@ class CadenceImportModal extends CadenceModal {
           this._parse();
           this._renderPreview();
         } catch (e) {
-          new obsidian.Notice(`Failed to read ${file.path}: ${e.message}`);
+          new CadenceNotice(`Failed to read ${file.path}: ${e.message}`);
         }
       });
       picker.open();
@@ -2768,7 +2810,7 @@ class CadenceImportModal extends CadenceModal {
     }
 
     const elapsed = ((Date.now() - start) / 1000).toFixed(1);
-    new obsidian.Notice(`Imported ${created} ${def.plural.toLowerCase()} in ${elapsed}s${failed ? ` · ${failed} skipped` : ''}`, 5000);
+    new CadenceNotice(`Imported ${created} ${def.plural.toLowerCase()} in ${elapsed}s${failed ? ` · ${failed} skipped` : ''}`, 5000);
     this.close();
     this.onSubmit({ created, failed, entityKey: this.entityKey });
   }
@@ -3231,7 +3273,7 @@ class CadenceWidgetCreateModal extends CadenceModal {
       const styleVal = selectStyle.value;
 
       if (!titleVal) {
-        new obsidian.Notice('Please enter a chart title.');
+        new CadenceNotice('Please enter a chart title.');
         inputTitle.focus();
         return;
       }
@@ -3647,7 +3689,7 @@ class CadenceAppView extends obsidian.ItemView {
   _openTaskProjectPicker(dailyPath, text, currentLink) {
     const projectFiles = listEntityFiles(this.app, 'project');
     if (!projectFiles.length) {
-      new obsidian.Notice('No projects yet. Create one in Planner → Projects first.');
+      new CadenceNotice('No projects yet. Create one in Planner → Projects first.');
       return;
     }
     const view = this;
@@ -4397,9 +4439,9 @@ class CadenceAppView extends obsidian.ItemView {
                   fm[groupBy] = isLink ? `[[${stage}]]` : stage;
                 }
               });
-              new obsidian.Notice(`Moved to ${stage}`);
+              new CadenceNotice(`Moved to ${stage}`);
             } catch (e) {
-              new obsidian.Notice(`Failed to move: ${e.message}`);
+              new CadenceNotice(`Failed to move: ${e.message}`);
             }
           });
 
@@ -4622,10 +4664,10 @@ class CadenceAppView extends obsidian.ItemView {
           setTimeout(async () => {
             try {
               await this.app.vault.trash(file, true);
-              new obsidian.Notice(`Deleted ${def.label}: ${file.basename}`);
+              new CadenceNotice(`Deleted ${def.label}: ${file.basename}`);
               this.closeEntityDetail();
             } catch (e) {
-              new obsidian.Notice(`Delete failed: ${e.message}`);
+              new CadenceNotice(`Delete failed: ${e.message}`);
             }
           }, 50);
         }
@@ -4670,7 +4712,7 @@ class CadenceAppView extends obsidian.ItemView {
         });
         flashSaved();
       } catch (e) {
-        new obsidian.Notice(`Save failed: ${e.message}`);
+        new CadenceNotice(`Save failed: ${e.message}`);
       }
     };
     const debouncedWrite = (key, val) => {
@@ -4989,7 +5031,7 @@ class CadenceAppView extends obsidian.ItemView {
                   const creationSource = suggestionSource === 'history' ? 'folder:Cadence/Shared' : (targetEntityKey || suggestionSource);
                   await createEntity(this.app, creationSource, name);
                   const label = ENTITIES[targetEntityKey] ? ENTITIES[targetEntityKey].label : 'Note';
-                  new obsidian.Notice(`Created new ${label}: ${name}`);
+                  new CadenceNotice(`Created new ${label}: ${name}`);
                 } catch (e) {
                   console.warn(`Failed to auto-create ${targetEntityKey || suggestionSource}`, e);
                 }
@@ -5174,10 +5216,10 @@ class CadenceAppView extends obsidian.ItemView {
           setTimeout(async () => {
             try {
               await this.app.vault.trash(file, true);
-              new obsidian.Notice(`Deleted company: ${file.basename}`);
+              new CadenceNotice(`Deleted company: ${file.basename}`);
               this.closeEntityDetail();
             } catch (e) {
-              new obsidian.Notice(`Delete failed: ${e.message}`);
+              new CadenceNotice(`Delete failed: ${e.message}`);
             }
           }, 50);
         }
@@ -5442,7 +5484,7 @@ class CadenceAppView extends obsidian.ItemView {
                 const creationSource = suggestionSource === 'history' ? 'folder:Cadence/Shared' : (targetEntityKey || suggestionSource);
                 await createEntity(this.app, creationSource, name);
                 const label = ENTITIES[targetEntityKey] ? ENTITIES[targetEntityKey].label : 'Note';
-                new obsidian.Notice(`Created new ${label}: ${name}`);
+                new CadenceNotice(`Created new ${label}: ${name}`);
               } catch (e) {
                 console.warn(`Failed to auto-create ${targetEntityKey || suggestionSource}`, e);
               }
@@ -5609,10 +5651,10 @@ class CadenceAppView extends obsidian.ItemView {
           setTimeout(async () => {
             try {
               await this.app.vault.trash(file, true);
-              new obsidian.Notice(`Deleted project: ${file.basename}`);
+              new CadenceNotice(`Deleted project: ${file.basename}`);
               this.closeEntityDetail();
             } catch (e) {
-              new obsidian.Notice(`Delete failed: ${e.message}`);
+              new CadenceNotice(`Delete failed: ${e.message}`);
             }
           }, 50);
         }
@@ -5891,7 +5933,7 @@ class CadenceAppView extends obsidian.ItemView {
                 const creationSource = suggestionSource === 'history' ? 'folder:Cadence/Shared' : (targetEntityKey || suggestionSource);
                 await createEntity(this.app, creationSource, name);
                 const label = ENTITIES[targetEntityKey] ? ENTITIES[targetEntityKey].label : 'Note';
-                new obsidian.Notice(`Created new ${label}: ${name}`);
+                new CadenceNotice(`Created new ${label}: ${name}`);
               } catch (e) {
                 console.warn(`Failed to auto-create ${targetEntityKey || suggestionSource}`, e);
               }
@@ -6395,7 +6437,7 @@ class CadenceAppView extends obsidian.ItemView {
 
             const taskText = cleanTaskDisplayTitle(titleInp.value);
             if (!taskText) {
-              new obsidian.Notice('Add a task title first.');
+              new CadenceNotice('Add a task title first.');
               titleInp.focus();
               return;
             }
@@ -6866,10 +6908,10 @@ priority: normal
                 fm[groupField.key] = isLink ? `[[${colName}]]` : colName;
               }
             });
-            new obsidian.Notice(`Moved to ${colName}`);
+            new CadenceNotice(`Moved to ${colName}`);
             this.render();
           } catch (e) {
-            new obsidian.Notice(`Failed to move: ${e.message}`);
+            new CadenceNotice(`Failed to move: ${e.message}`);
           }
         });
 
@@ -7234,7 +7276,7 @@ priority: normal
       });
       if (typeof flashSaved === 'function') flashSaved();
     } catch (e) {
-      new obsidian.Notice(`Save failed: ${e.message}`);
+      new CadenceNotice(`Save failed: ${e.message}`);
     }
   }
 
@@ -8508,7 +8550,7 @@ priority: normal
             ''
           ].join('\n');
           await this.app.vault.create(dailyTemplatePath, dailyTemplateContent);
-          new obsidian.Notice('Daily Note template successfully enabled.');
+          new CadenceNotice('Daily Note template successfully enabled.');
           this.render();
         });
       }
@@ -8622,10 +8664,10 @@ priority: normal
         if (tFile && tFile instanceof obsidian.TFile) {
           if (!confirm(`Are you sure you want to reset the template for ${def.label}? Your visual changes will be overwritten.`)) return;
           await this.app.vault.modify(tFile, templateContent);
-          new obsidian.Notice(`Template reset for ${def.label}.`);
+          new CadenceNotice(`Template reset for ${def.label}.`);
         } else {
           await this.app.vault.create(targetPath, templateContent);
-          new obsidian.Notice(`Template successfully enabled for ${def.label}.`);
+          new CadenceNotice(`Template successfully enabled for ${def.label}.`);
         }
         this.render();
       });
@@ -8678,10 +8720,10 @@ priority: normal
       if (!confirm(`Delete this custom template? Cadence will fall back to using the default structure.`)) return;
       try {
         await this.app.vault.trash(file, true);
-        new obsidian.Notice(`Custom template deleted.`);
+        new CadenceNotice(`Custom template deleted.`);
         this.closeEntityDetail();
       } catch (e) {
-        new obsidian.Notice(`Error: ${e.message}`);
+        new CadenceNotice(`Error: ${e.message}`);
       }
     });
 
@@ -8722,7 +8764,7 @@ priority: normal
       const header = `## ${cleanTitle} ${tag}`.trim();
       const nextContent = curContent.replace(/\s*$/, '') + `\n\n${header}\n${defaultBody}\n`;
       await this.app.vault.modify(file, nextContent);
-      new obsidian.Notice(`Section "${cleanTitle}" added to template.`);
+      new CadenceNotice(`Section "${cleanTitle}" added to template.`);
       await this._propagateTemplateSectionAdd(entityKey, cleanTitle, tag, defaultBody);
       this.render();
     };
@@ -8914,7 +8956,7 @@ priority: normal
         lines.splice(idx, endIdx - idx);
         await this.app.vault.modify(file, lines.join('\n'));
         await this._propagateTemplateSectionDelete(entityKey, rawKey);
-        new obsidian.Notice(`Section "${cleanLabel}" removed.`);
+        new CadenceNotice(`Section "${cleanLabel}" removed.`);
         this.render();
       }
     });
@@ -9206,7 +9248,7 @@ priority: normal
     const newTasks = [...parsed.tasks, `- [ ] ${text}`];
     const next = replaceSection(content, this.plugin.settings.tasksHeading, newTasks.join('\n'));
     await this.app.vault.modify(file, next);
-    new obsidian.Notice('Added to today');
+    new CadenceNotice('Added to today');
   }
 
   /* ── Pipeline kanban (deals grouped by stage) ───── */
@@ -9256,10 +9298,10 @@ priority: normal
         if (!file || !(file instanceof obsidian.TFile)) return;
         try {
           await this.app.fileManager.processFrontMatter(file, (fm) => { fm[groupBy] = (groupBy === 'stage') ? [stage] : stage; });
-          new obsidian.Notice(`Moved to ${stage}`);
+          new CadenceNotice(`Moved to ${stage}`);
           // The metadataCache.changed listener re-renders for us.
         } catch (e) {
-          new obsidian.Notice(`Failed to move: ${e.message}`);
+          new CadenceNotice(`Failed to move: ${e.message}`);
         }
       });
 
@@ -9600,10 +9642,10 @@ priority: normal
           await this.app.fileManager.processFrontMatter(file, (fm) => {
             fm['status'] = status;
           });
-          new obsidian.Notice(`Project status set to ${status}`);
+          new CadenceNotice(`Project status set to ${status}`);
           this.render();
         } catch (e) {
-          new obsidian.Notice(`Failed to change status: ${e.message}`);
+          new CadenceNotice(`Failed to change status: ${e.message}`);
         }
       });
 
@@ -9715,10 +9757,10 @@ priority: normal
             await this.app.fileManager.processFrontMatter(file, (fm) => {
               fm['priority'] = prio;
             });
-            new obsidian.Notice(`Project priority set to ${prio}`);
+            new CadenceNotice(`Project priority set to ${prio}`);
             this.render();
           } catch (e) {
-            new obsidian.Notice(`Failed to change priority: ${e.message}`);
+            new CadenceNotice(`Failed to change priority: ${e.message}`);
           }
         });
 
@@ -11563,7 +11605,7 @@ priority: normal
                     try {
                       await createEntity(this.app, creationSource, name);
                       const label = targetEntityKey ? ENTITIES[targetEntityKey].label : 'Note';
-                      new obsidian.Notice(`Created new ${label}: ${name}`);
+                      new CadenceNotice(`Created new ${label}: ${name}`);
                     } catch (e) {
                       console.warn(`Failed to auto-create ${creationSource}`, e);
                     }
@@ -11581,10 +11623,10 @@ priority: normal
               });
             });
           }
-          new obsidian.Notice(`Created ${def.label}: ${file.basename}\nSaved to ${file.path}`, 4000);
+          new CadenceNotice(`Created ${def.label}: ${file.basename}\nSaved to ${file.path}`, 4000);
           await this.openEntityDetail(entityKey, file);
         } catch (e) {
-          new obsidian.Notice(`Cadence: failed to create ${def.label} — ${e.message}`);
+          new CadenceNotice(`Cadence: failed to create ${def.label} — ${e.message}`);
         }
       },
     }).open();
@@ -11742,7 +11784,7 @@ priority: normal
       customWrap.style.gap = '16px';
 
       const flashSaved = () => {
-        new obsidian.Notice('Section saved');
+        new CadenceNotice('Section saved');
       };
 
       otherKeys.forEach((rawKey) => {
@@ -12120,9 +12162,10 @@ class CadenceSettingTab extends obsidian.PluginSettingTab {
         .setValue(this.plugin.settings.language || 'auto')
         .onChange(async (v) => {
           this.plugin.settings.language = v;
-          this.plugin.i18n = createI18n(v, this.app.locale);
+          this.plugin.i18n = createI18n(v, currentObsidianLocale(this.app));
           await this.plugin.saveSettings();
           this.display();
+          this.plugin.refreshOpenViews();
         }));
 
     new obsidian.Setting(containerEl)
@@ -12395,7 +12438,7 @@ class CadenceSettingTab extends obsidian.PluginSettingTab {
       addBtn.addEventListener('click', async () => {
         const val = (labelInput.value || '').trim();
         if (!val) {
-          new obsidian.Notice('Please enter a page label.');
+          new CadenceNotice('Please enter a page label.');
           return;
         }
 
@@ -12454,7 +12497,7 @@ class CadenceSettingTab extends obsidian.PluginSettingTab {
 
         await this.plugin.saveSettings();
         this.plugin.refreshOpenViews();
-        new obsidian.Notice(`Page "${val}" added successfully.`);
+        new CadenceNotice(`Page "${val}" added successfully.`);
         this.display();
       });
     };
@@ -12696,7 +12739,7 @@ class CadenceSettingTab extends obsidian.PluginSettingTab {
           }
 
           if (!isValid) {
-            new obsidian.Notice('Impossible de réordonner : les propriétés verrouillées (🔒) doivent conserver leur position initiale.');
+            new CadenceNotice('Impossible de réordonner : les propriétés verrouillées (🔒) doivent conserver leur position initiale.');
             return;
           }
 
@@ -12773,12 +12816,12 @@ class CadenceSettingTab extends obsidian.PluginSettingTab {
             const rawVal = inputKey.value.trim().toLowerCase();
             const sanitized = rawVal.replace(/[^a-z0-9_]/g, '');
             if (!sanitized) {
-              new obsidian.Notice('Technical key cannot be empty and must be alphanumeric.');
+              new CadenceNotice('Technical key cannot be empty and must be alphanumeric.');
               inputKey.value = field.key;
               return;
             }
             if (def.fields.some((f, idx) => idx !== index && f.key === sanitized)) {
-              new obsidian.Notice('This technical key is already in use.');
+              new CadenceNotice('This technical key is already in use.');
               inputKey.value = field.key;
               return;
             }
@@ -12813,7 +12856,7 @@ class CadenceSettingTab extends obsidian.PluginSettingTab {
               } else {
                 delete field.suggestionSource;
               }
-              new obsidian.Notice(`Linked key to existing property "${sanitized}".`);
+              new CadenceNotice(`Linked key to existing property "${sanitized}".`);
             } else {
               syncSharedProperties(field);
             }
@@ -13081,7 +13124,7 @@ class CadenceSettingTab extends obsidian.PluginSettingTab {
 class CadencePlugin extends obsidian.Plugin {
   async onload() {
     await this.loadSettings();
-    this.i18n = createI18n(this.settings.language, this.app.locale);
+    this.i18n = createI18n(this.settings.language, currentObsidianLocale(this.app));
     this.installLocalizationAdapter();
     this.superProductivityProvider = new SuperProductivityProvider({
       app: this.app,
@@ -13275,9 +13318,9 @@ class CadencePlugin extends obsidian.Plugin {
 
         const noteLabel = sameDay(noteDate, new Date()) ? "today's note" : `${ymd(noteDate)} note`;
         if (result.when) {
-          new obsidian.Notice(`Reminder set · ${reminderTimeStr(result.when)}${dailyNoteAppended ? ` · added to ${noteLabel}` : ''}`);
+          new CadenceNotice(`Reminder set · ${reminderTimeStr(result.when)}${dailyNoteAppended ? ` · added to ${noteLabel}` : ''}`);
         } else {
-          new obsidian.Notice(`Captured to Inbox${dailyNoteAppended ? ` · added to ${noteLabel}` : ''}`);
+          new CadenceNotice(`Captured to Inbox${dailyNoteAppended ? ` · added to ${noteLabel}` : ''}`);
         }
       },
     }).open();
@@ -13449,7 +13492,7 @@ class CadencePlugin extends obsidian.Plugin {
   }
 
   _fireReminder(r) {
-    new obsidian.Notice(`⏰  ${r.text}`, 8000);
+    new CadenceNotice(`⏰  ${r.text}`, 8000);
     if (this.settings.desktopNotifications && typeof Notification !== 'undefined') {
       try {
         if (Notification.permission === 'granted') {
@@ -13725,7 +13768,7 @@ class CadencePlugin extends obsidian.Plugin {
               const originalName = allFiles.find(f => f.basename.toLowerCase() === p)?.basename || (p.charAt(0).toUpperCase() + p.slice(1));
               const projectFile = await createEntity(this.app, 'project', originalName);
               projectMap.set(p, projectFile);
-              new obsidian.Notice(`Fiche projet créée automatiquement pour "${originalName}".`);
+              new CadenceNotice(`Fiche projet créée automatiquement pour "${originalName}".`);
             } catch (e) {
               console.error(`Cadence: Failed to auto-create project ${p}`, e);
             }
@@ -13757,7 +13800,7 @@ class CadencePlugin extends obsidian.Plugin {
               const originalName = allFiles.find(f => f.basename.toLowerCase() === c)?.basename || (c.charAt(0).toUpperCase() + c.slice(1));
               const contactFile = await createEntity(this.app, 'contact', originalName);
               contactMap.set(c, contactFile);
-              new obsidian.Notice(`Fiche contact créée automatiquement pour "${originalName}".`);
+              new CadenceNotice(`Fiche contact créée automatiquement pour "${originalName}".`);
             } catch (e) {
               console.error(`Cadence: Failed to auto-create contact ${c}`, e);
             }
@@ -13786,7 +13829,7 @@ class CadencePlugin extends obsidian.Plugin {
                 }
               }
             });
-            new obsidian.Notice(`Lien automatique : Projet "${changedFile.basename}" associé au contact "${contactFile.basename}".`);
+            new CadenceNotice(`Lien automatique : Projet "${changedFile.basename}" associé au contact "${contactFile.basename}".`);
           } else if (!projectListsContact && listsProject) {
             // User removed contact from project sheet! Check if there is any other note listing both.
             let hasOtherSource = false;
@@ -13840,7 +13883,7 @@ class CadencePlugin extends obsidian.Plugin {
                   cfm.project = newProjects.map(p => `[[${p}]]`);
                 }
               });
-              new obsidian.Notice(`Lien automatique : Projet "${changedFile.basename}" dissocié du contact "${contactFile.basename}".`);
+              new CadenceNotice(`Lien automatique : Projet "${changedFile.basename}" dissocié du contact "${contactFile.basename}".`);
             }
           }
         }
@@ -13900,7 +13943,7 @@ class CadencePlugin extends obsidian.Plugin {
               const originalName = allFiles.find(f => f.basename.toLowerCase() === c)?.basename || (c.charAt(0).toUpperCase() + c.slice(1));
               contactFile = await createEntity(this.app, 'contact', originalName);
               contactMap.set(c, contactFile);
-              new obsidian.Notice(`Fiche contact créée automatiquement pour "${originalName}".`);
+              new CadenceNotice(`Fiche contact créée automatiquement pour "${originalName}".`);
             } catch (e) {
               console.error(`Cadence: Failed to auto-create contact ${c}`, e);
             }
@@ -13912,7 +13955,7 @@ class CadencePlugin extends obsidian.Plugin {
               const originalName = allFiles.find(f => f.basename.toLowerCase() === p)?.basename || (p.charAt(0).toUpperCase() + p.slice(1));
               projectFile = await createEntity(this.app, 'project', originalName);
               projectMap.set(p, projectFile);
-              new obsidian.Notice(`Fiche projet créée automatiquement pour "${originalName}".`);
+              new CadenceNotice(`Fiche projet créée automatiquement pour "${originalName}".`);
             } catch (e) {
               console.error(`Cadence: Failed to auto-create project ${p}`, e);
             }
@@ -13975,10 +14018,10 @@ class CadencePlugin extends obsidian.Plugin {
             const removed = existingProjects.filter(ep => !sortedProjects.some(p => p.toLowerCase() === ep.toLowerCase()));
 
             if (added.length > 0) {
-              new obsidian.Notice(`Lien automatique : Projet "${added.join(', ')}" associé à "${contactFile.basename}".`);
+              new CadenceNotice(`Lien automatique : Projet "${added.join(', ')}" associé à "${contactFile.basename}".`);
             }
             if (removed.length > 0) {
-              new obsidian.Notice(`Lien automatique : Projet "${removed.join(', ')}" dissocié de "${contactFile.basename}".`);
+              new CadenceNotice(`Lien automatique : Projet "${removed.join(', ')}" dissocié de "${contactFile.basename}".`);
             }
           }
         }
@@ -14066,7 +14109,7 @@ class CadencePlugin extends obsidian.Plugin {
             }
           });
 
-          new obsidian.Notice(`Lien automatique : Projet "${projectName}" supprimé du contact "${contactFile.basename}".`);
+          new CadenceNotice(`Lien automatique : Projet "${projectName}" supprimé du contact "${contactFile.basename}".`);
         }
       }
     } catch (e) {
