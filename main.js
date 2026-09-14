@@ -41,6 +41,99 @@ function createI18n(preference, obsidianLocale) {
     'CSV column': 'CSV 列', 'CSV DATA': 'CSV 数据', 'IMPORT AS': '导入为', 'WHAT': '内容', 'WHEN': '时间',
     'REPEAT': '重复', 'PROJECT': '项目', 'NOTES': '备注', 'All Projects': '全部项目', 'No tasks yet.': '还没有任务。',
     'No milestones yet — add the first one.': '还没有里程碑，添加第一个吧。', 'Saved': '已保存',
+    'Command centre — today, projects, pipeline and upcoming, all on one screen.': '在同一页面查看今日安排、项目、销售机会与近期事项。',
+    'Universal capture + reminders. Anything you toss in here surfaces at the right time.': '集中记录事项与提醒，在合适的时间查看。',
+    "Diary view of today's daily note.": '查看今天的每日笔记。',
+    'Week view across daily notes.': '按周查看每日笔记。',
+    'Projects Dashboard — high-level stats, status Kanban, priority Kanban, and customizable analytical widgets.': '查看项目统计、状态看板、优先级看板与自定义图表。',
+    'Active projects with milestones, owners, statuses — kanban over project notes.': '查看项目笔记中的里程碑、负责人、状态与看板。',
+    "Overview cards — today's tasks, deal momentum, recent contacts, week stats.": '汇总今日任务、销售机会进展、近期联系人与本周统计。',
+    'Sales pipeline. Deals as markdown notes with stage, value and contact frontmatter.': '销售机会以 Markdown 笔记保存，包含阶段、金额和联系人。',
+    'People as markdown notes — name, email, company, last-talked-to cadence, tags.': '以 Markdown 笔记管理联系人、公司、最近联系时间和标签。',
+    'Companies as markdown notes — domain, size, industry, related contacts and deals.': '以 Markdown 笔记管理公司、行业、联系人和销售机会。',
+    'Cross-cutting activity timeline — calls, meetings, notes against any contact or deal.': '按时间查看通话、会议及与联系人和销售机会关联的记录。',
+    'Partner organisations — relationship status, named contacts, joint pipeline.': '管理合作伙伴、关系状态、联系人和联合销售机会。',
+    'Deal registrations submitted by partners — status, expiry, attached deals.': '查看合作伙伴提交的商机登记、状态与到期时间。',
+    'Commission ledger across partners — earned, pending, paid, by quarter.': '按季度查看合作伙伴佣金的已获得、待支付和已支付金额。',
+    'Lead distribution — round-robin/queue assignment to partners or reps.': '将潜在客户按轮询或队列分配给合作伙伴或销售人员。',
+    'Partner certifications — track expiries, renewals, training completion.': '跟踪合作伙伴认证、续期和培训完成情况。',
+    'PRM analytics — partner-sourced revenue, top performers, lifecycle funnel.': '分析合作伙伴带来的收入、优秀伙伴和生命周期转化。',
+    'Multi-step outreach sequences — templates, cadence steps, who\'s in which step.': '管理多步骤联系流程、模板和每位联系人的进度。',
+    'Pipeline coverage and weighted forecast — by stage, owner, source.': '按阶段、负责人和来源查看销售管道与加权预测。',
+    'Closed won / lost trends — quota attainment, win rate, average cycle.': '查看赢单与丢单趋势、目标达成率、胜率及平均周期。',
+    'Partner contribution — sourced vs influenced revenue, top tiers.': '查看合作伙伴带来的收入和影响的收入。',
+    'Activity mix — calls, meetings, emails by rep and account.': '按人员和客户查看通话、会议及邮件统计。',
+    'Personal productivity — completion rate, streaks, focus blocks, journal volume.': '查看完成率、连续记录天数、专注时间及日志量。',
+    'Relationship graph showing connections between contacts, companies, partners, projects, deals, and activities.': '查看联系人、公司、合作伙伴、项目、商机及活动之间的关系图。',
+    'Team members, roles, seats — admin view of your Cadence workspace.': '管理团队成员、角色和席位。',
+    'Cadence app settings — folders, headings, week start, API connection.': '配置文件夹、标题、每周起始日和 API 连接。',
+    'Desktop notifications': '桌面通知',
+    'In addition to the in-app banner, fire a system notification when a reminder is due. Requires browser permission.': '提醒到期时，除应用内提示外，还发送系统通知。需要浏览器授权。',
+    'Notification permission': '通知权限', 'Clear completed reminders': '清除已完成的提醒',
+    'Task management system': '任务管理方式',
+    'Choose between the native Cadence manager (using daily notes) or the external TaskNotes plugin.': '选择 Cadence 内置的每日笔记任务管理，或使用 TaskNotes 插件。',
+    'TaskNotes Status': 'TaskNotes 状态',
+    'TaskNotes is currently installed, activated and successfully connected to Cadence.': 'TaskNotes 已安装、启用并连接至 Cadence。',
+    'TaskNotes not detected': '未检测到 TaskNotes', 'Download TaskNotes': '下载 TaskNotes',
+    'Folder under which daily notes live, e.g. "daily" or "Journal/Daily".': '每日笔记所在文件夹，例如“daily”或“Journal/Daily”。',
+    'The H2 inside each daily note where tasks live. Default "## Today".': '每日笔记中存放任务的二级标题，默认为“## Today”。',
+    "The H2 where today's journal entry lives. Default \"## Journal\".": '存放今日日志的二级标题，默认为“## Journal”。',
+    'Used to format money values across Pipeline, Reports and Commissions.': '用于格式化销售管道、报告和佣金中的金额。',
+    'First day of the week shown in the Planner tab.': '计划页面中一周的第一天。',
+    'Open Cadence on Obsidian startup': '启动 Obsidian 时打开 Cadence',
+    'Auto-open the Cadence Home command centre when Obsidian launches.': '启动 Obsidian 时自动打开 Cadence 首页。',
+    'Default tab': '默认页面', 'Which surface opens first when you launch the Cadence app.': '打开 Cadence 时首先显示的页面。',
+    'Cadence base URL': 'Cadence 基础网址', 'Coming soon': '即将推出',
+    'API token': 'API 令牌', 'paste JWT here when sync ships': '同步功能推出后在此粘贴 JWT',
+    'Select entity': '选择实体', 'Choose which entity to customize.': '选择要自定义的实体。',
+    'Search projects to link this reminder to…': '搜索要关联此提醒的项目…',
+    'Search .csv files…': '搜索 CSV 文件…',
+    'Open Inbox →': '打开收件箱 →', 'Open Today →': '打开今天 →', 'Open Calendar →': '打开日历 →',
+    'Open Partners →': '打开合作伙伴 →', 'Open Projects →': '打开项目 →',
+    'Open Pipeline →': '打开销售管道 →', 'Open Activities →': '打开活动 →',
+    'Inbox zero — capture anything with + Inbox above (or Cmd+Shift+I).': '收件箱为空，可使用上方“+ 收件箱”或快捷键记录事项。',
+    'No tasks yet — add one with + Task above.': '还没有任务，点击上方“+ 任务”添加。',
+    'Nothing on the radar.': '目前没有待关注事项。',
+    'No partners on the books yet.': '还没有合作伙伴。',
+    'No projects yet — hit + Project above.': '还没有项目，点击上方“+ 项目”添加。',
+    'No active projects right now.': '目前没有进行中的项目。',
+    'No open deals — hit + Deal above.': '没有进行中的商机，点击上方“+ 商机”添加。',
+    'No activities logged yet.': '还没有活动记录。',
+    'PLANNER': '计划', 'Daily Note': '每日笔记', 'Visual Editor': '可视化编辑器',
+    'Raw Note 📝': '原始笔记 📝', 'Enable Custom': '启用自定义',
+    'TEMPLATE BUILDER': '模板构建器', 'View Raw Note 📝': '查看原始笔记 📝',
+    '📊 Analytics Chart': '📊 分析图表', 'Inbox zero': '收件箱为空',
+    'Capture anything with + Quick capture above (or Cmd+Shift+I). Add a time and Cadence will remind you.': '点击上方“+ 快速记录”添加事项；填写时间后 Cadence 会提醒你。',
+    'unscheduled': '未安排', 'No data': '没有数据', 'Total': '总计',
+    'SUPER PRODUCTIVITY · TODAY': 'SUPER PRODUCTIVITY · 今天',
+    'TOTAL PROJECTS': '项目总数', 'Across all active and custom statuses': '包含全部项目状态',
+    'No projects': '没有项目', 'PROJECTS BY PRIORITY': '按优先级查看项目',
+    'ANALYTICS & CHARTS': '分析与图表',
+    'No custom charts added yet. Click "+ Add Custom Chart" to create one!': '还没有自定义图表，点击“+ 添加自定义图表”创建。',
+    'PIPELINE BY STAGE': '按阶段查看销售管道',
+    'TASKS DONE — LAST 14 DAYS': '过去 14 天完成的任务',
+    'COMPLETION TREND — LAST 12 WEEKS': '过去 12 周完成趋势',
+    'COMPLETION BY WEEKDAY · LAST 30 DAYS': '过去 30 天按星期统计完成情况',
+    'BY STAGE': '按阶段', 'AGING · OPEN DEALS BY LAST EDIT': '进行中商机距上次编辑时间',
+    'REVENUE — LAST 6 MONTHS': '过去 6 个月收入', 'PARTNERS BY TIER': '按级别查看合作伙伴',
+    'DEALS BY PARTNER': '按合作伙伴查看商机',
+    'No deals attributed to partners yet.': '还没有归属合作伙伴的商机。',
+    'ACTIVITY — LAST 8 WEEKS': '过去 8 周活动', 'PARTNER FUNNEL': '合作伙伴漏斗',
+    'Configure folders, headings, week start, default tab, and the (future) Cadence API connection.': '配置文件夹、标题、每周起始日、默认页面及未来的 Cadence API 连接。',
+    'Open Cadence settings': '打开 Cadence 设置', 'No tasks in today\'s note yet.': '今天的笔记还没有任务。',
+    'Open today\'s daily note →': '打开今天的每日笔记 →', 'WEEK OF': '本周',
+    'Modules': '模块', 'Toggle entire sections of the app. Disabled modules disappear from the left nav and from Reports that depend on them.': '启用或关闭应用模块。关闭后，相应的侧栏入口和相关报告会隐藏。',
+    'Reminders': '提醒', 'App': '应用', 'Cloud sync — coming soon': '云同步 · 即将推出',
+    'Not active yet.': '尚未启用。', 'Custom Navigation Pages': '自定义导航页面',
+    'Add custom pages to specific sections of your navigation sidebar. You can choose which entity they display and their default layout mode (Table, Kanban, or Card Grid).': '在侧栏分组中添加自定义页面，并选择显示的实体与默认布局。',
+    'No custom pages added yet.': '还没有自定义页面。', 'Label': '名称', 'Section': '分组',
+    'Entity Type': '实体类型', 'Default Layout': '默认布局', 'Actions': '操作',
+    'Sidebar Section:': '侧栏分组：', 'Table view ☰': '表格视图 ☰',
+    'Kanban board 🗂': '看板 🗂', 'Card grid ⚃': '卡片网格 ⚃', 'Icon:': '图标：',
+    'Add Page': '添加页面', 'Custom Entity Properties': '自定义实体属性',
+    'Customize the properties for each core entity (Projects, Pipelines/Deals, Contacts, Companies, and Activities). Critical system properties required for the calendar, Kanban, and dashboard features are locked against deletion or type changes, but their display labels can still be customized.': '自定义项目、商机、联系人、公司和活动的属性。日历、看板及仪表盘依赖的关键属性不能删除或更改类型，但可以修改显示名称。',
+    'Label (Display name)': '名称（显示名）', 'Technical Key (Frontmatter)': '技术键名（Frontmatter）',
+    'Type': '类型', 'Options / Source': '选项 / 来源',
   } : {};
   const fallback = {
     'settings.language.name': 'Language', 'settings.language.desc': 'Use Obsidian language automatically, or choose a Cadence language.',
@@ -1948,7 +2041,11 @@ function reminderTimeStr(when) {
 }
 
 /* ─────────── Quick-capture modal ─────────── */
-class CadenceCaptureModal extends obsidian.Modal {
+class CadenceModal extends obsidian.Modal {
+  constructor(app) { super(app); this.contentEl.addClass('cadence-settings'); }
+}
+
+class CadenceCaptureModal extends CadenceModal {
   constructor(app, opts) {
     super(app);
     this.onSubmit = opts.onSubmit;
@@ -2095,7 +2192,7 @@ function fromLocalDatetimeValue(s) {
 }
 
 /* ─────────── Reminder edit modal (text/when/repeat/notes/delete) ─────────── */
-class CadenceReminderEditModal extends obsidian.Modal {
+class CadenceReminderEditModal extends CadenceModal {
   constructor(app, plugin, reminder, opts) {
     super(app);
     this.plugin = plugin;
@@ -2330,7 +2427,7 @@ function parseCSV(text) {
 }
 
 /* ─────────── CSV import modal ─────────── */
-class CadenceImportModal extends obsidian.Modal {
+class CadenceImportModal extends CadenceModal {
   constructor(app, opts) {
     super(app);
     this.entityKey = (opts && opts.entityKey) || 'contact';
@@ -2604,7 +2701,7 @@ class CadenceImportModal extends obsidian.Modal {
 }
 
 /* ─────────── Entity create modal (rich, all fields up-front) ─────────── */
-class CadenceEntityCreateModal extends obsidian.Modal {
+class CadenceEntityCreateModal extends CadenceModal {
   constructor(app, entityKey, opts) {
     super(app);
     this.entityKey = entityKey;
@@ -2882,7 +2979,7 @@ class CadenceEntityCreateModal extends obsidian.Modal {
 }
 
 /* ─────────── Prompt modal (replaces blocked window.prompt) ─────────── */
-class CadencePromptModal extends obsidian.Modal {
+class CadencePromptModal extends CadenceModal {
   constructor(app, opts) {
     super(app);
     this.title = opts.title || 'Enter a name';
@@ -2938,7 +3035,7 @@ class CadencePromptModal extends obsidian.Modal {
 }
 
 /* ─────────── Confirm modal (replaces blocking window.confirm) ─────────── */
-class CadenceConfirmModal extends obsidian.Modal {
+class CadenceConfirmModal extends CadenceModal {
   constructor(app, opts) {
     super(app);
     this.title = opts.title || 'Confirm Action';
@@ -2992,7 +3089,7 @@ class CadenceConfirmModal extends obsidian.Modal {
   }
 }
 
-class CadenceWidgetCreateModal extends obsidian.Modal {
+class CadenceWidgetCreateModal extends CadenceModal {
   constructor(app, entityKey, onSubmit) {
     super(app);
     // If only two args were passed, onSubmit is the second arg
@@ -3089,7 +3186,7 @@ class CadenceWidgetCreateModal extends obsidian.Modal {
   }
 }
 
-class CadenceCrossSectionModal extends obsidian.Modal {
+class CadenceCrossSectionModal extends CadenceModal {
   constructor(app, parentEntity, onSubmit) {
     super(app);
     this.parentEntity = parentEntity;
@@ -3186,7 +3283,7 @@ class CadenceCrossSectionModal extends obsidian.Modal {
 }
 
 /* Modal: pick target entity + link field + group-by field + chart style for a chart block */
-class CadenceChartSectionModal extends obsidian.Modal {
+class CadenceChartSectionModal extends CadenceModal {
   constructor(app, parentEntity, onSubmit) {
     super(app);
     this.parentEntity = parentEntity;
@@ -13052,6 +13149,20 @@ class CadencePlugin extends obsidian.Plugin {
     const originalSetText = HTMLElement.prototype.setText;
     if (typeof originalSetText === 'function') {
       HTMLElement.prototype.setText = function (value) { return originalSetText.call(this, textFor(this, value)); };
+    }
+    ['setName', 'setDesc'].forEach((method) => {
+      const original = obsidian.Setting.prototype[method];
+      if (typeof original !== 'function') return;
+      obsidian.Setting.prototype[method] = function (value) {
+        return original.call(this, textFor(this.settingEl, value));
+      };
+    });
+    const textPrototype = obsidian.TextComponent && obsidian.TextComponent.prototype;
+    if (textPrototype && typeof textPrototype.setPlaceholder === 'function') {
+      const original = textPrototype.setPlaceholder;
+      textPrototype.setPlaceholder = function (value) {
+        return original.call(this, textFor(this.inputEl, value));
+      };
     }
   }
 
