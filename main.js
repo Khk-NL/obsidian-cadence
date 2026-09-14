@@ -54,14 +54,14 @@ function createI18n(preference, obsidianLocale) {
     'Cross-cutting activity timeline — calls, meetings, notes against any contact or deal.': '按时间查看通话、会议及与联系人和销售机会关联的记录。',
     'Partner organisations — relationship status, named contacts, joint pipeline.': '管理合作伙伴、关系状态、联系人和联合销售机会。',
     'Deal registrations submitted by partners — status, expiry, attached deals.': '查看合作伙伴提交的商机登记、状态与到期时间。',
-    'Commission ledger across partners — earned, pending, paid, by quarter.': '按季度查看合作伙伴佣金的已获得、待支付和已支付金额。',
+    'Commission ledger across partners — earned, pending, paid, by quarter.': '按季度查看合作伙伴佣金的已赚取、待支付和已支付金额。',
     'Lead distribution — round-robin/queue assignment to partners or reps.': '将潜在客户按轮询或队列分配给合作伙伴或销售人员。',
     'Partner certifications — track expiries, renewals, training completion.': '跟踪合作伙伴认证、续期和培训完成情况。',
     'PRM analytics — partner-sourced revenue, top performers, lifecycle funnel.': '分析合作伙伴带来的收入、优秀伙伴和生命周期转化。',
     'Multi-step outreach sequences — templates, cadence steps, who\'s in which step.': '管理多步骤联系流程、模板和每位联系人的进度。',
     'Pipeline coverage and weighted forecast — by stage, owner, source.': '按阶段、负责人和来源查看销售管道与加权预测。',
     'Closed won / lost trends — quota attainment, win rate, average cycle.': '查看赢单与丢单趋势、目标达成率、胜率及平均周期。',
-    'Partner contribution — sourced vs influenced revenue, top tiers.': '查看合作伙伴带来的收入和影响的收入。',
+    'Partner contribution — sourced vs influenced revenue, top tiers.': '查看合作伙伴带来的收入和促成的收入，以及表现最佳的合作伙伴。',
     'Activity mix — calls, meetings, emails by rep and account.': '按人员和客户查看通话、会议及邮件统计。',
     'Personal productivity — completion rate, streaks, focus blocks, journal volume.': '查看完成率、连续记录天数、专注时间及日志量。',
     'Relationship graph showing connections between contacts, companies, partners, projects, deals, and activities.': '查看联系人、公司、合作伙伴、项目、商机及活动之间的关系图。',
@@ -79,7 +79,7 @@ function createI18n(preference, obsidianLocale) {
     'The H2 inside each daily note where tasks live. Default "## Today".': '每日笔记中存放任务的二级标题，默认为“## Today”。',
     "The H2 where today's journal entry lives. Default \"## Journal\".": '存放今日日志的二级标题，默认为“## Journal”。',
     'Used to format money values across Pipeline, Reports and Commissions.': '用于格式化销售管道、报告和佣金中的金额。',
-    'First day of the week shown in the Planner tab.': '计划页面中一周的第一天。',
+    'First day of the week shown in the Planner tab.': '计划页面中每周的起始日。',
     'Open Cadence on Obsidian startup': '启动 Obsidian 时打开 Cadence',
     'Auto-open the Cadence Home command centre when Obsidian launches.': '启动 Obsidian 时自动打开 Cadence 首页。',
     'Default tab': '默认页面', 'Which surface opens first when you launch the Cadence app.': '打开 Cadence 时首先显示的页面。',
@@ -156,7 +156,6 @@ function createI18n(preference, obsidianLocale) {
     '← Projects': '← 项目', '🎯 Milestone': '🎯 里程碑', '+ Add': '+ 添加',
     '+ Add notes': '+ 添加备注', ' Preview': ' 预览', ' Edit': ' 编辑',
     'No linked items found.': '未找到关联项目。', 'Loading milestones...': '正在加载里程碑…',
-    'Aucun élément lié trouvé.': '未找到关联项目。', 'Aucun élément': '没有项目',
     '+ New Project': '+ 新建项目', 'No projects yet': '还没有项目',
     'Hit "+ New Project" — you\'ll get a templated note with Brief, Scope, Milestones, Tasks, Risks and Stakeholders sections ready to fill in.': '点击“+ 新建项目”，系统会创建包含简介、范围、里程碑、任务、风险和相关方分区的笔记。',
     'TOP OF THE DAY': '今日要点', 'Nothing flagged. Make today count.': '目前没有需要特别关注的事项。',
@@ -172,7 +171,7 @@ function createI18n(preference, obsidianLocale) {
     '+ New Deal': '+ 新建商机', 'TODAY': '今天',
     '🟢 Active and Connected': '🟢 已启用并连接', '🔴 Inactive / Not installed': '🔴 未启用或未安装',
     '+ Add Custom Navigation Page': '+ 添加自定义导航页面', 'Label:': '名称：',
-    'Default Layout:': '默认布局：', '+ Add property': '+ 添加属性', '📂 Choisir': '📂 选择',
+    'Default Layout:': '默认布局：', '+ Add property': '+ 添加属性',
     'Manage your entity templates.': '管理实体模板。',
     'Pipeline': '销售管道', 'Contacts': '联系人', 'Contact': '联系人',
     'Companies': '公司', 'Company': '公司', 'Activities': '活动', 'Activity': '活动',
@@ -204,21 +203,21 @@ function createI18n(preference, obsidianLocale) {
     'Daily Note template successfully enabled.': '每日笔记模板已启用。',
     'Custom template deleted.': '已删除自定义模板。', 'Added to today': '已添加到今天。',
     'Section saved': '分区已保存。', 'Please enter a page label.': '请输入页面名称。',
-    'Impossible de réordonner : les propriétés verrouillées (🔒) doivent conserver leur position initiale.': '无法重排：锁定的属性（🔒）必须保持原位。',
+    'Cannot reorder: locked properties (🔒) must keep their original positions.': '无法调整顺序：锁定的属性（🔒）必须保持原始位置。',
     'Technical key cannot be empty and must be alphanumeric.': '技术键名不能为空，且只能包含字母和数字。',
     'This technical key is already in use.': '该技术键名已被使用。',
     'CADENCE': 'CADENCE', 'Request permission': '请求权限',
     'The TaskNotes plugin is not enabled or installed in your Obsidian vault.': '当前 Obsidian 仓库中未安装或启用 TaskNotes。',
     'Click the button below to open the TaskNotes plugin GitHub page to install it on your Obsidian.': '点击下方按钮打开 TaskNotes 的 GitHub 页面进行安装。',
-    'Rechercher un dossier du vault…': '搜索仓库文件夹…',
+    'Search vault folders…': '搜索仓库文件夹…',
     'Table view': '表格视图', 'Kanban board': '看板', 'Card grid': '卡片网格',
     'Table View': '表格视图', 'Kanban Board': '看板', 'Tile Grid': '磁贴网格',
     'The outcome we want, why now.': '预期成果及当前推进的原因。',
     'In scope / out of scope.': '范围内与范围外的事项。',
     'What could go wrong.': '可能存在的风险。',
     'Who cares about this project.': '项目相关方。', 'Anything else.': '其他补充。',
-    'Ajouter une tâche (TaskNotes)': '添加任务（TaskNotes）',
-    'Que faut-il faire ?': '需要做什么？',
+    'Add a task (TaskNotes)': '添加任务（TaskNotes）',
+    'What needs to be done?': '需要做什么？',
     'Enter text section title:': '输入文本分区标题：',
     'Enter task list section title:': '输入任务列表分区标题：',
     'Enter milestones section title:': '输入里程碑分区标题：',
@@ -233,7 +232,7 @@ function createI18n(preference, obsidianLocale) {
     'This property is read-only unless configured as a Select (Enum) in settings.': '此属性为只读；如需编辑，请在设置中将其配置为枚举选择。',
     'Click to edit notes': '点击编辑备注', 'Associate task to a milestone': '将任务关联到里程碑',
     'Click to edit': '点击编辑', 'Preview rendered markdown': '预览渲染后的 Markdown',
-    'Supprimer cette section croisée': '删除此关联分区', 'Drag card to reorder': '拖动卡片以调整顺序',
+    'Remove this cross-linked section': '删除此关联分区', 'Drag card to reorder': '拖动卡片以调整顺序',
     'Click to unlock this property': '点击解锁此属性', 'Click to lock this property': '点击锁定此属性',
     'Deal': '商机', 'Deals': '商机', 'Stage': '阶段', 'Close by': '预计成交日期',
     'USD — US Dollar': 'USD — 美元', 'CNY — Chinese Yuan (人民币)': 'CNY — 人民币',
@@ -266,7 +265,7 @@ function createI18n(preference, obsidianLocale) {
     'Obsidian Tags': 'Obsidian 标签', 'None': '无', 'Folder…': '文件夹…',
     'COLUMN MAPPING': '列映射', 'Importing…': '正在导入…',
     'This surface is scaffolded but not yet built. Tell the team to flesh it out next.': '此页面尚未实现。',
-    'TODAY’S ENTRY': '今日日志', 'Aucun dossier': '没有文件夹',
+    'TODAY’S ENTRY': '今日日志', 'No folder': '没有文件夹', 'No items': '没有项目', '📂 Choose': '📂 选择',
     'Projects Dashboard': '项目仪表盘', 'Status · priority · custom analytics': '状态 · 优先级 · 自定义分析',
     'Show nav': '显示导航', 'Cadence: switch to light': 'Cadence：切换到浅色模式',
     'Cadence: switch to dark': 'Cadence：切换到深色模式',
@@ -314,7 +313,7 @@ function createI18n(preference, obsidianLocale) {
     'Personal record': '个人记录', 'Total days logged': '累计记录天数',
     'Completed across notes': '笔记中的完成总数',
     'Delete this reminder?': '删除这条提醒吗？',
-    'Supprimer cette section croisée ?': '删除这个关联分区吗？',
+    'Remove this cross-linked section?': '删除这个关联分区吗？',
     'Delete this custom template? Cadence will fall back to using the default structure.': '删除此自定义模板吗？Cadence 将恢复使用默认结构。',
     'Active Template': '当前模板', 'Default': '默认', 'Reset to Default': '恢复默认',
     'Add Block': '添加区块', 'Enter a name': '输入名称', 'Confirm Action': '确认操作',
@@ -331,6 +330,8 @@ function createI18n(preference, obsidianLocale) {
     'Count': '数量', 'Email': '邮箱', 'Cadence reminder': 'Cadence 提醒',
     'Proposal': '方案', 'Negotiation': '谈判', 'Won': '赢单', 'Lost': '丢单',
     'Native (Cadence)': 'Cadence 内置', 'Monday': '星期一', 'Sunday': '星期日',
+    'MON': '周一', 'TUE': '周二', 'WED': '周三', 'THU': '周四',
+    'FRI': '周五', 'SAT': '周六', 'SUN': '周日',
     'Brief': '简介', 'Scope': '范围', 'Risks': '风险', 'Stakeholders': '相关方',
     'tag1, tag2': '标签一, 标签二', 'system / Asia/Shanghai': '系统 / Asia/Shanghai',
     'e.g. Jane Smith': '例如：张三', 'e.g. Acme Corp': '例如：示例公司',
@@ -364,15 +365,15 @@ function createI18n(preference, obsidianLocale) {
       .replace(/ \(\+(\d+) more\)$/, '（另有 $1 项）')
       .replace(/^(\d+) Days?$/, '$1 天')
       .replace(/^(\d+) Tasks?$/, '$1 个任务')
-      .replace(/^Created (.+): (.+)\nSaved to (.+)$/, '已创建$1：$2\n保存位置：$3')
+      .replace(/^Created (.+): (.+)\nSaved to (.+)$/, (_, kind, name, path) => `已创建${translateText(kind)}：${name}\n保存位置：${path}`)
       .replace(/^Cadence: failed to create (.+) — (.+)$/, 'Cadence：创建$1失败 · $2')
-      .replace(/^Fiche projet créée automatiquement pour "(.+)"\.$/, '已为“$1”自动创建项目档案。')
-      .replace(/^Fiche contact créée automatiquement pour "(.+)"\.$/, '已为“$1”自动创建联系人档案。')
-      .replace(/^Lien automatique : Projet "(.+)" associé au contact "(.+)"\.$/, '已自动将项目“$1”关联到联系人“$2”。')
-      .replace(/^Lien automatique : Projet "(.+)" dissocié du contact "(.+)"\.$/, '已自动解除项目“$1”与联系人“$2”的关联。')
-      .replace(/^Lien automatique : Projet "(.+)" associé à "(.+)"\.$/, '已自动将项目“$1”关联到“$2”。')
-      .replace(/^Lien automatique : Projet "(.+)" dissocié de "(.+)"\.$/, '已自动解除项目“$1”与“$2”的关联。')
-      .replace(/^Lien automatique : Projet "(.+)" supprimé du contact "(.+)"\.$/, '已从联系人“$2”移除项目“$1”。')
+      .replace(/^Project record created automatically for "(.+)"\.$/, '已为“$1”自动创建项目档案。')
+      .replace(/^Contact record created automatically for "(.+)"\.$/, '已为“$1”自动创建联系人档案。')
+      .replace(/^Automatically linked project "(.+)" to contact "(.+)"\.$/, '已自动将项目“$1”关联到联系人“$2”。')
+      .replace(/^Automatically unlinked project "(.+)" from contact "(.+)"\.$/, '已自动解除项目“$1”与联系人“$2”的关联。')
+      .replace(/^Automatically linked project "(.+)" to "(.+)"\.$/, '已自动将项目“$1”关联到“$2”。')
+      .replace(/^Automatically unlinked project "(.+)" from "(.+)"\.$/, '已自动解除项目“$1”与“$2”的关联。')
+      .replace(/^Automatically removed project "(.+)" from contact "(.+)"\.$/, '已从联系人“$2”移除项目“$1”。')
       .replace(/^(\d+) (.+) in (Cadence\/.+)$/, (_, count, entity, folder) => `${count} 个${translateText(entity)} · 位于 ${folder}`)
       .replace(/^(\d+) (.+) · (.+) total$/, (_, count, entity, total) => `${count} 个${translateText(entity)} · 总额 ${total}`)
       .replace(/^(\d+) items? · capture once, surface at the right time$/, '$1 个事项 · 随时记录，按时呈现')
@@ -383,7 +384,7 @@ function createI18n(preference, obsidianLocale) {
       .replace(/^Good (morning|afternoon|evening)\. You have (\d+) things? to handle\.$/, (_, time, count) => `${translateText(`Good ${time}`)}。今天有 ${count} 件事待处理。`)
       .replace(/^(.+) — never contacted(.*)$/, '$1 · 从未联系$2')
       .replace(/^(.+) — (\d+) days? quiet(.*)$/, '$1 · 已有 $2 天未联系$3')
-      .replace(/^No CSV column maps to "(.+)" — required to name the file\. Pick a column above\.$/, '没有 CSV 列映射到必填的“$1”；请在上方选择一列。')
+      .replace(/^No CSV column maps to "(.+)" — required to name the file\. Pick a column above\.$/, (_, name) => `没有 CSV 列映射到必填的“${translateText(name)}”；请在上方选择一列。`)
       .replace(/^Will create (\d+) (.+) in (.+)\/  ·  (\d+) columns? mapped$/, '将在 $3/ 创建 $1 个$2 · 已映射 $4 列')
       .replace(/^Group (.+) by Property:$/, '按属性对$1分组：')
       .replace(/^Drop a markdown note in (.+)\/ with frontmatter, or hit "\+ New" above\.$/, '将带 Frontmatter 的 Markdown 笔记放入 $1/，或点击上方“+ 新建”。')
@@ -431,19 +432,19 @@ function createI18n(preference, obsidianLocale) {
       .replace(/^Migrated (\d+) files for field "(.+)" to type "(.+)"\.$/, '已将 $1 个文件中的“$2”字段转换为“$3”类型。')
       .replace(/^Renamed frontmatter key "(.+)" to "(.+)" in (\d+) files\.$/, '已在 $3 个文件中将 Frontmatter 键名“$1”改为“$2”。')
       .replace(/^Failed to read (.+): (.+)$/, '读取 $1 失败：$2')
-      .replace(/^Imported (\d+) (.+) in (\d+)s(.*)$/, '已在 $3 秒内导入 $1 个$2$4')
-      .replace(/^Moved to (.+)$/, '已移动到 $1')
+      .replace(/^Imported (\d+) (.+) in (\d+)s(.*)$/, (_, count, kind, seconds, skipped) => `已在 ${seconds} 秒内导入 ${count} 个${translateText(kind[0].toUpperCase() + kind.slice(1))}${skipped.replace(/ · (\d+) skipped$/, ' · 跳过 $1 个')}`)
+      .replace(/^Moved to (.+)$/, (_, name) => `已移动到${translateText(name)}`)
       .replace(/^Failed to move: (.+)$/, '移动失败：$1')
-      .replace(/^Deleted (.+): (.+)$/, '已删除$1：$2')
+      .replace(/^Deleted (.+): (.+)$/, (_, kind, name) => `已删除${translateText(kind[0].toUpperCase() + kind.slice(1))}：${name}`)
       .replace(/^Delete failed: (.+)$/, '删除失败：$1')
       .replace(/^Save failed: (.+)$/, '保存失败：$1')
-      .replace(/^Created new (.+): (.+)$/, '已创建$1：$2')
-      .replace(/^Template reset for (.+)\.$/, '已重置$1模板。')
-      .replace(/^Template successfully enabled for (.+)\.$/, '已启用$1模板。')
+      .replace(/^Created new (.+): (.+)$/, (_, kind, name) => `已创建${translateText(kind)}：${name}`)
+      .replace(/^Template reset for (.+)\.$/, (_, kind) => `已重置${translateText(kind)}模板。`)
+      .replace(/^Template successfully enabled for (.+)\.$/, (_, kind) => `已启用${translateText(kind)}模板。`)
       .replace(/^Section "(.+)" added to template\.$/, '已将“$1”分区添加到模板。')
       .replace(/^Section "(.+)" removed\.$/, '已移除“$1”分区。')
-      .replace(/^Project status set to (.+)$/, '项目状态已设为 $1')
-      .replace(/^Project priority set to (.+)$/, '项目优先级已设为 $1')
+      .replace(/^Project status set to (.+)$/, (_, status) => `项目状态已设为${translateText(status)}`)
+      .replace(/^Project priority set to (.+)$/, (_, priority) => `项目优先级已设为${translateText(priority)}`)
       .replace(/^Failed to change status: (.+)$/, '更改状态失败：$1')
       .replace(/^Failed to change priority: (.+)$/, '更改优先级失败：$1')
       .replace(/^Page "(.+)" added successfully\.$/, '已添加页面“$1”。')
@@ -6726,9 +6727,9 @@ class CadenceAppView extends obsidian.ItemView {
         }
 
         const text = await this._prompt({
-          title: 'Ajouter une tâche (TaskNotes)',
-          placeholder: 'Que faut-il faire ?',
-          cta: 'Ajouter',
+          title: 'Add a task (TaskNotes)',
+          placeholder: 'What needs to be done?',
+          cta: 'Add',
         });
         if (!text) return;
 
@@ -7398,16 +7399,16 @@ priority: normal
 });
 
       const delBtn = head.createEl('button', { text: '×', attr: { style: 'color: var(--text-error); border: 1px solid var(--text-error); padding: 2px 8px; font-weight: bold; border-radius: 4px; background: transparent; cursor: pointer;' } });
-      delBtn.title = uiText('Supprimer cette section croisée');
+      delBtn.title = uiText('Remove this cross-linked section');
       delBtn.addEventListener('click', async () => {
-        if (!cadenceConfirm('Supprimer cette section croisée ?')) return;
+        if (!cadenceConfirm('Remove this cross-linked section?')) return;
         this.plugin.settings.crossSections = (this.plugin.settings.crossSections || []).filter(c => c.id !== config.id);
         await this.plugin.saveSettings();
         this.render();
       });
 
       if (filteredList.length === 0) {
-        secWrap.createDiv({ cls: 'cad-empty', text: 'Aucun élément lié trouvé.' });
+        secWrap.createDiv({ cls: 'cad-empty', text: 'No linked items found.' });
         return;
       }
 
@@ -7445,7 +7446,7 @@ priority: normal
           });
 
           if (colItems.length === 0) {
-            col.createDiv({ text: 'Aucun élément', attr: { style: 'color: var(--text-faint); text-align: center; margin-top: 24px; font-size: 0.85em;' } });
+            col.createDiv({ text: 'No items', attr: { style: 'color: var(--text-faint); text-align: center; margin-top: 24px; font-size: 0.85em;' } });
           } else {
             const itemsList = col.createDiv({ attr: { style: 'display: flex; flex-direction: column; gap: 8px;' } });
             colItems.forEach(e => {
@@ -12978,7 +12979,7 @@ class CadenceSettingTab extends obsidian.PluginSettingTab {
           }
 
           if (!isValid) {
-            new CadenceNotice('Impossible de réordonner : les propriétés verrouillées (🔒) doivent conserver leur position initiale.');
+            new CadenceNotice('Cannot reorder: locked properties (🔒) must keep their original positions.');
             return;
           }
 
@@ -13214,7 +13215,7 @@ class CadenceSettingTab extends obsidian.PluginSettingTab {
           // Current folder badge
           const folderBadge = folderPickerWrap.createEl('span', { cls: 'cad-folder-badge' });
           const currentFolderPath = isCustomFolder ? activeSource.slice('folder:'.length) : '';
-          folderBadge.setText(currentFolderPath || 'Aucun dossier');
+          folderBadge.setText(currentFolderPath || 'No folder');
           folderBadge.style.flex = '1';
           folderBadge.style.fontSize = '12px';
           folderBadge.style.color = currentFolderPath ? 'var(--text-normal)' : 'var(--text-faint)';
@@ -13228,7 +13229,7 @@ class CadenceSettingTab extends obsidian.PluginSettingTab {
 
           const pickFolderBtn = folderPickerWrap.createEl('button', {
             cls: 'cad-btn cad-btn-sm cad-folder-pick-btn',
-            text: '📂 Choisir',
+            text: '📂 Choose',
           });
           pickFolderBtn.type = 'button';
           pickFolderBtn.style.flexShrink = '0';
@@ -13236,7 +13237,7 @@ class CadenceSettingTab extends obsidian.PluginSettingTab {
 
           const saveFolderSource = async (path) => {
             _folderPath = path;
-            folderBadge.setText(path || 'Aucun dossier');
+            folderBadge.setText(path || 'No folder');
             folderBadge.style.color = path ? 'var(--text-normal)' : 'var(--text-faint)';
             field.suggestionSource = path ? `folder:${path}` : 'none';
             syncSharedProperties(field);
@@ -13269,7 +13270,7 @@ class CadenceSettingTab extends obsidian.PluginSettingTab {
             const picker = new (class extends obsidian.SuggestModal {
               constructor(app) {
                 super(app);
-                this.setPlaceholder(uiText('Rechercher un dossier du vault…'));
+                this.setPlaceholder(uiText('Search vault folders…'));
               }
               getSuggestions(q) {
                 const ql = q.toLowerCase();
@@ -13291,7 +13292,7 @@ class CadenceSettingTab extends obsidian.PluginSettingTab {
             folderPickerWrap.style.display = show ? 'flex' : 'none';
             if (!show) {
               _folderPath = '';
-              folderBadge.setText('Aucun dossier');
+              folderBadge.setText('No folder');
               await saveSugSource();
             }
           });
@@ -14030,7 +14031,7 @@ class CadencePlugin extends obsidian.Plugin {
               const originalName = allFiles.find(f => f.basename.toLowerCase() === p)?.basename || (p.charAt(0).toUpperCase() + p.slice(1));
               const projectFile = await createEntity(this.app, 'project', originalName);
               projectMap.set(p, projectFile);
-              new CadenceNotice(`Fiche projet créée automatiquement pour "${originalName}".`);
+              new CadenceNotice(`Project record created automatically for "${originalName}".`);
             } catch (e) {
               console.error(`Cadence: Failed to auto-create project ${p}`, e);
             }
@@ -14062,7 +14063,7 @@ class CadencePlugin extends obsidian.Plugin {
               const originalName = allFiles.find(f => f.basename.toLowerCase() === c)?.basename || (c.charAt(0).toUpperCase() + c.slice(1));
               const contactFile = await createEntity(this.app, 'contact', originalName);
               contactMap.set(c, contactFile);
-              new CadenceNotice(`Fiche contact créée automatiquement pour "${originalName}".`);
+              new CadenceNotice(`Contact record created automatically for "${originalName}".`);
             } catch (e) {
               console.error(`Cadence: Failed to auto-create contact ${c}`, e);
             }
@@ -14091,7 +14092,7 @@ class CadencePlugin extends obsidian.Plugin {
                 }
               }
             });
-            new CadenceNotice(`Lien automatique : Projet "${changedFile.basename}" associé au contact "${contactFile.basename}".`);
+            new CadenceNotice(`Automatically linked project "${changedFile.basename}" to contact "${contactFile.basename}".`);
           } else if (!projectListsContact && listsProject) {
             // User removed contact from project sheet! Check if there is any other note listing both.
             let hasOtherSource = false;
@@ -14145,7 +14146,7 @@ class CadencePlugin extends obsidian.Plugin {
                   cfm.project = newProjects.map(p => `[[${p}]]`);
                 }
               });
-              new CadenceNotice(`Lien automatique : Projet "${changedFile.basename}" dissocié du contact "${contactFile.basename}".`);
+              new CadenceNotice(`Automatically unlinked project "${changedFile.basename}" from contact "${contactFile.basename}".`);
             }
           }
         }
@@ -14205,7 +14206,7 @@ class CadencePlugin extends obsidian.Plugin {
               const originalName = allFiles.find(f => f.basename.toLowerCase() === c)?.basename || (c.charAt(0).toUpperCase() + c.slice(1));
               contactFile = await createEntity(this.app, 'contact', originalName);
               contactMap.set(c, contactFile);
-              new CadenceNotice(`Fiche contact créée automatiquement pour "${originalName}".`);
+              new CadenceNotice(`Contact record created automatically for "${originalName}".`);
             } catch (e) {
               console.error(`Cadence: Failed to auto-create contact ${c}`, e);
             }
@@ -14217,7 +14218,7 @@ class CadencePlugin extends obsidian.Plugin {
               const originalName = allFiles.find(f => f.basename.toLowerCase() === p)?.basename || (p.charAt(0).toUpperCase() + p.slice(1));
               projectFile = await createEntity(this.app, 'project', originalName);
               projectMap.set(p, projectFile);
-              new CadenceNotice(`Fiche projet créée automatiquement pour "${originalName}".`);
+              new CadenceNotice(`Project record created automatically for "${originalName}".`);
             } catch (e) {
               console.error(`Cadence: Failed to auto-create project ${p}`, e);
             }
@@ -14280,10 +14281,10 @@ class CadencePlugin extends obsidian.Plugin {
             const removed = existingProjects.filter(ep => !sortedProjects.some(p => p.toLowerCase() === ep.toLowerCase()));
 
             if (added.length > 0) {
-              new CadenceNotice(`Lien automatique : Projet "${added.join(', ')}" associé à "${contactFile.basename}".`);
+              new CadenceNotice(`Automatically linked project "${added.join(', ')}" to "${contactFile.basename}".`);
             }
             if (removed.length > 0) {
-              new CadenceNotice(`Lien automatique : Projet "${removed.join(', ')}" dissocié de "${contactFile.basename}".`);
+              new CadenceNotice(`Automatically unlinked project "${removed.join(', ')}" from "${contactFile.basename}".`);
             }
           }
         }
@@ -14371,7 +14372,7 @@ class CadencePlugin extends obsidian.Plugin {
             }
           });
 
-          new CadenceNotice(`Lien automatique : Projet "${projectName}" supprimé du contact "${contactFile.basename}".`);
+          new CadenceNotice(`Automatically removed project "${projectName}" from contact "${contactFile.basename}".`);
         }
       }
     } catch (e) {
