@@ -134,6 +134,68 @@ function createI18n(preference, obsidianLocale) {
     'Customize the properties for each core entity (Projects, Pipelines/Deals, Contacts, Companies, and Activities). Critical system properties required for the calendar, Kanban, and dashboard features are locked against deletion or type changes, but their display labels can still be customized.': '自定义项目、商机、联系人、公司和活动的属性。日历、看板及仪表盘依赖的关键属性不能删除或更改类型，但可以修改显示名称。',
     'Label (Display name)': '名称（显示名）', 'Technical Key (Frontmatter)': '技术键名（Frontmatter）',
     'Type': '类型', 'Options / Source': '选项 / 来源',
+    'WHAT *': '内容 *', '📁 Link to project': '📁 关联项目',
+    'Import from CSV': '从 CSV 导入', 'Pick .csv from vault': '从仓库选择 CSV 文件',
+    'Paste or pick a CSV to preview…': '粘贴或选择 CSV 文件以预览…', '— skip —': '— 跳过 —',
+    'Add Custom Chart Widget': '添加自定义图表组件', 'Chart Title:': '图表标题：',
+    'Chart Style:': '图表样式：', 'Donut Chart 🍩': '环形图 🍩',
+    'Horizontal Bar Chart 📊': '横向条形图 📊', 'KPI Cards Grid 🗃️': '指标卡片网格 🗃️',
+    'Simple List 📋': '简单列表 📋', 'Create Widget': '创建组件',
+    'Add Cross-Linked Section': '添加关联分区', 'Target Entity to display:': '要显示的目标实体：',
+    'Linked Field (in target entity):': '关联字段（位于目标实体）：',
+    'Display View Layout:': '显示布局：', 'Table 📋': '表格 📋',
+    'Tiles / Cards 🎴': '磁贴 / 卡片 🎴', 'Kanban Board 🗂️': '看板 🗂️',
+    'Add Section': '添加分区', 'Add Analytics Chart Block': '添加分析图表区块',
+    'Entity to chart:': '要统计的实体：',
+    'Link field (field on target that references this entity):': '关联字段（目标实体中引用当前实体的字段）：',
+    'Group by field (property to chart):': '分组字段（图表统计属性）：', 'Add Chart': '添加图表',
+    'Group columns by:': '列分组依据：', 'No matching entries found.': '未找到匹配的记录。',
+    'NEXT · ': '下一项 · ', '← Companies': '← 公司', 'COMPANY': '公司',
+    '← Projects': '← 项目', '🎯 Milestone': '🎯 里程碑', '+ Add': '+ 添加',
+    '+ Add notes': '+ 添加备注', ' Preview': ' 预览', ' Edit': ' 编辑',
+    'No linked items found.': '未找到关联项目。', 'Loading milestones...': '正在加载里程碑…',
+    'Aucun élément lié trouvé.': '未找到关联项目。', 'Aucun élément': '没有项目',
+    '+ New Project': '+ 新建项目', 'No projects yet': '还没有项目',
+    'Hit "+ New Project" — you\'ll get a templated note with Brief, Scope, Milestones, Tasks, Risks and Stakeholders sections ready to fill in.': '点击“+ 新建项目”，系统会创建包含简介、范围、里程碑、任务、风险和相关方分区的笔记。',
+    'TOP OF THE DAY': '今日要点', 'Nothing flagged. Make today count.': '目前没有需要特别关注的事项。',
+    '🔥 DAILY STREAK & ACTIVITY': '🔥 连续记录与活动', 'Mon': '周一', 'Wed': '周三', 'Fri': '周五',
+    '💡 Click any square to open or create that day’s daily note': '💡 点击方格即可打开或创建当天的每日笔记',
+    'Less': '少', 'More': '多', '📈 TASKS COMPLETED BY PROJECT': '📈 按项目统计已完成任务',
+    'Check off tasks linked to projects in your daily notes or project checklists to see your completion trend over time.': '在每日笔记或项目清单中完成关联任务，即可看到完成趋势。',
+    '+ Capture': '+ 记录',
+    '← Templates': '← 模板', '➕ ADD BLOCK TO TEMPLATE': '➕ 向模板添加区块',
+    '📝 Text Area': '📝 文本区域', '📋 Task List': '📋 任务列表',
+    '📅 Milestones / Timeline': '📅 里程碑 / 时间线', '🔗 Cross-Linked Data': '🔗 关联数据',
+    '+ Quick capture': '+ 快速记录', '+ Add Custom Chart': '+ 添加自定义图表',
+    '+ New Deal': '+ 新建商机', 'TODAY': '今天',
+    '🟢 Active and Connected': '🟢 已启用并连接', '🔴 Inactive / Not installed': '🔴 未启用或未安装',
+    '+ Add Custom Navigation Page': '+ 添加自定义导航页面', 'Label:': '名称：',
+    'Default Layout:': '默认布局：', '+ Add property': '+ 添加属性', '📂 Choisir': '📂 选择',
+    'Manage your entity templates.': '管理实体模板。',
+    'Pipeline': '销售管道', 'Contacts': '联系人', 'Contact': '联系人',
+    'Companies': '公司', 'Company': '公司', 'Activities': '活动', 'Activity': '活动',
+    'Partners': '合作伙伴', 'Partner': '合作伙伴', 'Registrations': '登记', 'Registration': '登记',
+    'Commissions': '佣金', 'Commission': '佣金', 'Leads': '潜在客户', 'Lead': '潜在客户',
+    'Certifications': '认证', 'Certification': '认证', 'Analytics': '分析',
+    'Sequences': '流程', 'Sequence': '流程', 'Sales': '销售', 'Productivity': '效率',
+    'Graph View': '关系图', 'Name': '名称', 'Email': '邮箱', 'Phone': '电话',
+    'Role': '角色', 'Last contact': '最近联系', 'Tags': '标签', 'Domain': '域名',
+    'Industry': '行业', 'Size': '规模', 'Owner': '负责人', 'Tier': '级别',
+    'Status': '状态', 'Region': '地区', 'Title': '标题', 'Value': '金额',
+    'Submitted': '已提交', 'Approved': '已批准', 'Rejected': '已拒绝', 'Expired': '已过期',
+    'Expires': '到期', 'Ref': '编号', 'Amount': '金额', 'Pending': '待处理',
+    'Earned': '已获得', 'Paid': '已支付', 'Disputed': '有争议', 'Period': '期间',
+    'Paid on': '支付日期', 'Source': '来源', 'New': '新建', 'Contacted': '已联系',
+    'Qualified': '已筛选', 'Disqualified': '不合格', 'Converted': '已转化',
+    'Assigned': '已分配', 'Level': '等级', 'Issued': '颁发日期',
+    'Subject': '主题', 'Call': '通话', 'Meeting': '会议', 'Note': '笔记',
+    'When': '时间', 'With': '与', 'Related': '相关', 'Audience': '受众',
+    'Steps': '步骤', 'Active': '进行中', 'Draft': '草稿', 'Paused': '已暂停',
+    'Archived': '已归档', 'Priority': '优先级', 'Started': '开始日期', 'Due': '截止日期',
+    'Gold': '金牌', 'Silver': '银牌', 'Bronze': '铜牌', 'Standard': '标准',
+    'Onboarding': '入驻中', 'Inactive': '未启用', 'Churned': '已流失',
+    'active': '进行中', 'on_hold': '暂停', 'backlog': '待办', 'done': '已完成',
+    'cancelled': '已取消', 'low': '低', 'medium': '中', 'high': '高',
   } : {};
   const fallback = {
     'settings.language.name': 'Language', 'settings.language.desc': 'Use Obsidian language automatically, or choose a Cadence language.',
@@ -143,13 +205,27 @@ function createI18n(preference, obsidianLocale) {
     if (!zh || typeof value !== 'string') return value;
     if (dict[value]) return dict[value];
     return value
+      .replace(/^(\d+) projects · (\d+)\/(\d+) tasks complete · (\d+)h (\d+)m tracked$/, '$1 个项目 · 完成 $2/$3 个任务 · 记录 $4 小时 $5 分钟')
+      .replace(/^No completed project tasks in the last (\d+) days$/, '过去 $1 天没有已完成的项目任务')
+      .replace(/^(\d+)\/(\d+) milestones complete$/, '完成 $1/$2 个里程碑')
+      .replace(/^(\d+)\/(\d+) milestones$/, '$1/$2 个里程碑')
+      .replace(/^(\d+)\/(\d+) tasks$/, '$1/$2 个任务')
+      .replace(/^(\d+) open · (\d+) done$/, '$1 项未完成 · $2 项已完成')
+      .replace(/^(\d+) open$/, '$1 项未完成')
+      .replace(/^(\d+) done$/, '$1 项已完成')
+      .replace(/^Due: (.+)$/, '截止：$1')
+      .replace(/^No (.+) yet$/, (_, name) => `还没有${translateText(name)}`)
+      .replace(/^All (.+)$/, (_, name) => `全部${translateText(name)}`)
+      .replace(/^\+ New (.+)$/, (_, name) => `+ 新建${translateText(name)}`)
+      .replace(/^\+ Add (.+)$/, (_, name) => `+ 添加${translateText(name)}`)
       .replace(/^New (.+)$/, (_, name) => `新建${translateText(name)}`)
       .replace(/^Create (.+)$/, (_, name) => `创建${translateText(name)}`)
       .replace(/^Edit (.+)$/, (_, name) => `编辑${translateText(name)}`)
       .replace(/^Delete (.+)$/, (_, name) => `删除${translateText(name)}`)
       .replace(/^Open (.+)$/, (_, name) => `打开${translateText(name)}`)
       .replace(/^(\d+) tasks$/, '$1 个任务')
-      .replace(/^(\d+) milestones$/, '$1 个里程碑');
+      .replace(/^(\d+) milestones$/, '$1 个里程碑')
+      .replace(/^(\d+)% of total$/, '占总数 $1%');
   };
   return { locale: zh ? 'zh-CN' : 'en', t: (key) => dict[key] || fallback[key] || key, translateText };
 }
