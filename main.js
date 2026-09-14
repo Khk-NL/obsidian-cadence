@@ -7,9 +7,42 @@
 'use strict';
 
 const obsidian = require('obsidian');
-const { createI18n } = require('./src/i18n');
-const CadenceTimezone = require('./src/timezone');
-const { SuperProductivityProvider } = require('./src/providers/super-productivity');
+
+/* Kept inline because this plugin is loaded directly by Obsidian rather than
+   through a bundler; relative require() paths are not available at runtime. */
+const CadenceTimezone = {
+  systemTimezone() { return Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'; },
+  resolveTimezone(value) {
+    const zone = value && value !== 'system' ? String(value).trim() : this.systemTimezone();
+    try { new Intl.DateTimeFormat('en-US', { timeZone: zone }).format(); return zone; } catch (_) { return this.systemTimezone(); }
+  },
+  ymd(date, timezone) {
+    const p = new Intl.DateTimeFormat('en-CA', { timeZone: this.resolveTimezone(timezone), year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(date).reduce((r, x) => { if (x.type !== 'literal') r[x.type] = x.value; return r; }, {});
+    return `${p.year}-${p.month}-${p.day}`;
+  },
+};
+function createI18n(preference, obsidianLocale) {
+  const zh = String(preference === 'auto' || !preference ? obsidianLocale : preference).replace('_', '-').toLowerCase() === 'zh-cn';
+  const dict = zh ? {
+    'settings.language.name': '语言', 'settings.language.desc': '自动跟随 Obsidian 语言，或单独选择 Cadence 语言。',
+    'settings.timezone.name': '时区', 'settings.timezone.desc': '默认使用系统时区；可填写标准 IANA 时区，例如 Asia/Shanghai。',
+  } : {};
+  const fallback = {
+    'settings.language.name': 'Language', 'settings.language.desc': 'Use Obsidian language automatically, or choose a Cadence language.',
+    'settings.timezone.name': 'Timezone', 'settings.timezone.desc': 'Use system timezone by default. Enter a standard IANA timezone such as Asia/Shanghai.',
+  };
+  return { locale: zh ? 'zh-CN' : 'en', t: (key) => dict[key] || fallback[key] || key };
+}
+class SuperProductivityProvider {
+  constructor({ requestUrl, baseUrl }) { this.requestUrl = requestUrl; this.baseUrl = String(baseUrl || '').replace(/\/$/, ''); }
+  isConfigured() { return Boolean(this.baseUrl && this.requestUrl); }
+  async getSnapshot() {
+    if (!this.isConfigured()) return { projects: [], todayTasks: [], summary: null, unavailable: true };
+    const get = async (path) => this.requestUrl({ url: `${this.baseUrl}${path}`, method: 'GET' });
+    const [projects, todayTasks, summary] = await Promise.all([get('/projects'), get('/tasks/today'), get('/summary/today')]);
+    return { projects: projects || [], todayTasks: todayTasks || [], summary: summary || null, unavailable: false };
+  }
+}
 
 const VIEW_TYPE_CADENCE_APP = 'cadence-app';
 
